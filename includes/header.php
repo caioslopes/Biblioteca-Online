@@ -10,7 +10,7 @@
   <body>
     <nav class="navbar bg-dark">
         <div class="container-fluid container-xxl">
-            <a class="navbar-brand text-light" href="index.php">
+            <a class="navbar-brand text-light" href="../index.php">
                 Biblioteca
             </a>
         </div>

@@ -27,7 +27,7 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
         $novoNome = uniqid(time()) . '.' . $extensao;
 
         // Concatena a pasta com o nome
-        $destino = 'img/' . $novoNome;
+        $destino = '../img/' . $novoNome;
 
         // tenta mover o arquivo para o destino
         if (@move_uploaded_file($arquivo_tmp, $destino)) {
@@ -56,7 +56,7 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
     //executa a query
     $query->execute();
 
-    header('location: index.php?=status=success');
+    header('location: home.php?=status=success');
     /* echo "<pre>"; print_r($imagem); echo "</pre>"; exit; */
   };
 
