@@ -21,7 +21,7 @@
             <li><a class="dropdown-item" href="registros-reservados.php">Registros</a></li>
           </ul>
         </li>
-  <li class="nav-item">
-    <a class="nav-link disabled">Sair</a>
+ <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="sair.php">Sair</a>
   </li>
 </ul>
