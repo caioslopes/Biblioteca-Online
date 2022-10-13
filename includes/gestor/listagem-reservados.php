@@ -1,42 +1,52 @@
-<div>
-  <h1>RESERVADOS PARA ALUNOS</h1>
-</div>
+  <?php
 
-<div class="row row-cols-1 row-cols-md-3 g-4 container-xxl m-auto">
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
+    /* Relaciona a tabela reserva, livro e aluno para podermos mostrar as informações pro gestor */
+    $querySelect = $conn->prepare("SELECT * FROM reserva
+    INNER JOIN livro
+    ON id_livro = reserva.cod_livro
+    INNER JOIN aluno
+    ON id_aluno = reserva.cod_aluno");
+    $querySelect->execute();
+    $resultQuerySelect = $querySelect->get_result();
+
+    ?>
+
+<section class="container-xl">
+    <div>
+      <h1>Livros Emprestados</h1>
     </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
-</div>
+
+     <div class="table-livros mt-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Aluno</th>
+                        <th scope="col">Livro</th>
+                        <th scope="col">Data Reserva</th>
+                        <th scope="col">Data Entrega</th>
+                        <th scope="col">Dar Baixa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    /* Retorna num array as informações da função acima */
+                    while ($reserva = mysqli_fetch_assoc($resultQuerySelect)) {
+                    ?>
+                        <tr>
+                            <td><?php echo $reserva['id_reserva'] ?></td>
+                            <td><?php echo $reserva['nome_aluno'] ?></td>
+                            <td><?php echo $reserva['titulo'] ?></td>
+                            <td><?php echo $reserva['data_da_reserva'] ?></td>
+                            <td><?php echo $reserva['data_da_entrega'] ?></td>
+                            <td>
+                                <a href='dar-baixa-livro.php?id=<?php echo $reserva['id_reserva'] ?>' class='btn btn-sm btn-primary'>
+                                    Dar Baixa
+                                </a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+</section>

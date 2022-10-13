@@ -1,42 +1,47 @@
-<div>
-  <h1>REGISTROS</h1>
-</div>
+<?php
 
-<div class="row row-cols-1 row-cols-md-3 g-4 container-xxl m-auto">
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
+  /* Pega a tabela alunos e a tabela registros e relacionas as informações */
+  $querySelect = $conn->prepare("SELECT aluno.id_aluno, aluno.nome_aluno, livro.id_livro, livro.titulo, registro.* 
+  FROM registro 
+  LEFT JOIN aluno
+  ON registro.cod_aluno = aluno.id_aluno
+  LEFT JOIN livro
+  ON registro.cod_livro = livro.id_livro");
+  $querySelect->execute();
+  $resultQuerySelect = $querySelect->get_result();
+
+?>
+
+<section class="container-xl">
+    <div>
+      <h1>Registros</h1>
     </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-      </div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card">
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-    </div>
-  </div>
-</div>
+
+     <div class="table-livros mt-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Aluno</th>
+                        <th scope="col">Livro</th>
+                        <th scope="col">Data Reserva</th>
+                        <th scope="col">Data Entrega</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    /* Retorna num array as informações da função acima */
+                    while ($registro = mysqli_fetch_assoc($resultQuerySelect)) {
+                    ?>
+                        <tr>
+                            <td><?php echo $registro['id_registro'] ?></td>
+                            <td><?php echo $registro['nome_aluno'] ?></td>
+                            <td><?php echo $registro['titulo'] ?></td>
+                            <td><?php echo $registro['data_da_reserva'] ?></td>
+                            <td><?php echo $registro['data_da_entrega'] ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+</section>
