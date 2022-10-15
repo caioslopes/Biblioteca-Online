@@ -34,7 +34,7 @@
 
             $_SESSION['id_aluno'] = $aluno['id_aluno'];
             
-            header('location: View-Aluno/home.php?=status=success');
+            header('location: View-Aluno/home.php?=status=success_aluno');
             exit;
 
         }
@@ -78,7 +78,7 @@
 
             $_SESSION['id_gestor'] = $gestor['id_gestor'];
 
-            header('location: View-Gestor/home.php?=status=success');
+            header('location: View-Gestor/home.php?=status=success_gestor');
         } else {
             header('location: index.php?=status=error');
             exit;

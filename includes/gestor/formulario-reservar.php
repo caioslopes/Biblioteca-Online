@@ -68,12 +68,13 @@
 
 ?>
 
-<section class="container-xl">
-    <div>
-      <h1>Emprestar Livro</h1>
-    </div>
+<section class="container-xl corpo">
 
-    <form  method="POST">
+  <div class="titulo-pagina">
+    <h1>Emprestar Livro</h1>
+  </div>
+
+    <form class="mt-4"  method="POST">
       <div class="form-floating mb-3">
         <select class="form-select" id="aluno" name="aluno" required>
           <option selected>Selecionar Aluno</option>

@@ -34,9 +34,10 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
             /* echo 'Arquivo salvo com sucesso em : <strong>' . $destino . '</strong><br />';
           echo ' < img src = "' . $destino . '" />'; */
         } else
-            echo 'Erro ao salvar o arquivo. Aparentemente você não tem permissão de escrita.<br />';
+            header('location: cadastrar.php?=status=erro_cadastrar');
     } else
-        echo 'Você poderá enviar apenas arquivos "*.jpg;*.jpeg;*.gif;*.png"<br />';
+        header('location: cadastrar.php?=status=erro_cadastrar');
+
 };
 
   /* Pegando valores do formulario */
@@ -56,15 +57,20 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
     //executa a query
     $query->execute();
 
-    header('location: home.php?=status=success');
+    header('location:livros.php?=status=success');
     /* echo "<pre>"; print_r($imagem); echo "</pre>"; exit; */
   };
 
 ?>
 
-<section class="container-xl">
+<section class="container-xl corpo">
+
+   <div class="titulo-pagina">
+    <h1>Cadastrar Livro</h1>
+  </div>
+
 <!-- Formulario de cadastro de livros -->
-  <form method="POST" enctype="multipart/form-data">
+  <form class="mt-4" method="POST" enctype="multipart/form-data">
       <div class="mb-3">
         <label class="form-label">Codigo do Livro</label>
         <input class="form-control" type="text" name="cod_livro" required>

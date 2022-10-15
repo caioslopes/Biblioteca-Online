@@ -11,12 +11,13 @@
 
     ?>
 
-<section class="container-xl">
-    <div>
-      <h1>Livros Emprestados</h1>
+<section class="container-xl corpo">
+
+    <div class="titulo-pagina">
+        <h1>Livros Emprestados</h1>
     </div>
 
-     <div class="table-livros mt-3">
+     <div class="table-livros mt-4">
             <table class="table table-striped">
                 <thead>
                     <tr>

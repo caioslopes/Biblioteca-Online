@@ -27,6 +27,11 @@
   margin-top: 5px;
 }
 
+.livros:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
 /* Paginação */
 .link-pag {
     color: #23232e;
@@ -109,10 +114,10 @@
 ?>
 
 
-<section class="container-xl mt-3 corpo">
+<section class="container-xl mt-4 corpo">
 
  <div class="titulo-pagina">
-    <h1>Livros Cadastrados</h1>
+    <h1>Livros Disponiveis</h1>
   </div>
 
 <?php  
@@ -139,10 +144,6 @@
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="vitrine__livros--texto">
                 <span><?php echo $livros['titulo'] ?></span>
-              </div>
-              <div>
-                <a class="btn btn-sm btn-primary" href="editar.php?id=<?php echo $livros['id_livro'] ?>">Editar</a>
-                <a class="btn btn-sm btn-danger" href="excluir.php?id=<?php echo $livros['id_livro'] ?>">Excluir</a>
               </div>
           </div>
           <?php } ?>
