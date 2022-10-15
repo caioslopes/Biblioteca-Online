@@ -19,7 +19,7 @@
     </div>
 
      <div class="table-livros mt-4">
-            <table class="table table-striped">
+            <table class="table table-dark table-striped">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
