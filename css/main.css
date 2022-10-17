@@ -12,10 +12,49 @@ a {
     margin-top: 30px;
     margin-left: 230px;
 }
-.header-geral {
-    background-color: #e7e7e7;
-    height: 60px;
+.header-aberto {
+    background-color: #23232e;
 }
 .titulo-pagina {
     border-bottom: 2px solid black;
+}
+/* Swipper CSS */
+.swiper {
+    width: 65%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 30px;
+    border: 5px solid white;
+}
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {
+    color: white;
+}
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {
+    color: white;
 }

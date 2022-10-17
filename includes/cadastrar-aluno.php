@@ -42,7 +42,7 @@
         <div class="mt-3">
             <input class="btn btn-primary" type="submit" name="cadastrar">
 
-            <a class="btn btn-success" href="index.php">
+            <a class="btn btn-success" href="login.php">
                 Já tenho cadastro
             </a>
         </div>
