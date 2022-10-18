@@ -92,7 +92,9 @@
           <div class="livros">
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="vitrine__livros--texto">
+               <a class="btn btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
                 <!-- <span><?php echo $livros['titulo'] ?></span> -->
+            
               </div>
           </div>
           <?php } ?>
