@@ -15,12 +15,10 @@
     flex-wrap: wrap;
 }
 
-
 .capa-livros {
     width: 100%;
     height: 250px;
-    box-shadow: 6px 6px;
-    border-radius: 10px;
+    border: 3px solid;
 }
 
 .vitrine__livros--texto{
@@ -103,7 +101,7 @@
           unlink($pasta.$imagem_livro);
         };
 
-        header('location: home.php?=status=success');
+        header('location: livros.php?=status=success');
 
     }
 ?>
@@ -138,11 +136,11 @@
           <div class="livros">
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="vitrine__livros--texto">
-                <span><?php echo $livros['titulo'] ?></span>
+                <!-- <span><?php echo $livros['titulo'] ?></span> -->
               </div>
               <div>
                 <a class="btn btn-sm btn-primary" href="editar.php?id=<?php echo $livros['id_livro'] ?>">Editar</a>
-                <a class="btn btn-sm btn-danger" href="excluir.php?id=<?php echo $livros['id_livro'] ?>">Excluir</a>
+                <a class="btn btn-sm btn-danger" href="livros.php?id=<?php echo $livros['id_livro'] ?>">Excluir</a>
               </div>
           </div>
           <?php } ?>

@@ -19,8 +19,7 @@
 .capa-livros {
     width: 100%;
     height: 250px;
-    box-shadow: 6px 6px;
-    border-radius: 10px;
+    border: 3px solid;
 }
 
 .vitrine__livros--texto{
@@ -63,56 +62,6 @@
 }
 
 </style>
-<?php
-    //Puxa os dados da tabela livros
-    //Monta a query
-    $querySelect = $conn->prepare('SELECT * FROM livro');
-    //Executa da query
-    $querySelect->execute();
-    //Pega o resultado da execução da query
-    $resultQuery = $querySelect->get_result();
-
-    //Função responsavel por deletar o livro do banco de dados
-    if(!empty($_GET['id'])){
-        //Pega o id do livro, que foi passado por URL
-        $id_livro = $_GET['id'];
-
-        //Define o diretorio das imagens para poder excluir-las
-         $pasta = '../img/';
-
-        //Monta a query
-        $SelectImagem = $conn->prepare("SELECT * FROM livro WHERE id_livro = ?");
-        //Separa o valor do id da query
-        $SelectImagem->bind_param("i", $id_livro);
-        //Executa da query
-        $SelectImagem->execute();
-        //Pega o resultado da query
-        $NomeImagem = $SelectImagem->get_result();
-
-        //Puxo o nome do arquivo(imagem), para poder exclui-lo junto ao livro.
-        while($Imagem = mysqli_fetch_assoc($NomeImagem)){
-          $imagem_livro = $Imagem['imagem'];
-        };
-
-        //Verifica se a $querySelect teve resultado, se o numero de linhas for maior que 0 (se tiver algum registro), o registro sera deletado.
-        if($NomeImagem->num_rows > 0){
-
-          //Monta a query
-          $queryDelet = $conn->prepare("DELETE FROM livro WHERE id_livro = ?");
-           //Separa o valor do id da query
-          $queryDelet->bind_param("i", $id_livro);
-           //Executa da query
-          $queryDelet->execute();
-
-          //Apaga a imagem da pasta de img
-          unlink($pasta.$imagem_livro);
-        };
-
-        header('location: home.php?=status=success');
-
-    }
-?>
-
 
 <section class="container-xl mt-4 corpo">
 
@@ -143,7 +92,7 @@
           <div class="livros">
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="vitrine__livros--texto">
-                <span><?php echo $livros['titulo'] ?></span>
+                <!-- <span><?php echo $livros['titulo'] ?></span> -->
               </div>
           </div>
           <?php } ?>

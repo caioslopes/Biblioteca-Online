@@ -18,6 +18,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- CSS Personalizado -->
     <link rel="stylesheet" href="css/main.css">
+    <style>
+      .content-login{
+        border-radius: 20px;
+        background-color: white;
+        display: flex;
+        gap: 15px;
+        padding: 0px 40px;
+      }
+      .content-login a{
+        font-weight: 900;
+      }
+       .content-login a:hover{
+        cursor: pointer;
+       }
+    </style>
   </head>
   <body>
    <!-- As a heading -->
@@ -33,9 +48,10 @@
         <a class="nav-link text-light" href="index.php#como-funciona">Como Funciona?</a>
         <a class="nav-link text-light" href="index.php#quem-somos">Quem somos?</a>
       </div>
-      <div class="navbar-nav">
-        <a class="nav-link text-light" href="livros.php">Livros</a>
-        <a class="nav-link text-light" href="login.php">Entrar/Cadastrar-se</a>
+      <div class="navbar-nav content-login">
+        <a class="nav-link" href="livros.php">Livros</a>
+        <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
+        <a class="nav-link" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cadastre-se</a>
       </div>
     </div>
   </div>

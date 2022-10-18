@@ -1,6 +1,6 @@
 <style>
     .bg-apresentacao{
-        background-color: #d9d9d9;
+        background-color: #23232e;
         height: 700px;
         display: flex;
         align-items: center;
@@ -31,6 +31,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        color: white;
     }
     .bg-titulo-apres span:first-child{
         font-size: 80px;
@@ -56,7 +57,8 @@
         padding: 50px 0;
     }
     .card-como-fun{
-        background-color: #d9d9d9;
+        background-color: #23232e;
+        color: white;
         border-radius: 10px;
         display: flex;
         flex-direction: column;
@@ -252,7 +254,7 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
      <!-- Initialize Swiper -->
-    <script>
+    <script>        
          AOS.init({
             duration: 2000,
          });

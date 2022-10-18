@@ -141,7 +141,7 @@ if(!empty($_GET['id'])){
       </div>
 
       <div class="mb-3">
-        <input class="btn btn-primary" type="submit" name="editar" value="Cadastrar Livro">
+        <input class="btn btn-primary" type="submit" name="editar" value="Editar Livro">
       </div>
   </form>
 
