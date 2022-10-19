@@ -85,13 +85,15 @@
     $result = $sql->get_result();
 
     //Consulta a tabela reserva_temp e reserva para verificar se o aluno pode ou não reservar novo livro
-    $sqlConsulta = $conn->prepare("SELECT reserva_temp.cod_aluno, reserva.cod_aluno 
-    FROM reserva 
-    INNER JOIN reserva_temp 
-    ON reserva_temp.cod_aluno = reserva.cod_aluno 
-    WHERE reserva_temp.cod_aluno = $id_aluno ");
-    $sqlConsulta->execute();
-    $resultConsulta = $sqlConsulta->get_result();
+    $reserva_temp = $conn->prepare("SELECT cod_aluno FROM reserva_temp WHERE cod_aluno = $id_aluno");
+    $reserva_temp->execute();
+    $resultReserva_temp = $reserva_temp->get_result();
+
+    $reserva = $conn->prepare("SELECT cod_aluno FROM reserva WHERE cod_aluno = $id_aluno");
+    $reserva->execute();
+    $resultreserva = $reserva->get_result();
+
+
 
   ?>
       <div class="fundo__vitrine--livros mt-4">
@@ -101,12 +103,12 @@
           <div class="livros">
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="vitrine__livros--texto">
-                <?php if($resultConsulta->num_rows >= 1){ ?>
+                <?php if($resultReserva_temp->num_rows >= 1 || $resultreserva->num_rows >=1){ ?>
                     <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Você já possui um livro reservado">
                     Reservar
-                    </button>    
-                <?php  }else if($resultConsulta->num_rows === 0){ ?>
-                    <a class="btn btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
+                    </button>   
+                <?php  }else{ ?>
+                     <a class="btn btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
                 <?php }?>
               </div>
           </div>
@@ -151,3 +153,8 @@
         </div>
 </section>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script>
+    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))    
+</script>
