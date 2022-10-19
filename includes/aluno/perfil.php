@@ -53,6 +53,7 @@
 
 <?php
 
+    //Consulta Livros na tabela reserva (Reserva Efetivada)
     $consulta_livros = $conn->prepare("SELECT livro.imagem, livro.id_livro, livro.titulo, livro.autor, reserva.* 
     FROM reserva 
     LEFT JOIN livro
@@ -60,6 +61,15 @@
     WHERE reserva.cod_aluno = $id_aluno");
     $consulta_livros->execute();
     $result_consulta = $consulta_livros->get_result();
+
+    //Consulta Livros na tabela reserva_temp (Auto reserva)
+    $sqlTemp = $conn->prepare("SELECT livro.imagem, livro.id_livro, livro.titulo, livro.autor, reserva_temp.* 
+    FROM reserva_temp
+    LEFT JOIN livro
+    ON livro.id_livro = reserva_temp.cod_livro
+    WHERE reserva_temp.cod_aluno = $id_aluno");
+    $sqlTemp->execute();
+    $resultSqlTemp = $sqlTemp->get_result();
 
 ?>
 
@@ -84,9 +94,8 @@
                     </div>
                 </div>
             </div>
-                        <?php
-
-            if ($result_consulta->num_rows <= 0) { ?>
+    
+    <?php if ($result_consulta->num_rows <= 0) { ?>
                 <div class="card__aluno--corpo">
                     <div>
                         <h4>Seus Livros</h4>
@@ -128,6 +137,35 @@
                         </div>
 
                     </div>
-            <?php }
-            } ?>
+            <?php }} ?>  
+            <?php while ($dados_temp = mysqli_fetch_assoc($resultSqlTemp)) { ?>
+                <div class="card__aluno--corpo">
+                    <div>
+                        <h4>Reservas Temporarias</h4>
+                    </div>
+
+                    <div class="card__aluno--linha">
+                        <div class="card__aluno--livro">
+                            <img src="../img/<?php echo $dados_temp['imagem'] ?>" alt="">
+                            <div class="card__aluno--livro--texto">
+                                <span><?php echo $dados_temp['titulo'] ?></span>
+                                <span><?php echo $dados_temp['autor'] ?></span>
+                            </div>
+                        </div>
+
+                        <!-- <div class="card__aluno--datas">
+                            <div class="card__aluno--datas">
+                                <span>Data efetiva da reserva:</span>
+                                <span class="data__"><?php echo $dados_temp['data_da_reserva'] ?></span>
+                            </div>
+                            <div class="card__aluno--datas">
+                                <span>Data de entrega do livro:</span>
+                                <span class="data__"><?php echo $dados_temp['data_da_entrega'] ?></span>
+                            </div>
+                        </div> -->
+
+                    </div>
+
+                </div>
+            <?php } ?>       
 </section>

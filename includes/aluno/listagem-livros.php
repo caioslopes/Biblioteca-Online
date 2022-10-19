@@ -84,6 +84,15 @@
     $sql->execute();
     $result = $sql->get_result();
 
+    //Consulta a tabela reserva_temp e reserva para verificar se o aluno pode ou não reservar novo livro
+    $sqlConsulta = $conn->prepare("SELECT reserva_temp.cod_aluno, reserva.cod_aluno 
+    FROM reserva 
+    INNER JOIN reserva_temp 
+    ON reserva_temp.cod_aluno = reserva.cod_aluno 
+    WHERE reserva_temp.cod_aluno = $id_aluno ");
+    $sqlConsulta->execute();
+    $resultConsulta = $sqlConsulta->get_result();
+
   ?>
       <div class="fundo__vitrine--livros mt-4">
       <section class="container-xl">
@@ -92,9 +101,13 @@
           <div class="livros">
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="vitrine__livros--texto">
-               <a class="btn btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
-                <!-- <span><?php echo $livros['titulo'] ?></span> -->
-            
+                <?php if($resultConsulta->num_rows >= 1){ ?>
+                    <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Você já possui um livro reservado">
+                    Reservar
+                    </button>    
+                <?php  }else if($resultConsulta->num_rows === 0){ ?>
+                    <a class="btn btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
+                <?php }?>
               </div>
           </div>
           <?php } ?>
@@ -137,3 +150,4 @@
         </div>
         </div>
 </section>
+

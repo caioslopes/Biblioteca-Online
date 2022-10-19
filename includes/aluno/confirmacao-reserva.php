@@ -1,76 +1,86 @@
 <?php 
+    $id_livro = null;
 
-    if(isset($_GET['id_livro'])){
-        $id_livro_past = $_GET['id_livro'];
-    };
+    if(!empty($_GET['id_livro'])){
+        $id_livro = $_GET['id_livro'];
 
-            
-    $umDia = new DateInterval('P1D');
+        date_default_timezone_set('America/Sao_Paulo');
 
-    $hojeSom = new DateTime();
+  
+        // Store datetime in variable today
+        $today = new DateTimeImmutable();   
+        $dia = new DateInterval('P1D'); 
+        $soma = $today->add($dia);
+        $amanha = $soma->format('d/m/Y');
+        $hoje = $today->format('d/m/Y');
 
-    $prazoUmDia = $hojeSom->add($umDia);
+/*         echo "<pre>"; print_r($amanha); echo "</pre>"; 
+        echo "<pre>"; print_r($hoje); echo "</pre>";  */
+        
+/*         if (!empty($amanha) &&  !empty($hoje)) { 
+            $sqlInsert = $conn->prepare("INSERT INTO  teste (amanha, hoje)  VALUES('$amanha','$hoje')");
+            $sqlInsert->execute();
 
-    $hoje = date('d/m');
+        } else {  
+            echo "erro"; 
+        }; */
 
-    $sqlSelectAluno = $conn->prepare("SELECT nome_aluno FROM aluno WHERE id_aluno = $id_aluno");
-    $sqlSelectAluno->execute();
-    $resultSelectAluno = $sqlSelectAluno->get_result();
+        $sqlSelect = $conn->prepare("SELECT titulo, nome_aluno FROM livro, aluno WHERE id_aluno = $id_aluno AND id_livro = $id_livro");
+        $sqlSelect->execute();
+        $resultSelect = $sqlSelect->get_result();
 
-    while($dados_aluno = mysqli_fetch_assoc($resultSelectAluno)){
-        $nome_aluno = $dados_aluno['nome_aluno'];
-    };
+        foreach ($resultSelect as $dados){
+            $titulo = $dados['titulo'];
+            $nome_aluno = $dados['nome_aluno'];
 
+            /* echo "<pre>"; print_r($dados); echo "</pre>"; exit; */
+        };
 
-    $sqlSelectLivro = $conn->prepare("SELECT titulo FROM livro WHERE id_livro = $id_livro_past");
-    $sqlSelectLivro->execute();
-    $resultSelectLivro = $sqlSelectLivro->get_result();
+        if(isset($_POST['reservar'])){
+            $value_livro = $_POST['livro'];
+            $value_aluno = $_POST['aluno'];
+            $value_hoje = $_POST['hoje'];
+            $value_amanha = $_POST['amanha'];
 
-    while($dados_livro = mysqli_fetch_assoc($resultSelectLivro)){
-        $titulo_livro = $dados_livro['titulo'];
-    };
+            $sqlInsert = $conn->prepare("INSERT INTO reserva_temp (cod_livro, cod_aluno, data_hoje, data_amanha) VALUES(?, ?, ?, ?)");
+            $sqlInsert->bind_param("iiss", $value_livro, $value_aluno, $value_hoje, $value_amanha);
+            $sqlInsert->execute();
 
-    if(isset($_POST['reservar'])){
-        $res_livro = $_POST['cod_livro'];
-        $res_aluno = $_POST['cod_aluno'];
-        $res_data_hoje = $_POST['data_hoje'];
-        $res_data_prazo = $_POST['data_prazo'];
-
-        $sqlInsert = $conn->prepare("INSERT INTO reserva_temp (cod_livro, cod_aluno, data_hoje, data_prazo) VALUES($res_livro, $res_aluno, $res_data_hoje, $res_data_prazo )");
-        $sqlInsert->execute();
+            header('location: perfil.php?=status=sucess');
+            exit;
+            /* echo "<pre>"; print_r($value_livro); echo "</pre>"; exit; */
+        }
+        /* echo "<pre>"; print_r($dados); echo "</pre>"; exit; */
+    }else{
+        echo 'Error';
     }
-
 
 ?>
 
-<section class="container-xl corpo">
-
+ <section class="container-xl corpo">
     <div class="alert alert-warning" role="alert">
         Lembre-se que você apenas pode fazer a reserva de <b>um</b> livro por vez!
     </div>
 
-    <form>
+    <form method="POST">
         <div class="mt-3">
-            <label>Livro</label>
-            <input class="form-control" type="text" value="<?php echo $titulo_livro ?>" disabled>
-            <input class="form-control" type="hidden" name="cod_livro" value="<?php echo $id_livro ?>">
+            <label><?php echo $titulo ?></label>
+            <input class="form-control" type="text" name="livro" value="<?php echo $id_livro ?>">
         </div>
         <div class="mt-3">
-            <label>Aluno</label>
-            <input class="form-control" type="text" value="<?php echo $nome_aluno ?>" disabled> 
-            <input class="form-control" type="hidden" name="cod_aluno" value="<?php echo $id_aluno ?>">
+            <label><?php echo $nome_aluno ?></label>
+            <input class="form-control" type="text" name="aluno" value="<?php echo $id_aluno ?>">
         </div>
         <div class="mt-3">
-            <label>Data da Reserva</label>
-            <input  class="form-control" type="text" name="data_hoje" value="<?php echo $hoje ?>" disabled>
+            <label>Data do pedido</label>
+            <input class="form-control" type="text" name="hoje" value="<?php echo $hoje ?>">
         </div>
         <div class="mt-3">
-            <label>Prazo para confirmar</label>
-            <input class="form-control" type="text" name="data_prazo" value="<?php echo $prazoUmDia->format('d/m'); ?>" disabled>
+            <label>Data da confirmação</label>
+            <input class="form-control" type="text" name="amanha" value="<?php echo $amanha ?>">
         </div>
         <div class="mt-3">
-            <input class="btn btn-primary" type="submit" name="reservar" value="Confirmar">
-            <a class="btn btn-danger" href="livros.php">Cancelar</a>
+            <input class="btn btn-primary" type="submit" name="reservar">
         </div>
     </form>
 </section>
