@@ -2,7 +2,7 @@
     /* Função que relaciona as tabelas livro e reserva, fazendo uma conta de subtração para retornar quantos livros estão disponiveis*/
     $querySelectLivro = $conn->prepare("SELECT livro.id_livro,
     livro.titulo,
-    livro.quantidade - COUNT(reserva.cod_aluno)
+    livro.qtd_total - COUNT(reserva.cod_aluno)
     AS disponiveis
     FROM livro
     LEFT JOIN reserva

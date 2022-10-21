@@ -63,7 +63,7 @@ if(!empty($_GET['id'])){
             $titulo = $user_data['titulo'];
             $autor = $user_data['autor'];
             $cod_categoria = $user_data['cod_categoria'];
-            $quantidade = $user_data['quantidade'];
+            $qtd_total = $user_data['qtd_total'];
         };
      };
 
@@ -74,19 +74,19 @@ if(!empty($_GET['id'])){
         $titulo_editar = $_POST['titulo'];
         $autor_editar = $_POST['autor'];
         $cod_categoria_editar = $_POST['cod_categoria'];
-        $quantidade_editar = $_POST['quantidade'];
+        $quantidade_editar = $_POST['qtd_total'];
 
         //Verificando se alguma imagem foi enviada ou não
         if(!empty($novoNome)){
         //Monta a query
-        $queryUpdate = $conn->prepare("UPDATE livro SET cod_livro = ?, imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, quantidade = ? WHERE id_livro = ?");
+        $queryUpdate = $conn->prepare("UPDATE livro SET cod_livro = ?, imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, qtd_total = ? WHERE id_livro = ?");
         //Separa os valores inseridos da query
         $queryUpdate->bind_param("ssssiii", $cod_livro_editar, $imagem_editar, $titulo_editar, $autor_editar, $cod_categoria_editar, $quantidade_editar, $id_livro);
         //Executa da query
         $queryUpdate->execute();
         }else{
         //Monta a query
-        $queryUpdate = $conn->prepare("UPDATE livro SET cod_livro = ?, imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, quantidade = ? WHERE id_livro = ?");
+        $queryUpdate = $conn->prepare("UPDATE livro SET cod_livro = ?, imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, qtd_total = ? WHERE id_livro = ?");
         //Separa os valores inseridos da query
         $queryUpdate->bind_param("ssssiii", $cod_livro_editar, $imagem_banco, $titulo_editar, $autor_editar, $cod_categoria_editar, $quantidade_editar, $id_livro);
         //Executa da query
@@ -137,7 +137,7 @@ if(!empty($_GET['id'])){
 
       <div class="mb-3">
         <label class="form-label">Quantidade</label>
-        <input class="form-control" type="text" name="quantidade" value="<?php echo $quantidade ?>" required>
+        <input class="form-control" type="text" name="qtd_total" value="<?php echo $qtd_total ?>" required>
       </div>
 
       <div class="mb-3">

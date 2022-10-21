@@ -47,13 +47,13 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
     $titulo = $_POST['titulo'];
     $autor = $_POST['autor'];
     $cod_categoria = $_POST['cod_categoria'];
-    $quantidade = $_POST['quantidade'];
+    $qtd_total = $_POST['qtd_total'];
 
     //Inserindo valores pego do formulario no banco de dados
     //Montando a query
-    $query = $conn->prepare("INSERT INTO livro (cod_livro, imagem, titulo, autor, cod_categoria, quantidade) VALUES (?, ?, ?, ?, ?, ?)");
+    $query = $conn->prepare("INSERT INTO livro (cod_livro, imagem, titulo, autor, cod_categoria, qtd_total) VALUES (?, ?, ?, ?, ?, ?)");
     //Verificando dados inseridos e passando parametro de qual tipo eles ser. (evitar SQL INJECTION)
-    $query->bind_param("ssssii", $cod_livro, $imagem, $titulo, $autor, $cod_categoria, $quantidade);
+    $query->bind_param("ssssii", $cod_livro, $imagem, $titulo, $autor, $cod_categoria, $qtd_total);
     //executa a query
     $query->execute();
 
@@ -98,7 +98,7 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
       <div class="mb-3">
         <label class="form-label">Quantidade</label>
-        <input class="form-control" type="text" name="quantidade" required>
+        <input class="form-control" type="text" name="qtd_total" required>
       </div>
 
       <div class="mb-3">
