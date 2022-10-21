@@ -38,7 +38,7 @@
                     </div>';
             break;
 
-            case 'erro';
+            case 'error';
             $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
                         Ação não executada!
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
