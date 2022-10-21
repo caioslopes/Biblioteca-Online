@@ -34,9 +34,9 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
             /* echo 'Arquivo salvo com sucesso em : <strong>' . $destino . '</strong><br />';
           echo ' < img src = "' . $destino . '" />'; */
         } else
-            header('location: livros.php?=status=erro_editar');
+            header('location: livros.php?status=erro_editar');
     } else
-        header('location: livros.php?=status=erro_editar');
+        header('location: livros.php?status=erro_editar');
 };
 
 if(!empty($_GET['id'])){
@@ -93,7 +93,7 @@ if(!empty($_GET['id'])){
         $queryUpdate->execute();
         }
 
-        header('location: livros.php?=status=success');
+        header('location: livros.php?status=success');
         exit;
     };
 }

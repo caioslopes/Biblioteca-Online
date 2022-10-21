@@ -42,10 +42,10 @@
 
         //Verifica se o aluno que foi selecionado já não está com algum livro reservado.
         if($resultVerificaAluno->num_rows >= 1 ){
-          header('location: reservar.php?=status=error');
+          header('location: reservar.php?status=error');
           exit;
         }else if($quantidadeLivro <= 0){
-          header('location: reservar.php?=status=error');
+          header('location: reservar.php?status=error');
           exit;
         }else{
           //Inserindo na tabela reserva os dados enviado pelo gestor
@@ -58,7 +58,7 @@
           $queryInsertRegistro->bind_param("iiss", $id_aluno, $id_livro, $data_da_reserva, $data_da_entrega);
           $queryInsertRegistro->execute();
 
-          header('location: livros-reservados.php?=status=success');
+          header('location: livros-reservados.php?status=success');
           exit;
         };
 
@@ -66,9 +66,29 @@
 
     }
 
+    $msg = '';
+    if(isset($_GET['status'])){
+        switch ($_GET['status']){
+            case 'success';
+            $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Ação executada com sucesso!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            break;
+
+            case 'erro';
+            $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Ação não executada!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            break;
+        }
+    }
 ?>
 
 <section class="container-xl corpo">
+
+<?=$msg?>
 
   <div class="titulo-pagina">
     <h1>Emprestar Livro</h1>

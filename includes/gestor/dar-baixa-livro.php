@@ -15,4 +15,4 @@ if (!empty($_GET['id'])) {
         $resultDelete = $conn->query($sqlDelete);
     }
 }
-header('location: livros-reservados.php?=status=sucess');
+header('location: livros-reservados.php?status=success');

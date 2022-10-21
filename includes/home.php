@@ -1,7 +1,30 @@
+<?php 
+
+    $msg = '';
+    if(isset($_GET['status'])){
+        switch ($_GET['status']){
+            case 'success';
+            $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Ação executada com sucesso!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            break;
+
+            case 'erro';
+            $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Ação não executada!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            break;
+        }
+    }
+
+
+?>
 <style>
     .bg-apresentacao{
         background-color: #23232e;
-        height: 700px;
+        height: 100vh;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -134,6 +157,7 @@
     }
 </style>
 <section>
+    <?=$msg?>
     <div id="apresentacao" class="bg-apresentacao">
         <div class="bg-titulo-apres">
             <span>Biblioteca Online</span>

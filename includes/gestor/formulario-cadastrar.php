@@ -34,9 +34,9 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
             /* echo 'Arquivo salvo com sucesso em : <strong>' . $destino . '</strong><br />';
           echo ' < img src = "' . $destino . '" />'; */
         } else
-            header('location: cadastrar.php?=status=erro_cadastrar');
+            header('location: cadastrar.php?status=erro_cadastrar');
     } else
-        header('location: cadastrar.php?=status=erro_cadastrar');
+        header('location: cadastrar.php?status=erro_cadastrar');
 
 };
 
@@ -57,7 +57,7 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
     //executa a query
     $query->execute();
 
-    header('location:livros.php?=status=success');
+    header('location:livros.php?status=success');
     /* echo "<pre>"; print_r($imagem); echo "</pre>"; exit; */
   };
 

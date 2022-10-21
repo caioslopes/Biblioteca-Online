@@ -14,16 +14,16 @@
         //Executa a query
         $queryInsert->execute();
 
-        header('location: index.php?=status=success');
+        header('location: index.php?status=success');
 
     }
     //Login Aluno
     //Função que valida os dados enviados pelo usuario
     if(isset($_POST['email_Aluno']) || isset($_POST['senha_Aluno'])){
         if (strlen($_POST['email_Aluno']) == 0) {
-        header('location: index.php?=status=error');
+        header('location: index.php?status=error');
     } else if (strlen($_POST['senha_Aluno']) == 0) {
-        header('location: index.php?=status=error');
+        header('location: index.php?status=error');
     }else {
         //Pega os valores inseridos pelo usuario e passa um filtro para retonar apenas string (segurança)
         $email_aluno = $conn->real_escape_string($_POST['email_Aluno']);
@@ -52,7 +52,7 @@
 
             $_SESSION['id_aluno'] = $aluno['id_aluno'];
             
-            header('location: View-Aluno/home.php?=status=success_aluno');
+            header('location: View-Aluno/home.php');
             exit;
 
         }
@@ -96,9 +96,9 @@
 
             $_SESSION['id_gestor'] = $gestor['id_gestor'];
 
-            header('location: View-Gestor/home.php?=status=success_gestor');
+            header('location: View-Gestor/home.php');
         } else {
-            header('location: index.php?=status=error');
+            header('location: index.php?status=error');
             exit;
         }
     }

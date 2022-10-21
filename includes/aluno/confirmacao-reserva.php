@@ -14,17 +14,7 @@
         $amanha = $soma->format('d/m/Y');
         $hoje = $today->format('d/m/Y');
 
-/*         echo "<pre>"; print_r($amanha); echo "</pre>"; 
-        echo "<pre>"; print_r($hoje); echo "</pre>";  */
-        
-/*         if (!empty($amanha) &&  !empty($hoje)) { 
-            $sqlInsert = $conn->prepare("INSERT INTO  teste (amanha, hoje)  VALUES('$amanha','$hoje')");
-            $sqlInsert->execute();
-
-        } else {  
-            echo "erro"; 
-        }; */
-
+        //Função que puxa os dados da tabela livro para exibir ao usuario
         $sqlSelect = $conn->prepare("SELECT titulo, nome_aluno FROM livro, aluno WHERE id_aluno = $id_aluno AND id_livro = $id_livro");
         $sqlSelect->execute();
         $resultSelect = $sqlSelect->get_result();
@@ -46,7 +36,7 @@
             $sqlInsert->bind_param("iiss", $value_livro, $value_aluno, $value_hoje, $value_amanha);
             $sqlInsert->execute();
 
-            header('location: perfil.php?=status=sucess');
+            header('location: perfil.php?status=success');
             exit;
             /* echo "<pre>"; print_r($value_livro); echo "</pre>"; exit; */
         }
@@ -64,23 +54,28 @@
 
     <form method="POST">
         <div class="mt-3">
-            <label><?php echo $titulo ?></label>
-            <input class="form-control" type="text" name="livro" value="<?php echo $id_livro ?>">
+            <label>Livro</label>
+            <label class="form-control"><?php echo $titulo ?></label>
+            <input class="form-control" type="hidden" name="livro" value="<?php echo $id_livro ?>">
         </div>
         <div class="mt-3">
-            <label><?php echo $nome_aluno ?></label>
-            <input class="form-control" type="text" name="aluno" value="<?php echo $id_aluno ?>">
+            <label>Aluno</label>
+            <label class="form-control"><?php echo $nome_aluno ?></label>
+            <input class="form-control" type="hidden" name="aluno" value="<?php echo $id_aluno ?>">
         </div>
         <div class="mt-3">
             <label>Data do pedido</label>
-            <input class="form-control" type="text" name="hoje" value="<?php echo $hoje ?>">
+            <label class="form-control"><?php echo $hoje ?></label>
+            <input class="form-control" type="hidden" name="hoje" value="<?php echo $hoje ?>">
         </div>
         <div class="mt-3">
             <label>Data da confirmação</label>
-            <input class="form-control" type="text" name="amanha" value="<?php echo $amanha ?>">
+            <label class="form-control"><?php echo $hoje ?></label>
+            <input class="form-control" type="hidden" name="amanha" value="<?php echo $amanha ?>">
         </div>
         <div class="mt-3">
-            <input class="btn btn-primary" type="submit" name="reservar">
+            <input class="btn btn-sm btn-primary" type="submit" name="reservar" value="Fazer Pedido">
+            <a class="btn btn-sm btn-danger" href="livros.php">Cancelar</a>
         </div>
     </form>
 </section>

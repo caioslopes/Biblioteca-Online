@@ -104,11 +104,9 @@
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="vitrine__livros--texto">
                 <?php if($resultReserva_temp->num_rows >= 1 || $resultreserva->num_rows >=1){ ?>
-                    <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Você já possui um livro reservado">
-                    Reservar
-                    </button>   
+                    <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Você já possui um livro reservado">Reservar</a>   
                 <?php  }else{ ?>
-                     <a class="btn btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
+                     <a class="btn btn-sm btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
                 <?php }?>
               </div>
           </div>
@@ -152,9 +150,3 @@
         </div>
         </div>
 </section>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-<script>
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))    
-</script>

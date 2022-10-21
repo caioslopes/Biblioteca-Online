@@ -101,13 +101,34 @@
           unlink($pasta.$imagem_livro);
         };
 
-        header('location: livros.php?=status=success');
+        header('location: livros.php?status=success');
 
+    };
+
+    $msg = '';
+    if(isset($_GET['status'])){
+        switch ($_GET['status']){
+            case 'success';
+            $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Ação executada com sucesso!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            break;
+
+            case 'erro';
+            $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Ação não executada!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            break;
+        }
     }
 ?>
 
 
 <section class="container-xl mt-3 corpo">
+
+<?=$msg?>
 
  <div class="titulo-pagina">
     <h1>Livros Cadastrados</h1>

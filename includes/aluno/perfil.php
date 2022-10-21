@@ -1,3 +1,53 @@
+<?php
+
+    //Consulta Livros na tabela reserva (Reserva Efetivada)
+    $consulta_livros = $conn->prepare("SELECT livro.imagem, livro.id_livro, livro.titulo, livro.autor, reserva.* 
+    FROM reserva 
+    LEFT JOIN livro
+    ON livro.id_livro = reserva.cod_livro
+    WHERE reserva.cod_aluno = $id_aluno");
+    $consulta_livros->execute();
+    $result_consulta = $consulta_livros->get_result();
+
+    //Consulta Livros na tabela reserva_temp (Auto reserva)
+    $sqlTemp = $conn->prepare("SELECT livro.imagem, livro.id_livro, livro.titulo, livro.autor, reserva_temp.* 
+    FROM reserva_temp
+    LEFT JOIN livro
+    ON livro.id_livro = reserva_temp.cod_livro
+    WHERE reserva_temp.cod_aluno = $id_aluno");
+    $sqlTemp->execute();
+    $resultSqlTemp = $sqlTemp->get_result();
+
+    //Função que deleta a reserva temporaria feita pelo aluno
+    if(!empty($_GET['id_temp'])){
+        $id_temp = $_GET['id_temp'];
+
+        $sqlDelete = $conn->prepare("DELETE FROM reserva_temp WHERE id_temp = $id_temp");
+        $sqlDelete->execute();
+        header('location: perfil.php?status=success');
+        exit;
+    }
+
+    $msg = '';
+    if(isset($_GET['status'])){
+        switch ($_GET['status']){
+            case 'success';
+            $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Ação executada com sucesso!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            break;
+
+            case 'erro';
+            $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Ação não executada!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            break;
+        }
+    }
+?>
+
 <style>
   /* Pagina do aluno */
 .card__aluno--linha {
@@ -51,29 +101,11 @@
 }
 </style>
 
-<?php
-
-    //Consulta Livros na tabela reserva (Reserva Efetivada)
-    $consulta_livros = $conn->prepare("SELECT livro.imagem, livro.id_livro, livro.titulo, livro.autor, reserva.* 
-    FROM reserva 
-    LEFT JOIN livro
-    ON livro.id_livro = reserva.cod_livro
-    WHERE reserva.cod_aluno = $id_aluno");
-    $consulta_livros->execute();
-    $result_consulta = $consulta_livros->get_result();
-
-    //Consulta Livros na tabela reserva_temp (Auto reserva)
-    $sqlTemp = $conn->prepare("SELECT livro.imagem, livro.id_livro, livro.titulo, livro.autor, reserva_temp.* 
-    FROM reserva_temp
-    LEFT JOIN livro
-    ON livro.id_livro = reserva_temp.cod_livro
-    WHERE reserva_temp.cod_aluno = $id_aluno");
-    $sqlTemp->execute();
-    $resultSqlTemp = $sqlTemp->get_result();
-
-?>
-
 <section class="container-xl mt-4 corpo">
+
+    <!-- Alerta de status ação -->
+    <?=$msg?>
+
    <div class="titulo-pagina">
     <h1>Perfil</h1>
   </div>
@@ -95,7 +127,7 @@
                 </div>
             </div>
     
-    <?php if ($result_consulta->num_rows <= 0) { ?>
+    <?php if ($result_consulta->num_rows <= 0  && $resultSqlTemp->num_rows <= 0) { ?>
                 <div class="card__aluno--corpo">
                     <div>
                         <h4>Seus Livros</h4>
@@ -105,7 +137,7 @@
                         <h6>Você não possui nenhum livro reservado</h6>
                     </div>
                 </div>
-                <?php } else {
+                <?php } else if($result_consulta->num_rows >= 1) {
 
                 while ($livros = mysqli_fetch_assoc($result_consulta)) {
                 ?>
@@ -137,11 +169,14 @@
                         </div>
 
                     </div>
-            <?php }} ?>  
+            <?php }}else if($resultSqlTemp->num_rows >= 1){ ?>  
             <?php while ($dados_temp = mysqli_fetch_assoc($resultSqlTemp)) { ?>
                 <div class="card__aluno--corpo">
-                    <div>
+                    <div class="d-flex justify-content-between">
                         <h4>Reservas Temporarias</h4>
+                        <div>
+                            <a class="btn btn-sm btn-danger" href="perfil.php?id_temp=<?php echo $dados_temp['id_temp'] ?>">Cancelar pedido de reserva</a>
+                        </div>
                     </div>
 
                     <div class="card__aluno--linha">
@@ -153,19 +188,18 @@
                             </div>
                         </div>
 
-                        <!-- <div class="card__aluno--datas">
+                        <div class="card__aluno--datas">
                             <div class="card__aluno--datas">
-                                <span>Data efetiva da reserva:</span>
-                                <span class="data__"><?php echo $dados_temp['data_da_reserva'] ?></span>
+                                <span>Data do pedido de reserva:</span>
+                                <span class="data__"><?php echo $dados_temp['data_hoje'] ?></span>
                             </div>
                             <div class="card__aluno--datas">
-                                <span>Data de entrega do livro:</span>
-                                <span class="data__"><?php echo $dados_temp['data_da_entrega'] ?></span>
+                                <span>Data para confirmar a reserva:</span>
+                                <span class="data__"><?php echo $dados_temp['data_amanha'] ?></span>
                             </div>
-                        </div> -->
-
+                        </div> 
                     </div>
 
                 </div>
-            <?php } ?>       
+            <?php }} ?>       
 </section>
