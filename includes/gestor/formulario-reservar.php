@@ -3,7 +3,7 @@
     /* Função que relaciona as tabelas livro e reserva, fazendo uma conta de subtração para retornar quantos livros estão disponiveis */
     $querySelectLivro = $conn->prepare("SELECT * FROM livro");
     $querySelectLivro->execute();
-    $resultQueryLivro = $querySelectLivro->get_result();
+    $resultSelectLivro = $querySelectLivro->get_result();
 
     /* Pega a tabela alunos e a tabela reserva para relacionar as informações e descobrir o nome e a sala do aluno */
     $querySelectAluno = $conn->prepare("SELECT aluno.id_aluno, 
@@ -28,6 +28,10 @@
         $queryVerificaAluno->execute();
         $resultVerificaAluno = $queryVerificaAluno->get_result();
 
+        /* Função que relaciona as tabelas livro e reserva, fazendo uma conta de subtração para retornar quantos livros estão disponiveis */
+        $querySelectLivro = $conn->prepare("SELECT * FROM livro WHERE id_livro = $id_livro");
+        $querySelectLivro->execute();
+        $resultQueryLivro = $querySelectLivro->get_result();
 
         //Puxa os dados da relação da tabela livro com a tabela reserva para poderos saber a conta de quantos livros estão disponiveis
         while($queryQuantidade = mysqli_fetch_assoc($resultQueryLivro)){
@@ -45,20 +49,7 @@
           exit;
         }else{
 
-          //Consulta a qtd_reserva
-          $ConsultaReserva = $conn->prepare("SELECT qtd_reserva FROM livro WHERE id_livro = $id_livro");
-          $ConsultaReserva->execute();
-          $resultConsultaReserva = $ConsultaReserva->get_result();
-          foreach($resultConsultaReserva as $qtdConsultaReserva){
-            $qtd_reserva = $qtdConsultaReserva['qtd_reserva'];
-          };
-          
-          //Verifica se a qst_reserva é maior ou igual a qtd_total se for então ele retonar erro, se não ele da sequencia.
-          if($qtd_reserva >= $qtd_total){
-            header('location: livros-reservados.php?status=error');
-          exit; 
-          }else{
-             //Inserindo na tabela reserva os dados enviado pelo gestor
+          //Inserindo na tabela reserva os dados enviado pelo gestor
             $queryInsertReserva = $conn->prepare("INSERT INTO reserva (cod_aluno, cod_livro, data_da_reserva, data_da_entrega) VALUES (?, ?, ?, ?)");
             $queryInsertReserva->bind_param("iiss", $id_aluno, $id_livro, $data_da_reserva, $data_da_entrega);
             $queryInsertReserva->execute();
@@ -74,7 +65,6 @@
             
             header('location: livros-reservados.php?status=success');
             exit;
-          };
         };
 
 
@@ -127,7 +117,7 @@
           <option value="Selecione">Selecionar Livro</option>
             <!-- Retorna num array as informações relaciondas na tabela de livros acima -->
             <?php 
-                while ($livro = mysqli_fetch_assoc($resultQueryLivro)) {  ?>
+                while ($livro = mysqli_fetch_assoc($resultSelectLivro)) {  ?>
                 <option value="<?php echo $livro['id_livro'] ?>"> <?php echo $livro['titulo'] ?> </option>
             <?php } ?>
         </select>

@@ -15,13 +15,16 @@
         $hoje = $today->format('d/m/Y/H/i');
 
         //Função que puxa os dados da tabela livro para exibir ao usuario
-        $sqlSelect = $conn->prepare("SELECT titulo, nome_aluno FROM livro, aluno WHERE id_aluno = $id_aluno AND id_livro = $id_livro");
+        $sqlSelect = $conn->prepare("SELECT * FROM livro, aluno WHERE id_aluno = $id_aluno AND id_livro = $id_livro");
         $sqlSelect->execute();
         $resultSelect = $sqlSelect->get_result();
 
         foreach ($resultSelect as $dados){
             $titulo = $dados['titulo'];
             $nome_aluno = $dados['nome_aluno'];
+            $qtd_total = $dados['qtd_total'];
+            $qtd_reserva = $dados['qtd_reserva'];
+            $qtd_temp = $dados['qtd_temp'];
 
             /* echo "<pre>"; print_r($dados); echo "</pre>"; exit; */
         };
@@ -32,12 +35,22 @@
             $value_hoje = $_POST['hoje'];
             $value_amanha = $_POST['amanha'];
 
+            if($qtd_reserva + $qtd_temp >= $qtd_total ){
+                header('location: livros.php?status=error');
+            exit;
+            }else{
+
             $sqlInsert = $conn->prepare("INSERT INTO reserva_temp (cod_livro, cod_aluno, data_hoje, data_amanha) VALUES(?, ?, ?, ?)");
             $sqlInsert->bind_param("iiss", $value_livro, $value_aluno, $value_hoje, $value_amanha);
             $sqlInsert->execute();
 
+            //Soma para podermos verificar quantidades
+            $sqlInsertQtd = $conn->prepare("UPDATE livro SET qtd_temp = qtd_temp +1 WHERE id_livro = $id_livro");
+            $sqlInsertQtd->execute();
             header('location: perfil.php?status=success');
             exit;
+            }
+                
             /* echo "<pre>"; print_r($value_livro); echo "</pre>"; exit; */
         }
         /* echo "<pre>"; print_r($dados); echo "</pre>"; exit; */

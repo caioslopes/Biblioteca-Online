@@ -1,7 +1,7 @@
 <?php
 
     //Consulta Livros na tabela reserva (Reserva Efetivada)
-    $consulta_livros = $conn->prepare("SELECT livro.imagem, livro.id_livro, livro.titulo, livro.autor, reserva.* 
+    $consulta_livros = $conn->prepare("SELECT livro.*, reserva.* 
     FROM reserva 
     LEFT JOIN livro
     ON livro.id_livro = reserva.cod_livro
@@ -10,7 +10,7 @@
     $result_consulta = $consulta_livros->get_result();
 
     //Consulta Livros na tabela reserva_temp (Auto reserva)
-    $sqlTemp = $conn->prepare("SELECT livro.imagem, livro.id_livro, livro.titulo, livro.autor, reserva_temp.* 
+    $sqlTemp = $conn->prepare("SELECT livro.*, reserva_temp.* 
     FROM reserva_temp
     LEFT JOIN livro
     ON livro.id_livro = reserva_temp.cod_livro
@@ -21,12 +21,41 @@
     //Função que deleta a reserva temporaria feita pelo aluno
     if(!empty($_GET['id_temp'])){
         $id_temp = $_GET['id_temp'];
+        
+        foreach($resultSqlTemp as $temp){
+            $id_livro_temp = $temp['cod_livro'];
+        };
 
-        $sqlDelete = $conn->prepare("DELETE FROM reserva_temp WHERE id_temp = $id_temp");
-        $sqlDelete->execute();
-        header('location: perfil.php?status=success');
-        exit;
-    }
+        $sqlSelect = $conn->prepare("SELECT * FROM reserva_temp WHERE id_temp = $id_temp");
+        $sqlSelect->execute();
+        $result = $sqlSelect->get_result();
+
+        /* Função que relaciona as tabelas livro e reserva, fazendo uma conta de subtração para retornar quantos livros estão disponiveis */
+        $querySelectLivro = $conn->prepare("SELECT * FROM livro  WHERE id_livro = $id_livro_temp");
+        $querySelectLivro->execute();
+        $resultQueryLivro = $querySelectLivro->get_result();
+
+        if ($result->num_rows > 0){
+
+            while($queryQuantidade = mysqli_fetch_assoc($resultQueryLivro)){
+            $qtd_total = $queryQuantidade['qtd_total'];
+            $qtd_reserva = $queryQuantidade['qtd_reserva'];
+            $qtd_temp = $queryQuantidade['qtd_temp'];
+            };
+
+            if($qtd_temp <= 0){
+                header('location: perfil.php?status=error');    
+            }else{
+            $sqlDelete = $conn->prepare("DELETE FROM reserva_temp WHERE id_temp = $id_temp");
+            $sqlDelete->execute();
+
+            $sqlUpdateReserva = $conn->prepare("UPDATE livro SET qtd_temp = qtd_temp -1 WHERE id_livro = $id_livro_temp");
+            $sqlUpdateReserva->execute();
+            header('location: perfil.php?status=success');
+            exit;
+            }
+        }
+    };
 
     $msg = '';
     if(isset($_GET['status'])){
@@ -45,7 +74,7 @@
                     </div>';
             break;
         }
-    }
+    };
 ?>
 
 <style>

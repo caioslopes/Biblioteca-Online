@@ -1,6 +1,4 @@
 <?php 
-require('DataBase.php');
-
 
 // Store datetime in variable today
 $today = new DateTimeImmutable();   
@@ -26,9 +24,9 @@ if($ddt <= $hoje){
 
     $sqlDelete = $conn->prepare("DELETE FROM reserva_temp WHERE data_amanha <= $hoje");
     $sqlDelete->execute();
-    header('location: index.php?status=success');
+   /*  header('location: index.php?status=success'); */
 }else{
-    header('location: index.php?status=error');
+    /* header('location: index.php?status=error'); */
 }
 
 
