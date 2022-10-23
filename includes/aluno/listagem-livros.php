@@ -2,7 +2,7 @@
 <style>
   .vitrine {
    display: grid;
-    grid-template-columns: repeat(6, 176px);
+    grid-template-columns: repeat(6, 1fr);
     gap: 25px 40px;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -67,14 +67,34 @@
         gap: 25px;
         padding-bottom: 20px;
     }
+        .titulo-pagina{
+        flex-direction: column;
+        align-items: center;
+    }
+    .caixa-busca{
+        width: 90%;
+        margin-bottom: 20px
+    }
 }
 </style>
 
 <section class="container-xl mt-4 corpo">
 
- <div class="titulo-pagina">
-    <h1>Livros Disponiveis</h1>
-  </div>
+    <div class="d-flex justify-content-between titulo-pagina">
+        <div>
+            <h1>Livros Disponiveis</h1>
+        </div>
+        <div class="caixa-busca">
+            <form class="d-flex" role="search" method="GET">
+                <input class="form-control me-2" type="search" name="busca" placeholder="Buscar um livro" value="<?php if (isset($_GET['busca'])){ echo $_GET['busca']; } ?>">
+                <button class="btn btn-outline-primary" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
 
 <?php  
 
@@ -103,6 +123,7 @@
 
 
   ?>
+  <?php if(empty($_GET['busca'])){?>
       <div class="fundo__vitrine--livros mt-4">
       <section class="container-xl">
         <div class="vitrine">
@@ -156,4 +177,51 @@
         <a class='link-pag' href='livros.php?pagina=<?php echo $quantidade_pg ?>'>Ultima</a>
         </div>
         </div>
+         <?php
+        }else { 
+            //Pega o valor digitado pelo usuario na barra de pesquisa
+            $busca = $_GET['busca'];    
+
+            //Receber o número da página
+            $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
+            $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
+
+            //Setar a quantidade de itens por pagina
+            $qnt_result_pg = 12;
+
+            //calcular o inicio visualização
+            $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
+            $SelectBusca = $conn->prepare("SELECT * FROM livro WHERE titulo LIKE '%$busca%' OR autor LIKE '%$busca%' LIMIT $inicio, $qnt_result_pg");
+            $SelectBusca->execute();
+            $resultBusca = $SelectBusca->get_result();
+        
+        if($resultBusca->num_rows == 0){ ?>
+                <div class="fundo__vitrine--livros mt-4">
+                    <section class="container-xl">
+                        <h4>Nenhum resultado encontrado...</h4>
+                        <a class="btn btn-primary" href="livros.php">Livros</a>
+                    </section>
+                </div>
+
+       <?php  }else { ?>
+                <div class="fundo__vitrine--livros mt-4">
+                    <section class="container-xl">
+                        <div class="vitrine">
+                        <?php while ($livro_busca = mysqli_fetch_assoc($resultBusca)) {?>
+                        <div class="livros">
+                            <img src='img/<?php echo $livro_busca['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
+                            <div class="vitrine__livros--texto">
+                                <?php if($resultReserva_temp->num_rows >= 1 || $resultreserva->num_rows >=1){ ?>
+                                    <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Você já possui um livro reservado">Reservar</a>   
+                                <?php  }else{ ?>
+                                    <a class="btn btn-sm btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livro_busca['id_livro'] ?>">Reservar</a>
+                                <?php }?>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        </div>
+                    </section>
+                </div>
+       
+   <?php }} ?>
 </section>

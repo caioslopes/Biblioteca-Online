@@ -51,8 +51,15 @@ a {
     border-radius: 20px;
 }
 
+/* Menu imagem */
+.img-logo-menu {
+    width: 200px;
+}
 @media (max-width: 767px) {
     .corpo {
         margin-left: unset;
+    }
+    .img-logo-menu {
+        width: 150px;
     }
 }

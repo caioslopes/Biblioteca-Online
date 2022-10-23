@@ -39,7 +39,7 @@
           }
           .content-login a{
             font-weight: 900;
-            color: #31c7d0;
+            color: #297eeb;
           }
        }
     </style>
@@ -48,7 +48,7 @@
    <!-- As a heading -->
 <nav class="navbar navbar-expand-lg header-aberto">
   <div class="container-fluid container-xl">
-    <a class="navbar-brand text-light" href="index.php">BIBLIOTECA</a>
+    <a class="navbar-brand text-light" href="index.php"><img style="width: 240px;" src="img/integrantes/logobo.png" alt=""></a>
     <button class="navbar-toggler bg-color" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

@@ -49,14 +49,14 @@
   padding: 10px;
 }
 .btn-menu:hover{
-  color: aqua;
-  background-color: white;
+  color: white;
+  background-color: #297eeb;
 }
 </style>
 
   <div id="menu">
     <div class="d-flex justify-content-between align-items-center mt-3">
-      <span class="titulo-site">BIBLIOTECA</span>
+      <span><img class="img-logo-menu" src="../img/integrantes/logobo.png" alt=""></span>
         <button id="fechar" style="display: none;">
           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
@@ -85,7 +85,12 @@
           </a>
         </div>
         <div class="menu-content-second">
-          <a class="btn btn-danger" href="sair.php">Sair</a>
+          <a class="btn btn-danger" href="sair.php">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+            <path d="M7.5 1v7h1V1h-1z"/>
+            <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
+            </svg>  
+          Sair</a>
         </div>
       </div>
   </div>
