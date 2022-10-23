@@ -136,6 +136,7 @@
 
       <div class="mb-3">
           <input type="submit" name="emprestar" class="btn btn-primary" value="Emprestar">
+          <a class="btn btn-danger" href="livros.php">Cancelar</a>
       </div>
 
     </form>

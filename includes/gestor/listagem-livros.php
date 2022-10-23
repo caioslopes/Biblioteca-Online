@@ -32,7 +32,7 @@
     padding: 10px;
     margin-left: 5px;
     border-radius: 10px;
-}
+}      
 
 .link-pag:hover {
     background-color: #23232e;
@@ -53,6 +53,15 @@
 .caixa-pag-num {
     display: flex;
     justify-content: space-between;
+}
+
+@media (max-width: 767px){
+    .vitrine{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        padding-bottom: 20px;
+    }
 }
 
 </style>

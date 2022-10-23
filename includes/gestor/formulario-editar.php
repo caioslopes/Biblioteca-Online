@@ -142,6 +142,7 @@ if(!empty($_GET['id'])){
 
       <div class="mb-3">
         <input class="btn btn-primary" type="submit" name="editar" value="Editar Livro">
+        <a class="btn btn-danger" href="livros.php">Cancelar</a>
       </div>
   </form>
 

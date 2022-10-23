@@ -116,7 +116,8 @@
     /* Sessão quem somos? */
     .bg-quem-somos{
         background-color: #23232e;
-        height: 700px;
+        padding-bottom: 70px;
+        border-bottom: 1px solid white;
     }
     .bg-titulo-quem-somos span{
         font-size: 60px;
@@ -151,9 +152,51 @@
         padding-top: 10px;
         text-align:center; 
         color: white;
+        margin-bottom: 40px;
     }
     .card-integrantes:hover{
         opacity: 0.7;
+    }
+    /* Desenvolvedores */
+    .desenvolvedores{
+        background-color: #23232e;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        padding: 30px 0;
+    }
+    @media (max-width: 767px){
+        .bg-apresentacao{
+            height: 100%;
+        }
+        .bg-cards-como-fun{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .bg-titulo-quem-somos span{
+            font-size: 50px;
+        }
+        .flex-direction{
+            flex-direction: column;
+            margin-bottom: 70px;
+        }
+        .card-como-fun{
+            width: 100%;
+        }
+        .card-como-fun:nth-child(1){
+            position: unset;
+        }
+        .card-como-fun:nth-child(3){
+            position: unset;
+        }
+        .bg-titulo-apres span:not(:first-child){
+            font-size: 20px;
+        }
+        .bg-titulo-apres span:first-child{
+            font-size: 60px;
+        }
     }
 </style>
 <section>
@@ -163,7 +206,7 @@
             <span>Biblioteca Online</span>
             <span>Um projeto para tornar digital todas as atividades da biblioteca escolar</span>
         </div>
-        <div class="d-flex align-items-center justify-content-center bg-cards-apres">
+        <div class="d-flex align-items-center justify-content-center bg-cards-apres flex-direction">
             <div class="card-apresentacao">
                 <span>ACESSO</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="80" height="40" fill="currentColor" class="bi bi-person-workspace" viewBox="0 0 16 16">
@@ -205,13 +248,13 @@
         </div>
 
         <div class="bg-cards-como-fun">
-            <div class="card-como-fun" data-aos="fade-left">
+            <div class="card-como-fun" > <!-- data-aos="fade-left" -->
                 <span>Sistema Aberto</span>
                 <span>A primeira parte do site, serve para apresentar o projeto e
                 apresentar o catalogo de livros disponiveis na biblioteca de forma 
                 livre onde qualquer um possa acessar.</span>
             </div>
-            <div class="card-como-fun" data-aos="fade-left">
+            <div class="card-como-fun">
                 <span>Sistema do Aluno</span>
                 <span>Para acessar esta parte é preciso fazer o login e caso não tenha 
                     uma conta é preciso cadastrar-se. Nesta parte é apresentado as 
@@ -219,7 +262,7 @@
                     entregar; Dados do aluno, e também onde o aluno poderá fazer a 
                     auto-reserva.</span>
             </div>
-            <div class="card-como-fun" data-aos="fade-left">
+            <div class="card-como-fun" >
                 <span>Sistema do Gestor</span>
                 <span>Assim como no sistema do aluno é preciso fazer login, só é possivel 
                     cadastrar um novo usuario dentro do proprio sistema.
@@ -238,61 +281,58 @@
         <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide card-integrantes">
-            <img src="img/integrantes/renata.jpeg" alt="">
-            <span>Adrian Ismirael Ballestero Zambuzzi</span>
+            <a target="_blank" href="https://www.instagram.com/adrian_ismirael_smt/">
+                <img src="img/integrantes/adrian.jpg" alt="">
+                <span>Adrian Ismirael Ballestero Zambuzzi</span>
+            </a>
         </div>
         <div class="swiper-slide card-integrantes">
-            <img src="img/integrantes/renata.jpeg" alt="">
-            <span>Caio dos Santos Lopes</span>
+            <a target="_blank" href="https://www.instagram.com/caio.s.lopes/">
+                <img src="img/integrantes/caio.jpg" alt="">
+                <span>Caio dos Santos Lopes</span>
+            </a>
         </div>
         <div class="swiper-slide card-integrantes">
-            <img src="img/integrantes/renata.jpeg" alt="">
-            <span>Eduardo Pires Carvalho</span>
+            <a target="_blank" href="https://www.instagram.com/duduh_pir3s/">
+                <img src="img/integrantes/eduardo.jpeg" alt="">
+                <span>Eduardo Pires Carvalho</span>
+            </a>
         </div>
         <div class="swiper-slide card-integrantes">
-            <img src="img/integrantes/renata.jpeg" alt="">
-            <span>Gabriel Soares de Souza</span>
+            <a target="_blank" href="https://www.instagram.com/gabrielsoares605/">
+                <img src="img/integrantes/gabriel.jpg" alt="">
+                <span>Gabriel Soares de Souza</span>
+            </a>
         </div>
         <div class="swiper-slide card-integrantes">
-            <img src="img/integrantes/renata.jpeg" alt="">
-            <span>Guilherme Crecenzi</span>
+            <a target="_blank"  href="https://www.instagram.com/guiiczi/">
+                <img src="img/integrantes/guilherme.jpg" alt="">
+                <span>Guilherme Crecenzi</span>
+            </a>
         </div>
         <div class="swiper-slide card-integrantes">
-            <img src="img/integrantes/renata.jpeg" alt="">
-            <span>Mauro Eduardo Gusmao Andreoli</span>
+            <a target="_blank"  href="https://www.instagram.com/maur0_gusmao/">
+                <img src="img/integrantes/mauro.jpg" alt="">
+                <span>Mauro Eduardo Gusmao Andreoli</span>
+            </a>
         </div>
         <div class="swiper-slide card-integrantes">
-            <img src="img/integrantes/renata.jpeg" alt="">
-            <span>Renata Bueno dos Santos</span>
+            <a target="_blank"  href="https://www.instagram.com/bueno_renataa/">
+                <img src="img/integrantes/renata.jpeg" alt="">
+                <span>Renata Bueno dos Santos</span>
+            </a>
         </div>
       </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </div>
     </div>
+
+    <div class="desenvolvedores">
+        <span style="font-weight: 900;border-bottom: 2px solid;margin-bottom: 10px;">Desenvolvedores </span>
+        <span>Caio dos Santos Lopes</span>
+        <span>Eduardo Pires Carvalho</span>
+        <span>Mauro Eduardo Gusmao Andreoli</span>
+        <span style="font-weight: 900;border-bottom: 2px solid;margin-top: 10px;margin-bottom: 10px;">Suporte</span>
+        <span>Kevin Kanetti</span>
+    </div>
 </section>
-
-
-     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-     <!-- Initialize Swiper -->
-    <script>        
-         AOS.init({
-            duration: 2000,
-         });
-      var swiper = new Swiper(".mySwiper", {
-        slidesPerView: 4,
-        spaceBetween: 30,
-        loop: true,
-         autoplay: {
-          delay: 2500,
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-      });
-    </script>

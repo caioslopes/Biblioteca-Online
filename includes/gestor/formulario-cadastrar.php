@@ -103,6 +103,7 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
       <div class="mb-3">
         <input class="btn btn-primary" type="submit" name="submit" value="Cadastrar Livro">
+        <a class="btn btn-danger" href="livros.php">Cancelar</a>
       </div>
   </form>
 

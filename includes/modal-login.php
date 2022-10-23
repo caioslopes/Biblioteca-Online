@@ -162,6 +162,11 @@
         cursor: pointer;
         color: gray;
      }
+     @media (max-width:767px){
+        .opcao-login select{
+            width: 40%;
+        }
+     }
 </style>
 <!-- Modal Login -->
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">

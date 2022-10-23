@@ -19,18 +19,28 @@
     <!-- CSS Personalizado -->
     <link rel="stylesheet" href="css/main.css">
     <style>
-      .content-login{
-        border-radius: 20px;
+      .bg-color{
         background-color: white;
-        display: flex;
-        gap: 15px;
-        padding: 0px 40px;
       }
-      .content-login a{
+      .content-login{
         font-weight: 900;
+        background: white;
+        border-radius: 20px;
+        padding: 0 20px;
       }
        .content-login a:hover{
         cursor: pointer;
+       }
+       @media (max-width:767px) {
+            .content-login{
+              font-weight: 900;
+              background: unset;
+              padding: unset;
+          }
+          .content-login a{
+            font-weight: 900;
+            color: #31c7d0;
+          }
        }
     </style>
   </head>
@@ -39,16 +49,16 @@
 <nav class="navbar navbar-expand-lg header-aberto">
   <div class="container-fluid container-xl">
     <a class="navbar-brand text-light" href="index.php">BIBLIOTECA</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler bg-color" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
+      <div class="navbar-nav text-center">
         <a class="nav-link active text-light" aria-current="page" href="index.php#apresentacao">Sobre o Projeto</a>
         <a class="nav-link text-light" href="index.php#como-funciona">Como Funciona?</a>
         <a class="nav-link text-light" href="index.php#quem-somos">Quem somos?</a>
       </div>
-      <div class="navbar-nav content-login">
+      <div class="navbar-nav content-login text-center">
         <a class="nav-link" href="livros.php">Livros</a>
         <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
         <a class="nav-link" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cadastre-se</a>

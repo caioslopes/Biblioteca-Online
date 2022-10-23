@@ -60,7 +60,14 @@
     display: flex;
     justify-content: space-between;
 }
-
+@media (max-width: 767px){
+    .vitrine{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        padding-bottom: 20px;
+    }
+}
 </style>
 
 <section class="container-xl mt-4">
@@ -68,7 +75,7 @@
  <div class="titulo-pagina">
     <h1>Livros Disponiveis</h1>
   </div>
-
+       
 <?php  
     //Receber o número da página
     $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);

@@ -1,6 +1,8 @@
  <!-- Fechando a pagina -->
 
-
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
   <!-- Bootstrap JS -->
@@ -8,6 +10,6 @@
   <!-- Jquery -->
   <script src="js/jquery.js"></script>
   <!-- JS Personalizado -->
- <script src="../js/main.js"></script>
+ <script src="js/main.js"></script>
   </body>
 </html>
