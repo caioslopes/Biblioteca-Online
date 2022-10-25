@@ -133,12 +133,14 @@
               <div class="vitrine__livros--texto">
                 <?php if($resultReserva_temp->num_rows >= 1 || $resultreserva->num_rows >=1){ ?>
                     <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Você já possui um livro reservado">Reservar</a>   
-                <?php  }else{ ?>
-                     <a class="btn btn-sm btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
-                <?php }?>
+                <?php  }else if($livros['qtd_reserva'] + $livros['qtd_temp'] >= $livros['qtd_total'] ){ ?>
+                    <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Aguarde a devolução do livro">Indisponivel</a>   
+                <?php } else {?>
+                    <a class="btn btn-sm btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
+                <?php } ?>
               </div>
           </div>
-          <?php } ?>
+          <?php }; ?>
         </div>
       </section>
       </div>
@@ -178,7 +180,7 @@
         </div>
         </div>
          <?php
-        }else { 
+        } else { 
             //Pega o valor digitado pelo usuario na barra de pesquisa
             $busca = $_GET['busca'];    
 

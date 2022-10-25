@@ -84,7 +84,7 @@
         </div>
         <div class="mt-3">
             <label>Data da confirmação</label>
-            <label class="form-control"><?php echo $hoje ?></label>
+            <label class="form-control"><?php echo $amanha ?></label>
             <input class="form-control" type="hidden" name="amanha" value="<?php echo $amanha ?>">
         </div>
         <div class="mt-3">
