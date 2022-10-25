@@ -189,7 +189,7 @@
                 <div class="fundo__vitrine--livros mt-4">
                     <section class="container-xl">
                         <h4>Nenhum resultado encontrado...</h4>
-                        <a class="btn btn-primary" href="listagem-reserva-temp.php">Livros emprestados</a>
+                        <a class="btn btn-primary" href="registros-reservas-temp.php">Solicitações de Reserva</a>
                     </section>
                 </div>
 

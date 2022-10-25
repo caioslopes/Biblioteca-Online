@@ -1,5 +1,5 @@
 <?php 
-
+//PAGINA NÃO ESTÁ SENDO USADA NO MOMENTO
 // Store datetime in variable today
 $today = new DateTimeImmutable();   
 $dia = new DateInterval('P1D'); 

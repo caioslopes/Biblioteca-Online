@@ -21,8 +21,13 @@
             $nome_aluno = $dados['nome_aluno'];
             $data_hoje = $dados['data_hoje'];
             $data_amanha = $dados['data_amanha'];
+            $qtd_temp = $dados['qtd_temp'];
+            $qtd_reserva = $dados['qtd_reserva'];
+            $qtd_total = $dados['qtd_total'];
 
-            /* echo "<pre>"; print_r($dados); echo "</pre>"; exit; */
+
+
+            /*  echo "<pre>"; print_r($dados); echo "</pre>"; exit; */
         };
     
             // echo "<pre>"; print_r($_POST['confirmar']); echo "</pre>"; exit; 
@@ -33,27 +38,37 @@
                     $aluno = $_POST['aluno'];
                     $data_hoje = $_POST['hoje'];
                     $data_amanha = $_POST['amanha'];
-                    
-                    //Função para tranferencia de dados
-                    $sqlInsert = $conn->prepare("INSERT INTO reserva(cod_aluno, cod_livro, data_da_reserva,	data_da_entrega) VALUES(?, ?, ?, ?)");
-                    $sqlInsert->bind_param("iiss", $aluno, $livro, $data_hoje, $data_amanha);
-                    $sqlInsert->execute();
 
-                    //Consulta tabela livros para checar o campo qtd_temp
-                    $sqlSelect = $conn->prepare("");
-                    $sqlInsert->execute();
+                    if($qtd_temp <= 0){
+                        header('registros-reservas-temp.php?status=error');
+                    }else if($qtd_temp + $qtd_reserva >= $qtd_total){
+                        header('registros-reservas-temp.php?status=error');
+                    }else{
 
-                    if(){
+                        //Função para tranferencia de dados -> tabela reserva
+                        $sqlInsert = $conn->prepare("INSERT INTO reserva(cod_aluno, cod_livro, data_da_reserva,	data_da_entrega) VALUES(?, ?, ?, ?)");
+                        $sqlInsert->bind_param("iiss", $aluno, $livro, $data_hoje, $data_amanha);
+                        $sqlInsert->execute();
+
+                        //Função para tranferencia de dados -> tabela registro
+                        $sqlInsert2 = $conn->prepare("INSERT INTO registro(cod_aluno, cod_livro, data_da_reserva, data_da_entrega) VALUES(?, ?, ?, ?)");
+                        $sqlInsert2->bind_param("iiss", $aluno, $livro, $data_hoje, $data_amanha);
+                        $sqlInsert2->execute();
+
                         //Função para excluir dados das tabela temporaria
                         $sqlDelete = $conn->prepare("DELETE FROM reserva_temp WHERE cod_livro = $livro");
                         $sqlDelete->execute();                    
                         
-                        //Função atualizar tabela livro
+                        //Função atualizar tabela livro qtd_temp
                         $sqlUpdate = $conn->prepare("UPDATE livro SET qtd_temp = qtd_temp -1 WHERE id_livro = $livro");
                         $sqlUpdate->execute();
-    
+
+                        //Função atualizar tabela livro qtd_reserva
+                        $sqlUpdate2 = $conn->prepare("UPDATE livro SET qtd_reserva = qtd_reserva +1 WHERE id_livro = $livro");
+                        $sqlUpdate2->execute();
+
                         header('location: registros-reservas-temp.php?status=success');
-                    };
+                    }
 
                 };
 
