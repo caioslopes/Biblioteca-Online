@@ -58,7 +58,6 @@ if(!empty($_GET['id'])){
         //Se tiver algum resultado retorna este resultado num array 
         while ($user_data = mysqli_fetch_assoc($resultQuery)) {
             //Pega os valores da $resutlQuery e joga em variaveis
-            $cod_livro = $user_data['cod_livro'];
             $imagem = $user_data['imagem'];
             $titulo = $user_data['titulo'];
             $autor = $user_data['autor'];
@@ -68,7 +67,6 @@ if(!empty($_GET['id'])){
      };
 
     if(!empty($_POST['editar'])){
-        $cod_livro_editar = $_POST['cod_livro'];
         $imagem_editar = $novoNome;
         $imagem_banco = $_POST['imagem_banco'];
         $titulo_editar = $_POST['titulo'];
@@ -79,16 +77,16 @@ if(!empty($_GET['id'])){
         //Verificando se alguma imagem foi enviada ou não
         if(!empty($novoNome)){
         //Monta a query
-        $queryUpdate = $conn->prepare("UPDATE livro SET cod_livro = ?, imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, qtd_total = ? WHERE id_livro = ?");
+        $queryUpdate = $conn->prepare("UPDATE livro SET imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, qtd_total = ? WHERE id_livro = ?");
         //Separa os valores inseridos da query
-        $queryUpdate->bind_param("ssssiii", $cod_livro_editar, $imagem_editar, $titulo_editar, $autor_editar, $cod_categoria_editar, $quantidade_editar, $id_livro);
+        $queryUpdate->bind_param("sssiii", $imagem_editar, $titulo_editar, $autor_editar, $cod_categoria_editar, $quantidade_editar, $id_livro);
         //Executa da query
         $queryUpdate->execute();
         }else{
         //Monta a query
-        $queryUpdate = $conn->prepare("UPDATE livro SET cod_livro = ?, imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, qtd_total = ? WHERE id_livro = ?");
+        $queryUpdate = $conn->prepare("UPDATE livro SET imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, qtd_total = ? WHERE id_livro = ?");
         //Separa os valores inseridos da query
-        $queryUpdate->bind_param("ssssiii", $cod_livro_editar, $imagem_banco, $titulo_editar, $autor_editar, $cod_categoria_editar, $quantidade_editar, $id_livro);
+        $queryUpdate->bind_param("sssiii", $imagem_banco, $titulo_editar, $autor_editar, $cod_categoria_editar, $quantidade_editar, $id_livro);
         //Executa da query
         $queryUpdate->execute();
         }
@@ -108,10 +106,6 @@ if(!empty($_GET['id'])){
 
 <!-- Formulario para editar os livros -->
   <form class="mt-4" method="POST" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label class="form-label">Codigo do Livro</label>
-        <input class="form-control" type="text" name="cod_livro" value="<?php echo $cod_livro ?>" required>
-      </div>
 
       <div class="mb-3">
         <label class="form-label">Imagem</label>

@@ -1,6 +1,12 @@
 <!-- Abrindo codigo php -->
 <?php 
 
+  //Função para selecionar dados categoria
+  $querySelect = $conn->prepare("SELECT * FROM categoria");
+  $querySelect->execute();
+  $resultQuery = $querySelect->get_result();
+
+
 // verifica se foi enviado um arquivo
 if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
     /* echo 'Você enviou o arquivo: <strong>' . $_FILES[ 'arquivo' ][ 'name' ] . '</strong><br />';
@@ -42,7 +48,6 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
   /* Pegando valores do formulario */
   if(isset($_POST['submit'])){
-    $cod_livro = $_POST['cod_livro'];
     $imagem = $novoNome;
     $titulo = $_POST['titulo'];
     $autor = $_POST['autor'];
@@ -51,15 +56,18 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
     //Inserindo valores pego do formulario no banco de dados
     //Montando a query
-    $query = $conn->prepare("INSERT INTO livro (cod_livro, imagem, titulo, autor, cod_categoria, qtd_total) VALUES (?, ?, ?, ?, ?, ?)");
+    $query = $conn->prepare("INSERT INTO livro (imagem, titulo, autor, cod_categoria, qtd_total) VALUES ( ?, ?, ?, ?, ?)");
     //Verificando dados inseridos e passando parametro de qual tipo eles ser. (evitar SQL INJECTION)
-    $query->bind_param("ssssii", $cod_livro, $imagem, $titulo, $autor, $cod_categoria, $qtd_total);
+    $query->bind_param("sssii", $imagem, $titulo, $autor, $cod_categoria, $qtd_total);
     //executa a query
     $query->execute();
 
     header('location:livros.php?status=success');
     /* echo "<pre>"; print_r($imagem); echo "</pre>"; exit; */
   };
+
+
+  
 
 ?>
 
@@ -71,10 +79,6 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
 <!-- Formulario de cadastro de livros -->
   <form class="mt-4" method="POST" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label class="form-label">Codigo do Livro</label>
-        <input class="form-control" type="text" name="cod_livro" required>
-      </div>
 
       <div class="mb-3">
         <label for="formFile" class="form-label">Imagem</label>
@@ -93,8 +97,13 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
       <div class="mb-3">
         <label class="form-label">Categoria</label>
-        <input class="form-control" type="text" name="cod_categoria" required>
-      </div>
+        <select name="cod_categoria" class="form-select" aria-label="Default select example">
+        <option selected>Selecionar Categoria</option>
+          <?php while($categoria = mysqli_fetch_assoc($resultQuery)){ ?>
+          <option value="<?php echo $categoria['id_categoria'] ?>"><?php echo $categoria['nome_categoria'] ?></option>
+          <?php } ?>
+        </select>
+        </div>
 
       <div class="mb-3">
         <label class="form-label">Quantidade</label>
