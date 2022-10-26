@@ -39,24 +39,96 @@
                     $data_hoje = $_POST['hoje'];
                     $data_amanha = $_POST['amanha'];
 
+                    //Pega a data atual da confirmação e soma 10 dias.
+                    $today = new DateTimeImmutable();   
+                    $dia = new DateInterval('P10D'); 
+                    $soma = $today->add($dia);
+                    $DezDia = $soma->format('Y-m-d');
+                                          
+                    //Pega o dia da semana
+                    $DiaSemana = date('l',strtotime($DezDia));
+                    echo $DiaSemana;
+                    
+
                     if($qtd_temp <= 0){
                         header('registros-reservas-temp.php?status=error');
                     }else if($qtd_temp + $qtd_reserva >= $qtd_total){
                         header('registros-reservas-temp.php?status=error');
+                    }else if($DiaSemana == 'Saturday'){
+
+                        $today = new DateTimeImmutable();   
+                        $dia = new DateInterval('P12D'); 
+                        $soma = $today->add($dia);
+                        $DezDia = $soma->format('Y-m-d');
+
+                        //Função para tranferencia de dados -> tabela reserva
+                        $sqlInsert = $conn->prepare("INSERT INTO reserva(cod_aluno, cod_livro, data_da_reserva,	data_da_entrega) VALUES(?, ?, ?, ?)");
+                        $sqlInsert->bind_param("iiss", $aluno, $livro, $data_hoje, $DezDia);
+                        $sqlInsert->execute();
+  
+                        //Função para tranferencia de dados -> tabela registro
+                        $sqlInsert2 = $conn->prepare("INSERT INTO registro(cod_aluno, cod_livro, data_da_reserva, data_da_entrega) VALUES(?, ?, ?, ?)");
+                        $sqlInsert2->bind_param("iiss", $aluno, $livro, $data_hoje, $DezDia);
+                        $sqlInsert2->execute();
+  
+                        //Função para excluir dados das tabela temporaria
+                        $sqlDelete = $conn->prepare("DELETE FROM reserva_temp WHERE id_temp = $id_temp");
+                        $sqlDelete->execute();                    
+                          
+                        //Função atualizar tabela livro qtd_temp
+                        $sqlUpdate = $conn->prepare("UPDATE livro SET qtd_temp = qtd_temp -1 WHERE id_livro = $livro");
+                        $sqlUpdate->execute();
+  
+                        //Função atualizar tabela livro qtd_reserva
+                        $sqlUpdate2 = $conn->prepare("UPDATE livro SET qtd_reserva = qtd_reserva +1 WHERE id_livro = $livro");
+                        $sqlUpdate2->execute();
+  
+                        header('location: registros-reservas-temp.php?status=success');
+
+                    }else if($DiaSemana == 'Monday'){
+                        $today = new DateTimeImmutable();   
+                        $dia = new DateInterval('P11D'); 
+                        $soma = $today->add($dia);
+                        $DezDia = $soma->format('Y-m-d');
+
+                        //Função para tranferencia de dados -> tabela reserva
+                        $sqlInsert = $conn->prepare("INSERT INTO reserva(cod_aluno, cod_livro, data_da_reserva,	data_da_entrega) VALUES(?, ?, ?, ?)");
+                        $sqlInsert->bind_param("iiss", $aluno, $livro, $data_hoje, $DezDia);
+                        $sqlInsert->execute();
+  
+                        //Função para tranferencia de dados -> tabela registro
+                        $sqlInsert2 = $conn->prepare("INSERT INTO registro(cod_aluno, cod_livro, data_da_reserva, data_da_entrega) VALUES(?, ?, ?, ?)");
+                        $sqlInsert2->bind_param("iiss", $aluno, $livro, $data_hoje, $DezDia);
+                        $sqlInsert2->execute();
+  
+                        //Função para excluir dados das tabela temporaria
+                        $sqlDelete = $conn->prepare("DELETE FROM reserva_temp WHERE id_temp = $id_temp");
+                        $sqlDelete->execute();                    
+                          
+                        //Função atualizar tabela livro qtd_temp
+                        $sqlUpdate = $conn->prepare("UPDATE livro SET qtd_temp = qtd_temp -1 WHERE id_livro = $livro");
+                        $sqlUpdate->execute();
+  
+                        //Função atualizar tabela livro qtd_reserva
+                        $sqlUpdate2 = $conn->prepare("UPDATE livro SET qtd_reserva = qtd_reserva +1 WHERE id_livro = $livro");
+                        $sqlUpdate2->execute();
+  
+                        header('location: registros-reservas-temp.php?status=success');
+
                     }else{
 
                         //Função para tranferencia de dados -> tabela reserva
                         $sqlInsert = $conn->prepare("INSERT INTO reserva(cod_aluno, cod_livro, data_da_reserva,	data_da_entrega) VALUES(?, ?, ?, ?)");
-                        $sqlInsert->bind_param("iiss", $aluno, $livro, $data_hoje, $data_amanha);
+                        $sqlInsert->bind_param("iiss", $aluno, $livro, $data_hoje, $DezDia);
                         $sqlInsert->execute();
 
                         //Função para tranferencia de dados -> tabela registro
                         $sqlInsert2 = $conn->prepare("INSERT INTO registro(cod_aluno, cod_livro, data_da_reserva, data_da_entrega) VALUES(?, ?, ?, ?)");
-                        $sqlInsert2->bind_param("iiss", $aluno, $livro, $data_hoje, $data_amanha);
+                        $sqlInsert2->bind_param("iiss", $aluno, $livro, $data_hoje, $DezDia);
                         $sqlInsert2->execute();
 
                         //Função para excluir dados das tabela temporaria
-                        $sqlDelete = $conn->prepare("DELETE FROM reserva_temp WHERE cod_livro = $livro");
+                        $sqlDelete = $conn->prepare("DELETE FROM reserva_temp WHERE id_temp = $id_temp");
                         $sqlDelete->execute();                    
                         
                         //Função atualizar tabela livro qtd_temp

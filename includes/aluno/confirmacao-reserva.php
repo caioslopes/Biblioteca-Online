@@ -11,8 +11,8 @@
         $today = new DateTimeImmutable();   
         $dia = new DateInterval('P1D'); 
         $soma = $today->add($dia);
-        $amanha = $soma->format('d/m/Y H:i');
-        $hoje = $today->format('d/m/Y H:i');
+        $amanha = $soma->format('Y-m-d H-i');
+        $hoje = $today->format('Y-m-d H-i');
 
         //Função que puxa os dados da tabela livro para exibir ao usuario
         $sqlSelect = $conn->prepare("SELECT * FROM livro, aluno WHERE id_aluno = $id_aluno AND id_livro = $id_livro");

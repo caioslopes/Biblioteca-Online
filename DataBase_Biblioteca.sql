@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Out-2022 às 16:37
+-- Tempo de geração: 26-Out-2022 às 15:10
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.1.32
 
@@ -40,8 +40,8 @@ CREATE TABLE `aluno` (
 --
 
 INSERT INTO `aluno` (`id_aluno`, `nome_aluno`, `email`, `senha`) VALUES
-(1, 'Caio dos Santos Lopes', 'caiolopes.social@gmail.com', '123'),
-(2, 'Eduardo', 'edu@gmail.com', '123'),
+(1, 'Caio dos Santos Lopes', 'caio@gmail.com', '123'),
+(2, 'Eduardo', 'eduardo@gmail.com', '123'),
 (3, 'Mauro', 'mauro@gmail.com', '123');
 
 -- --------------------------------------------------------
@@ -88,7 +88,8 @@ CREATE TABLE `livro` (
 
 INSERT INTO `livro` (`id_livro`, `cod_livro`, `imagem`, `titulo`, `autor`, `cod_categoria`, `qtd_total`, `qtd_reserva`, `qtd_temp`) VALUES
 (11, '00000', '166534713563432e3fd40a5.jpg', 'Mico', 'Anne Frank', 2, 10, 0, 0),
-(12, '01901', '166534710463432e2099437.jpg', 'A menina que Roubava Livros', 'Clarice Lispector', 3, 10, 0, 0);
+(12, '01901', '166534710463432e2099437.jpg', 'A menina que Roubava Livros', 'Clarice Lispector', 3, 10, 0, 0),
+(14, '12d', '166678031863590c9e9c36c.png', 'Sei la', 'asbdj', 0, 12, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -103,17 +104,6 @@ CREATE TABLE `registro` (
   `data_da_reserva` date NOT NULL,
   `data_da_entrega` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `registro`
---
-
-INSERT INTO `registro` (`id_registro`, `cod_aluno`, `cod_livro`, `data_da_reserva`, `data_da_entrega`) VALUES
-(1, 1, 11, '2022-10-13', '2022-10-23'),
-(2, 1, 11, '2022-10-13', '2022-10-23'),
-(3, 1, 11, '2022-10-19', '2022-10-31'),
-(4, 1, 13, '2022-10-21', '2022-10-28'),
-(5, 2, 13, '2022-10-21', '2022-10-28');
 
 -- --------------------------------------------------------
 
@@ -139,17 +129,9 @@ CREATE TABLE `reserva_temp` (
   `id_temp` int(11) NOT NULL,
   `cod_livro` int(11) NOT NULL,
   `cod_aluno` int(11) NOT NULL,
-  `data_hoje` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `data_amanha` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL
+  `data_hoje` datetime NOT NULL,
+  `data_amanha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Extraindo dados da tabela `reserva_temp`
---
-
-INSERT INTO `reserva_temp` (`id_temp`, `cod_livro`, `cod_aluno`, `data_hoje`, `data_amanha`) VALUES
-(15, 11, 2, '21/10/2022/10/25', '22/10/2022/10/25'),
-(16, 13, 3, '21/10/2022/10/29', '22/10/2022/10/29');
 
 --
 -- Índices para tabelas despejadas
@@ -201,7 +183,7 @@ ALTER TABLE `reserva_temp`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `gestor`
@@ -213,25 +195,25 @@ ALTER TABLE `gestor`
 -- AUTO_INCREMENT de tabela `livro`
 --
 ALTER TABLE `livro`
-  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `registro`
 --
 ALTER TABLE `registro`
-  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `reserva_temp`
 --
 ALTER TABLE `reserva_temp`
-  MODIFY `id_temp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_temp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Restrições para despejos de tabelas
@@ -243,6 +225,14 @@ ALTER TABLE `reserva_temp`
 ALTER TABLE `reserva`
   ADD CONSTRAINT `fk_aluno` FOREIGN KEY (`cod_aluno`) REFERENCES `aluno` (`id_aluno`),
   ADD CONSTRAINT `fk_livro` FOREIGN KEY (`cod_livro`) REFERENCES `livro` (`id_livro`);
+
+DELIMITER $$
+--
+-- Eventos
+--
+CREATE DEFINER=`root`@`localhost` EVENT `Check-reserva` ON SCHEDULE EVERY 24 HOUR STARTS '2022-10-25 00:00:00' ON COMPLETION NOT PRESERVE ENABLE COMMENT 'Evento que exclui reservas não efetuadas' DO DELETE FROM reserva_temp WHERE data_amanha <= now()$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
