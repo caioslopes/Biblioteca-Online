@@ -1,20 +1,25 @@
 <?php
 
     //Consulta Livros na tabela reserva (Reserva Efetivada)
-    $consulta_livros = $conn->prepare("SELECT livro.*, reserva.* 
-    FROM reserva 
-    LEFT JOIN livro
-    ON livro.id_livro = reserva.cod_livro
-    WHERE reserva.cod_aluno = $id_aluno");
+    $consulta_livros = $conn->prepare("SELECT livro.*, reserva.*, DATE_FORMAT(data_da_reserva,'%d/%m/%Y') 
+    AS data_reservaf,
+    DATE_FORMAT(data_da_entrega,'%d/%m/%Y')
+    AS data_entregaf
+        FROM reserva 
+        LEFT JOIN livro
+        ON livro.id_livro = reserva.cod_livro
+        WHERE reserva.cod_aluno = $id_aluno");
     $consulta_livros->execute();
     $result_consulta = $consulta_livros->get_result();
 
     //Consulta Livros na tabela reserva_temp (Auto reserva)
-    $sqlTemp = $conn->prepare("SELECT livro.*, reserva_temp.* 
-    FROM reserva_temp
-    LEFT JOIN livro
-    ON livro.id_livro = reserva_temp.cod_livro
-    WHERE reserva_temp.cod_aluno = $id_aluno");
+    $sqlTemp = $conn->prepare("SELECT livro.*, DATE_FORMAT(data_hoje,'%H:%i %d/%m/%Y') 
+    AS data_hojef,DATE_FORMAT(data_amanha,'%H:%i %d/%m/%Y')
+    AS data_amanhaf, reserva_temp.* 
+        FROM reserva_temp
+        LEFT JOIN livro
+        ON livro.id_livro = reserva_temp.cod_livro
+        WHERE reserva_temp.cod_aluno = $id_aluno");
     $sqlTemp->execute();
     $resultSqlTemp = $sqlTemp->get_result();
 
@@ -187,11 +192,11 @@
                             <div class="card__aluno--datas">
                                 <div class="card__aluno--datas">
                                     <span>Data efetiva da reserva:</span>
-                                    <span class="data__"><?php echo $livros['data_da_reserva'] ?></span>
+                                    <span class="data__"><?php echo $livros['data_reservaf'] ?></span>
                                 </div>
                                 <div class="card__aluno--datas">
                                     <span>Data de entrega do livro:</span>
-                                    <span class="data__"><?php echo $livros['data_da_entrega'] ?></span>
+                                    <span class="data__"><?php echo $livros['data_entregaf'] ?></span>
                                 </div>
                             </div>
 
@@ -220,11 +225,11 @@
                         <div class="card__aluno--datas">
                             <div class="card__aluno--datas">
                                 <span>Data do pedido de reserva:</span>
-                                <span class="data__"><?php echo $dados_temp['data_hoje'] ?></span>
+                                <span class="data__"><?php echo $dados_temp['data_hojef'] ?></span>
                             </div>
                             <div class="card__aluno--datas">
                                 <span>Data para confirmar a reserva:</span>
-                                <span class="data__"><?php echo $dados_temp['data_amanha'] ?></span>
+                                <span class="data__"><?php echo $dados_temp['data_amanhaf'] ?></span>
                             </div>
                         </div> 
                     </div>

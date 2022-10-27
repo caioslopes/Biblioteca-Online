@@ -13,6 +13,8 @@
         $soma = $today->add($dia);
         $amanha = $soma->format('Y-m-d H-i');
         $hoje = $today->format('Y-m-d H-i');
+        $diaf = $soma->format('d/m/Y');
+        $diaH = $today->format('d/m/Y');
 
         //Função que puxa os dados da tabela livro para exibir ao usuario
         $sqlSelect = $conn->prepare("SELECT * FROM livro, aluno WHERE id_aluno = $id_aluno AND id_livro = $id_livro");
@@ -79,12 +81,12 @@
         </div>
         <div class="mt-3">
             <label>Data do pedido</label>
-            <label class="form-control"><?php echo $hoje ?></label>
+            <label class="form-control"><?php echo $diaH ?></label>
             <input class="form-control" type="hidden" name="hoje" value="<?php echo $hoje ?>">
         </div>
         <div class="mt-3">
             <label>Data da confirmação</label>
-            <label class="form-control"><?php echo $amanha ?></label>
+            <label class="form-control"><?php echo $diaf ?></label>
             <input class="form-control" type="hidden" name="amanha" value="<?php echo $amanha ?>">
         </div>
         <div class="mt-3">
