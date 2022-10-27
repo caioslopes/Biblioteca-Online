@@ -4,7 +4,7 @@
     background: #23232e;
     width: 200px;
     height:100%;
-    position: absolute;
+    position: fixed;
     top: 0px;
 
     transition: transform 1s;

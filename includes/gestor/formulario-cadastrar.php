@@ -97,7 +97,7 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
       <div class="mb-3">
         <label class="form-label">Categoria</label>
-        <select name="cod_categoria" class="form-select" aria-label="Default select example">
+        <select name="cod_categoria" class="form-select" >
         <option selected>Selecionar Categoria</option>
           <?php while($categoria = mysqli_fetch_assoc($resultQuery)){ ?>
           <option value="<?php echo $categoria['id_categoria'] ?>"><?php echo $categoria['nome_categoria'] ?></option>

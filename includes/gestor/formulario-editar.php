@@ -1,6 +1,11 @@
 <!-- Abrindo codigo php -->
 <?php 
+     //Função para selecionar dados categoria
+     $querySelect2 = $conn->prepare("SELECT * FROM categoria");
+     $querySelect2->execute();
+     $resultQuery2 = $querySelect2->get_result();
 
+     
 // verifica se foi enviado um arquivo
 if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
     /* echo 'Você enviou o arquivo: <strong>' . $_FILES[ 'arquivo' ][ 'name' ] . '</strong><br />';
@@ -41,8 +46,8 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
 if(!empty($_GET['id'])){
 
-    //Pega o id que foi passado por URL
-    $id_livro = $_GET['id'];
+      //Pega o id que foi passado por URL
+      $id_livro = $_GET['id'];
 
       //Monta a query
       $querySelect = $conn->prepare("SELECT * FROM livro WHERE id_livro = ?");
@@ -110,7 +115,7 @@ if(!empty($_GET['id'])){
       <div class="mb-3">
         <label class="form-label">Imagem</label>
         <img style="width: 100px;" src="../img/<?php echo $imagem ?>" alt="">
-        <input class="form-control" type="file" name="arquivo">
+        <input class="form-control mt-3" type="file" name="arquivo">
         <input type="hidden" name="imagem_banco" value="<?php echo $imagem ?>">
       </div>
 
@@ -126,8 +131,21 @@ if(!empty($_GET['id'])){
 
       <div class="mb-3">
         <label class="form-label">Categoria</label>
-        <input class="form-control" type="text" name="cod_categoria" value="<?php echo $cod_categoria ?>" required>
-      </div>
+        <select name="cod_categoria" class="form-select">
+          <?php $consultaCategoria = $conn->prepare("SELECT nome_categoria FROM categoria WHERE id_categoria = $cod_categoria");
+                $consultaCategoria->execute();
+                $resultConsultaCategoria = $consultaCategoria->get_result();
+
+                foreach($resultConsultaCategoria as $dados_categoria){
+                    $nome_categoria = $dados_categoria['nome_categoria'];
+                };
+           ?>
+          <option value="<?php echo $cod_categoria ?>" selected><?php echo $nome_categoria ?></option>
+          <?php while($categoria = mysqli_fetch_assoc($resultQuery2)){ ?>
+          <option value="<?php echo $categoria['id_categoria'] ?>"><?php echo $categoria['nome_categoria'] ?></option>
+          <?php } ?>
+        </select>
+        </div>
 
       <div class="mb-3">
         <label class="form-label">Quantidade</label>

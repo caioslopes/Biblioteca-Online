@@ -11,6 +11,7 @@ a {
 .corpo {
     margin-top: 30px;
     margin-left: 230px;
+    width: calc(100% - 250px);
 }
 .header-aberto {
     background-color: #23232e;
@@ -58,6 +59,7 @@ a {
 @media (max-width: 767px) {
     .corpo {
         margin-left: unset;
+        width: 100%;
     }
     .img-logo-menu {
         width: 150px;
