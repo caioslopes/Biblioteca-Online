@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 26-Out-2022 às 15:10
--- Versão do servidor: 10.4.6-MariaDB
--- versão do PHP: 7.1.32
+-- Tempo de geração: 28-Out-2022 às 01:17
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -43,6 +42,27 @@ INSERT INTO `aluno` (`id_aluno`, `nome_aluno`, `email`, `senha`) VALUES
 (1, 'Caio dos Santos Lopes', 'caio@gmail.com', '123'),
 (2, 'Eduardo', 'eduardo@gmail.com', '123'),
 (3, 'Mauro', 'mauro@gmail.com', '123');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `id_categoria` int(11) NOT NULL,
+  `nome_categoria` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `categoria`
+--
+
+INSERT INTO `categoria` (`id_categoria`, `nome_categoria`) VALUES
+(1, 'Literatura Brasileira'),
+(2, 'Literatura Estrangeira'),
+(3, 'Técnicos'),
+(4, 'Outros');
 
 -- --------------------------------------------------------
 
@@ -87,7 +107,7 @@ CREATE TABLE `livro` (
 --
 
 INSERT INTO `livro` (`id_livro`, `cod_livro`, `imagem`, `titulo`, `autor`, `cod_categoria`, `qtd_total`, `qtd_reserva`, `qtd_temp`) VALUES
-(11, '00000', '166534713563432e3fd40a5.jpg', 'Mico', 'Anne Frank', 2, 10, 0, 0),
+(11, '00000', '166534713563432e3fd40a5.jpg', 'Mico', 'Anne Frank', 2, 10, 1, 0),
 (12, '01901', '166534710463432e2099437.jpg', 'A menina que Roubava Livros', 'Clarice Lispector', 3, 10, 0, 0),
 (14, '12d', '166678031863590c9e9c36c.png', 'Sei la', 'asbdj', 0, 12, 0, 0);
 
@@ -105,6 +125,13 @@ CREATE TABLE `registro` (
   `data_da_entrega` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Extraindo dados da tabela `registro`
+--
+
+INSERT INTO `registro` (`id_registro`, `cod_aluno`, `cod_livro`, `data_da_reserva`, `data_da_entrega`) VALUES
+(17, 1, 11, '2022-10-27', '2022-11-04');
+
 -- --------------------------------------------------------
 
 --
@@ -118,6 +145,13 @@ CREATE TABLE `reserva` (
   `data_da_reserva` date NOT NULL,
   `data_da_entrega` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `reserva`
+--
+
+INSERT INTO `reserva` (`id_reserva`, `cod_aluno`, `cod_livro`, `data_da_reserva`, `data_da_entrega`) VALUES
+(17, 1, 11, '2022-10-27', '2022-11-04');
 
 -- --------------------------------------------------------
 
@@ -142,6 +176,12 @@ CREATE TABLE `reserva_temp` (
 --
 ALTER TABLE `aluno`
   ADD PRIMARY KEY (`id_aluno`);
+
+--
+-- Índices para tabela `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id_categoria`);
 
 --
 -- Índices para tabela `gestor`
@@ -186,6 +226,12 @@ ALTER TABLE `aluno`
   MODIFY `id_aluno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT de tabela `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de tabela `gestor`
 --
 ALTER TABLE `gestor`
@@ -201,13 +247,13 @@ ALTER TABLE `livro`
 -- AUTO_INCREMENT de tabela `registro`
 --
 ALTER TABLE `registro`
-  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_registro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `reserva`
 --
 ALTER TABLE `reserva`
-  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_reserva` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `reserva_temp`
