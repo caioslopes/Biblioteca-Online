@@ -92,7 +92,11 @@
 
     //calcular o inicio visualização
     $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
-    $sql = $conn->prepare("SELECT * FROM reserva_temp
+    $sql = $conn->prepare("SELECT *,DATE_FORMAT(data_hoje,'%d/%m/%Y') 
+    AS data_hojef,
+    DATE_FORMAT(data_amanha,'%H:%i %d/%m/%Y')
+    AS data_amanhaf
+     FROM reserva_temp
     INNER JOIN livro
     ON id_livro = reserva_temp.cod_livro
     INNER JOIN aluno
@@ -110,7 +114,7 @@
                         <th scope="col">Aluno</th>
                         <th scope="col">Livro</th>
                         <th scope="col">Data Reserva</th>
-                        <th scope="col">Data Entrega</th>
+                        <th scope="col">Prazo da confirmação</th>
                         <th scope="col">Dar Baixa</th>
                     </tr>
                 </thead>
@@ -123,8 +127,8 @@
                             <td><?php echo $reserva['id_temp'] ?></td>
                             <td><?php echo $reserva['nome_aluno'] ?></td>
                             <td><?php echo $reserva['titulo'] ?></td>
-                            <td><?php echo $reserva['data_hoje'] ?></td>
-                            <td><?php echo $reserva['data_amanha'] ?></td>
+                            <td><?php echo $reserva['data_hojef'] ?></td>
+                            <td><?php echo $reserva['data_amanhaf'] ?></td>
                             <td>
                                 <a href='confirmar-reserva-temp.php?id_temp=<?php echo $reserva['id_temp'] ?>' class='btn btn-sm btn-primary'>
                                     Confirmar

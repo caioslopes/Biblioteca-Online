@@ -92,7 +92,11 @@
 
     //calcular o inicio visualização
     $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
-    $sql = $conn->prepare("SELECT * FROM reserva
+    $sql = $conn->prepare("SELECT *,DATE_FORMAT(data_da_reserva,'%d/%m/%Y') 
+    AS data_reservaf,
+    DATE_FORMAT(data_da_entrega,'%d/%m/%Y')
+    AS data_entregaf
+     FROM reserva
     INNER JOIN livro
     ON id_livro = reserva.cod_livro
     INNER JOIN aluno
@@ -123,8 +127,8 @@
                             <td><?php echo $reserva['id_reserva'] ?></td>
                             <td><?php echo $reserva['nome_aluno'] ?></td>
                             <td><?php echo $reserva['titulo'] ?></td>
-                            <td><?php echo $reserva['data_da_reserva'] ?></td>
-                            <td><?php echo $reserva['data_da_entrega'] ?></td>
+                            <td><?php echo $reserva['data_reservaf'] ?></td>
+                            <td><?php echo $reserva['data_entregaf'] ?></td>
                             <td>
                                 <a href='dar-baixa-livro.php?id=<?php echo $reserva['id_reserva'] ?>' class='btn btn-sm btn-primary'>
                                     Dar Baixa

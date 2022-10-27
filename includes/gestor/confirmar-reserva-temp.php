@@ -5,7 +5,11 @@
         $id_temp = $_GET['id_temp'];
 
         
-        $sql = $conn->prepare("SELECT * FROM reserva_temp
+        $sql = $conn->prepare("SELECT *,DATE_FORMAT(data_hoje,'%d/%m/%Y') 
+        AS data_hojef,
+        DATE_FORMAT(data_amanha,'%H:%i %d/%m/%Y')
+        AS data_amanhaf 
+     FROM reserva_temp
         INNER JOIN livro
         ON id_livro = reserva_temp.cod_livro
         INNER JOIN aluno
@@ -19,8 +23,8 @@
             $id_aluno = $dados['id_aluno'];
             $titulo = $dados['titulo'];
             $nome_aluno = $dados['nome_aluno'];
-            $data_hoje = $dados['data_hoje'];
-            $data_amanha = $dados['data_amanha'];
+            $data_hoje = $dados['data_hojef'];
+            $data_amanha = $dados['data_amanhaf'];
             $qtd_temp = $dados['qtd_temp'];
             $qtd_reserva = $dados['qtd_reserva'];
             $qtd_total = $dados['qtd_total'];

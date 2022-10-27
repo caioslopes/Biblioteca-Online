@@ -48,6 +48,7 @@
     </div>
 
      <?php
+    
     //Receber o número da página
     $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
     $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
@@ -57,12 +58,16 @@
 
     //calcular o inicio visualização
     $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;  
-    $sql = $conn->prepare("SELECT aluno.id_aluno, aluno.nome_aluno, livro.id_livro, livro.titulo, registro.* 
+    $sql = $conn->prepare("SELECT aluno.id_aluno, aluno.nome_aluno, livro.id_livro, livro.titulo, registro.*, 
+    DATE_FORMAT(data_da_reserva,'%d/%m/%Y') 
+                AS data_reservaf,
+                DATE_FORMAT(data_da_entrega,'%d/%m/%Y')
+                AS data_entregaf
     FROM registro 
     LEFT JOIN aluno
     ON registro.cod_aluno = aluno.id_aluno
     LEFT JOIN livro
-    ON registro.cod_livro = livro.id_livro LIMIT $inicio, $qnt_result_pg");
+    ON registro.cod_livro = livro.id_livro LIMIT $inicio,$qnt_result_pg ;");
     $sql->execute();
     $result = $sql->get_result();
     ?>
@@ -88,8 +93,8 @@
                             <td><?php echo $registro['id_registro'] ?></td>
                             <td><?php echo $registro['nome_aluno'] ?></td>
                             <td><?php echo $registro['titulo'] ?></td>
-                            <td><?php echo $registro['data_da_reserva'] ?></td>
-                            <td><?php echo $registro['data_da_entrega'] ?></td>
+                            <td><?php echo $registro['data_reservaf'] ?></td>
+                            <td><?php echo $registro['data_entregaf'] ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
@@ -136,13 +141,17 @@
             //Pega o valor digitado pelo usuario na barra de pesquisa
             $busca = $_GET['busca'];    
 
-            $SelectBusca = $conn->prepare("SELECT aluno.id_aluno, aluno.nome_aluno, livro.id_livro, livro.titulo, registro.* 
-            FROM registro 
-            LEFT JOIN aluno
-            ON registro.cod_aluno = aluno.id_aluno
-            LEFT JOIN livro
-            ON registro.cod_livro = livro.id_livro
-            WHERE nome_aluno LIKE '%$busca%' OR titulo LIKE '%$busca%'");
+            $SelectBusca = $conn->prepare("SELECT aluno.id_aluno, aluno.nome_aluno, livro.id_livro, livro.titulo, registro.*,
+            DATE_FORMAT(data_da_reserva,'%d/%m/%Y') 
+                AS data_reservaf,
+                DATE_FORMAT(data_da_entrega,'%d/%m/%Y')
+                AS data_entregaf
+                        FROM registro 
+                        LEFT JOIN aluno
+                        ON registro.cod_aluno = aluno.id_aluno
+                        LEFT JOIN livro
+                        ON registro.cod_livro = livro.id_livro
+                        WHERE nome_aluno LIKE '%$busca%' OR titulo LIKE '%$busca%';");
             $SelectBusca->execute();
             $resultBusca = $SelectBusca->get_result();
         
@@ -175,8 +184,8 @@
                             <td><?php echo $registro['id_registro'] ?></td>
                             <td><?php echo $registro['nome_aluno'] ?></td>
                             <td><?php echo $registro['titulo'] ?></td>
-                            <td><?php echo $registro['data_da_reserva'] ?></td>
-                            <td><?php echo $registro['data_da_entrega'] ?></td>
+                            <td><?php echo $registro['data_reservaf'] ?></td>
+                            <td><?php echo $registro['data_entregaf'] ?></td>
                         </tr>
                     <?php } ?>
                 </tbody>
