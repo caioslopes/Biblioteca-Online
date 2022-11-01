@@ -53,11 +53,8 @@
   background-color: #297eeb;
 }
 .logo-bo{
- padding-left: 30px;
- border-left: 5px solid;
- border-radius: 30px;
- display: flex;
- flex-direction: column;
+ font-size: 20px;
+ padding-left: 10px;
  color: white;
 }
 .logo-bo span{
@@ -67,7 +64,7 @@
 
   <div id="menu">
     <div class="d-flex justify-content-between align-items-center mt-3">
-    <div class="logo-bo">
+      <div class="logo-bo">
         <span>Biblioteca</span>
         <span>Online</span>
       </div>

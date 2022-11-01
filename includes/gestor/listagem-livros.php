@@ -19,6 +19,7 @@
     width: 100%;
     height: 250px;
     border: 3px solid;
+    border-radius: 10px;
 }
 
 .vitrine__livros--texto{
@@ -53,6 +54,13 @@
 .caixa-pag-num {
     display: flex;
     justify-content: space-between;
+}
+.caixa-btn{
+    margin-top: 10px;
+    gap: 5px;
+}
+.caixa-btn a{
+    width: 48%;
 }
 
 @media (max-width: 767px){
@@ -185,9 +193,9 @@
           <?php while ($livros = mysqli_fetch_assoc($result)) {?>
           <div class="livros">
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
-              <div>
-                <a class="btn btn-sm btn-primary" href="editar.php?id=<?php echo $livros['id_livro'] ?>">Editar</a>
-                <a class="btn btn-sm btn-danger" href="livros.php?id=<?php echo $livros['id_livro'] ?>">Excluir</a>
+              <div class="caixa-btn">
+                <a class="btn btn-sm btn-primary rounded-pill" href="editar.php?id=<?php echo $livros['id_livro'] ?>">Editar</a>
+                <a class="btn btn-sm btn-danger rounded-pill" href="livros.php?id=<?php echo $livros['id_livro'] ?>">Excluir</a>
               </div>
           </div>
           <?php } ?>
@@ -262,10 +270,10 @@
                         <div class="vitrine">
                         <?php while ($livro_busca = mysqli_fetch_assoc($resultBusca)) {?>
                         <div class="livros">
-                            <img src='img/<?php echo $livro_busca['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
-                            <div>
-                                <a class="btn btn-sm btn-primary" href="editar.php?id=<?php echo $livro_busca['id_livro'] ?>">Editar</a>
-                                <a class="btn btn-sm btn-danger" href="livros.php?id=<?php echo $livro_busca['id_livro'] ?>">Excluir</a>
+                            <img src='../img/<?php echo $livro_busca['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
+                            <div class="caixa-btn">
+                                <a class="btn btn-sm btn-primary rounded-pill" href="editar.php?id=<?php echo $livro_busca['id_livro'] ?>">Editar</a>
+                                <a class="btn btn-sm btn-danger rounded-pill" href="livros.php?id=<?php echo $livro_busca['id_livro'] ?>">Excluir</a>
                             </div>
                         </div>
                         <?php } ?>

@@ -32,11 +32,9 @@
         cursor: pointer;
        }
        .logo-bo{
-        padding-left: 30px;
-        border-left: 5px solid;
-        border-radius: 30px;
-        display: flex;
-        flex-direction: column;
+        font-size: 20px;
+        padding-left: 10px;
+        color: white;
        }
        .logo-bo span{
         font-family: 'Tenor Sans', sans-serif!important;

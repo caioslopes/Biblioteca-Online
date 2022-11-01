@@ -70,6 +70,13 @@
     border-radius: 20px;
     height: 39px;
 }
+.btn-reserva{
+    width: 100%;
+    border-radius: 20px;
+}
+.caixa-categoria span{
+    margin-right: 10px;
+}
 @media (max-width: 767px){
     .vitrine{
         display: grid;
@@ -77,15 +84,20 @@
         gap: 25px;
         padding-bottom: 20px;
     }
-        .titulo-pagina{
+    .titulo-pagina{
         flex-direction: column;
         align-items: center;
+        gap: 30px;
     }
     .caixa-busca{
         width: 90%;
         margin-bottom: 20px;
         flex-direction: column;
-        gap: 30px;
+        align-items: center;
+        gap: 15px;
+    }
+    .caixa-categoria{
+        order: 1;
     }
 }
 </style>
@@ -154,11 +166,11 @@
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="vitrine__livros--texto">
                 <?php if($resultReserva_temp->num_rows >= 1 || $resultreserva->num_rows >=1){ ?>
-                    <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Você já possui um livro reservado">Reservar</a>   
+                    <a tabindex="0" class="btn btn-sm btn-secondary btn-reserva" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Você já possui um livro reservado">Reservar</a>   
                 <?php  }else if($livros['qtd_reserva'] + $livros['qtd_temp'] >= $livros['qtd_total'] ){ ?>
-                    <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Aguarde a devolução do livro">Indisponivel</a>   
+                    <a tabindex="0" class="btn btn-sm btn-secondary btn-reserva" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Aguarde a devolução do livro">Indisponivel</a>   
                 <?php } else {?>
-                    <a class="btn btn-sm btn-primary" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
+                    <a class="btn btn-sm btn-primary btn-reserva" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
                 <?php } ?>
               </div>
           </div>
@@ -233,7 +245,7 @@
                         <div class="vitrine">
                         <?php while ($livro_busca = mysqli_fetch_assoc($resultBusca)) {?>
                         <div class="livros">
-                            <img src='img/<?php echo $livro_busca['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
+                            <img src='../img/<?php echo $livro_busca['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
                             <div class="vitrine__livros--texto">
                                 <?php if($resultReserva_temp->num_rows >= 1 || $resultreserva->num_rows >=1){ ?>
                                     <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Você já possui um livro reservado">Reservar</a>   

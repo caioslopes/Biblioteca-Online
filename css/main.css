@@ -48,3 +48,10 @@ a {
     object-fit: cover;
     border-radius: 20px;
 }
+
+@media (max-width: 767px){
+    .corpo{
+        margin: unset;
+        width: 100%;
+    }
+}
