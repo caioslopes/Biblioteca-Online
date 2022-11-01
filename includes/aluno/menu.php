@@ -52,11 +52,25 @@
   color: white;
   background-color: #297eeb;
 }
+.logo-bo{
+ padding-left: 30px;
+ border-left: 5px solid;
+ border-radius: 30px;
+ display: flex;
+ flex-direction: column;
+ color: white;
+}
+.logo-bo span{
+ font-family: 'Tenor Sans', sans-serif!important;
+}
 </style>
 
   <div id="menu">
     <div class="d-flex justify-content-between align-items-center mt-3">
-      <span><img class="img-logo-menu" src="../img/integrantes/logobo.png" alt=""></span>
+    <div class="logo-bo">
+        <span>Biblioteca</span>
+        <span>Online</span>
+      </div>
         <button id="fechar" style="display: none;">
           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
             <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>

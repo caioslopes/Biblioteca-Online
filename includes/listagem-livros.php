@@ -20,6 +20,7 @@
     width: 100%;
     height: 250px;
     border: 3px solid;
+    border-radius: 10px;
 }
 
 .vitrine__livros--texto{
@@ -37,7 +38,7 @@
     border: 1px solid #23232e;
     padding: 10px;
     margin-left: 5px;
-    border-radius: 10px;
+    border-radius: 40px;
 }
 
 .link-pag:hover {
@@ -60,6 +61,28 @@
     display: flex;
     justify-content: space-between;
 }
+.titulo-pagina{
+    text-align: center;
+    flex-direction: column;
+    gap: 30px;
+}
+.caixa-busca{
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+}
+.btn-categoria{
+    height: 100%;
+    padding: 0px 30px;
+    border-radius: 20px;
+}
+.caixa-categoria span{
+    margin-right: 10px;
+}
+.nenhum-resultado{
+    margin-top: 30px;
+    text-align: center;
+}
 @media (max-width: 767px){
     .vitrine{
         display: grid;
@@ -73,7 +96,12 @@
     }
     .caixa-busca{
         width: 90%;
-        margin-bottom: 20px
+        margin-bottom: 20px;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .caixa-categoria{
+        order: 1;
     }
 }
 </style>
@@ -81,12 +109,22 @@
 <section class="container-xl mt-4">
     <div class="d-flex justify-content-between titulo-pagina">
         <div>
-            <h1>Livros Disponiveis</h1>
+            <h1>Livros Biblioteca</h1>
         </div>
         <div class="caixa-busca">
+            <div class="caixa-categoria">
+                <span>Buscar por</span>
+                <button class="btn-categoria">
+                    Categoria
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                </button>
+            </div>
+
             <form class="d-flex" role="search" method="GET">
-                <input class="form-control me-2" type="search" name="busca" placeholder="Buscar um livro" value="<?php if (isset($_GET['busca'])){ echo $_GET['busca']; } ?>">
-                <button class="btn btn-outline-primary" type="submit">
+                <input class="form-control me-2 rounded-pill" type="search" name="busca" placeholder="Buscar um livro..." value="<?php if (isset($_GET['busca'])){ echo $_GET['busca']; } ?>">
+                <button class="btn btn-outline-primary rounded-circle" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
@@ -140,23 +178,23 @@
         ?>
        <div class='content caixa-pag'>
             <div class='caixa-pag-num'>
-                <a class='link-pag' href='livros.php?pagina=1'>Primeira</a>
+                <a class='link-pag' href='index.php?pagina=1'>Primeira</a>
                 <?php
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
-                        echo "<a class='link-pag' href='livros.php?pagina=$pag_ant'>$pag_ant</a> ";
+                        echo "<a class='link-pag' href='index.php?pagina=$pag_ant'>$pag_ant</a> ";
                     }
                 } ?>
                 <span class='link-pag pag-atual'><?php echo $pagina ?></span>
                 <?php
                 for ($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++) {
                     if ($pag_dep <= $quantidade_pg) { ?>
-                        <a class='link-pag' href='livros.php?pagina=<?php echo $pag_dep ?>'><?php echo $pag_dep ?></a> 
+                        <a class='link-pag' href='index.php?pagina=<?php echo $pag_dep ?>'><?php echo $pag_dep ?></a> 
                 <?php  }
                 }
 
                 ?>
-                <a class='link-pag' href='livros.php?pagina=<?php echo $quantidade_pg ?>'>Ultima</a>
+                <a class='link-pag' href='index.php?pagina=<?php echo $quantidade_pg ?>'>Ultima</a>
             </div>
         </div>
 
@@ -182,7 +220,9 @@
         if($resultBusca->num_rows == 0){ ?>
                 <div class="fundo__vitrine--livros mt-4">
                     <section class="container-xl">
-                        <h4>Nenhum resultado encontrado...</h4>
+                        <div class="nenhum-resultado">
+                            <h4>Nenhum resultado encontrado... <a class="btn btn-sm btn-primary rounded-pill" href="index.php">Voltar para Livros</a></h4>
+                        </div>
                     </section>
                 </div>
 

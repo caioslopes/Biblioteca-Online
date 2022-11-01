@@ -179,7 +179,7 @@
       <div class="modal-body">
        <div class="content-formulario">
         <div class="opcao-login">
-            <label>Entrar como:</label>
+            <label>Entrar como</label>
             <select name="pessoa" id="pessoa">
                 <option value="aluno">Aluno</option>
                 <option value="gestor">Gestor</option>

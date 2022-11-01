@@ -31,6 +31,16 @@
        .content-login a:hover{
         cursor: pointer;
        }
+       .logo-bo{
+        padding-left: 30px;
+        border-left: 5px solid;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+       }
+       .logo-bo span{
+        font-family: 'Tenor Sans', sans-serif!important;
+       }
        @media (max-width:767px) {
             .content-login{
               font-weight: 900;
@@ -48,20 +58,24 @@
    <!-- As a heading -->
 <nav class="navbar navbar-expand-lg header-aberto">
   <div class="container-fluid container-xl">
-    <a class="navbar-brand text-light" href="index.php"><img style="width: 240px;" src="img/integrantes/logobo.png" alt=""></a>
+    <a class="navbar-brand text-light" href="index.php">
+      <div class="logo-bo">
+        <span>Biblioteca</span>
+        <span>Online</span>
+      </div>
+    </a>
     <button class="navbar-toggler bg-color" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav text-center">
-        <a class="nav-link active text-light" aria-current="page" href="index.php#apresentacao">Sobre o Projeto</a>
+      <a class="nav-link text-light" href="index.php">Inicio</a>
+        <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
+        <a class="nav-link text-light" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cadastre-se</a>
+        <a class="nav-link text-light" href="sobre.php">Sobre o Projeto</a>
+       <!--  <a class="nav-link active text-light" aria-current="page" href="index.php#apresentacao">Sobre o Projeto</a>
         <a class="nav-link text-light" href="index.php#como-funciona">Como Funciona?</a>
-        <a class="nav-link text-light" href="index.php#quem-somos">Quem somos?</a>
-      </div>
-      <div class="navbar-nav content-login text-center">
-        <a class="nav-link" href="livros.php">Livros</a>
-        <a class="nav-link" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
-        <a class="nav-link" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cadastre-se</a>
+        <a class="nav-link text-light" href="index.php#quem-somos">Quem somos?</a>  -->
       </div>
     </div>
   </div>
