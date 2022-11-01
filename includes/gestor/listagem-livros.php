@@ -32,7 +32,7 @@
     border: 1px solid #23232e;
     padding: 10px;
     margin-left: 5px;
-    border-radius: 10px;
+    border-radius: 30px;
 }      
 
 .link-pag:hover {
@@ -62,7 +62,9 @@
 .caixa-btn a{
     width: 48%;
 }
-
+.caixa-titulo{
+    min-height: 50px;
+}
 @media (max-width: 767px){
     .vitrine{
         display: grid;
@@ -161,8 +163,8 @@
         </div>
         <div class="caixa-busca">
             <form class="d-flex" role="search" method="GET">
-                <input class="form-control me-2" type="search" name="busca" placeholder="Buscar um livro" value="<?php if (isset($_GET['busca'])){ echo $_GET['busca']; } ?>">
-                <button class="btn btn-outline-primary" type="submit">
+                <input class="form-control me-2 rounded-pill" type="search" name="busca" placeholder="Buscar um livro" value="<?php if (isset($_GET['busca'])){ echo $_GET['busca']; } ?>">
+                <button class="btn btn-outline-primary rounded-circle" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
@@ -194,6 +196,9 @@
           <div class="livros">
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="caixa-btn">
+                <div class="caixa-titulo">
+                    <span><?php echo $livros['titulo'] ?></span>
+                </div>
                 <a class="btn btn-sm btn-primary rounded-pill" href="editar.php?id=<?php echo $livros['id_livro'] ?>">Editar</a>
                 <a class="btn btn-sm btn-danger rounded-pill" href="livros.php?id=<?php echo $livros['id_livro'] ?>">Excluir</a>
               </div>
@@ -272,6 +277,10 @@
                         <div class="livros">
                             <img src='../img/<?php echo $livro_busca['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
                             <div class="caixa-btn">
+                            <div>
+                                <span><?php echo $livro_busca['titulo'] ?></span>
+                            </div>
+                                <span><?php echo $livros['titulo'] ?></span>
                                 <a class="btn btn-sm btn-primary rounded-pill" href="editar.php?id=<?php echo $livro_busca['id_livro'] ?>">Editar</a>
                                 <a class="btn btn-sm btn-danger rounded-pill" href="livros.php?id=<?php echo $livro_busca['id_livro'] ?>">Excluir</a>
                             </div>

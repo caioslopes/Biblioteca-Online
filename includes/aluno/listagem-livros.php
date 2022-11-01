@@ -37,7 +37,7 @@
     border: 1px solid #23232e;
     padding: 10px;
     margin-left: 5px;
-    border-radius: 10px;
+    border-radius: 30px;
 }
 
 .link-pag:hover {
@@ -76,6 +76,9 @@
 }
 .caixa-categoria span{
     margin-right: 10px;
+}
+.caixa-titulo{
+    min-height: 50px;
 }
 @media (max-width: 767px){
     .vitrine{
@@ -165,6 +168,9 @@
           <div class="livros">
               <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
               <div class="vitrine__livros--texto">
+                <div class="caixa-titulo">
+                    <span><?php echo $livros['titulo'] ?></span>
+                </div>
                 <?php if($resultReserva_temp->num_rows >= 1 || $resultreserva->num_rows >=1){ ?>
                     <a tabindex="0" class="btn btn-sm btn-secondary btn-reserva" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Você já possui um livro reservado">Reservar</a>   
                 <?php  }else if($livros['qtd_reserva'] + $livros['qtd_temp'] >= $livros['qtd_total'] ){ ?>
@@ -247,6 +253,9 @@
                         <div class="livros">
                             <img src='../img/<?php echo $livro_busca['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
                             <div class="vitrine__livros--texto">
+                            <div class="caixa-titulo">
+                                <span><?php echo $livro_busca['titulo'] ?></span>
+                            </div>
                                 <?php if($resultReserva_temp->num_rows >= 1 || $resultreserva->num_rows >=1){ ?>
                                     <a tabindex="0" class="btn btn-sm btn-secondary" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Você já possui um livro reservado">Reservar</a>   
                                 <?php  }else{ ?>

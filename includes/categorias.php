@@ -112,10 +112,42 @@
 }
 </style>
 
+<?php  
+    if(isset($_GET['id_categoria'])){
+        $id_categoria = $_GET['id_categoria'];
+
+        //Receber o número da página
+        $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
+        $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
+
+        //Setar a quantidade de itens por pagina
+        $qnt_result_pg = 12;
+
+        //calcular o inicio visualização
+        $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
+        $sql = $conn->prepare("SELECT * FROM livro WHERE cod_categoria = $id_categoria LIMIT $inicio, $qnt_result_pg");
+        $sql->execute();
+        $result = $sql->get_result();
+
+        //Seleciona categoria
+        $SelectCategoria = $conn->prepare("SELECT * FROM categoria");
+        $SelectCategoria->execute();
+        $resultCategoria = $SelectCategoria->get_result();
+
+        //Seleciona categoria
+        $SelectCategoria2 = $conn->prepare("SELECT * FROM categoria WHERE id_categoria = $id_categoria");
+        $SelectCategoria2->execute();
+        $resultCategoria2 = $SelectCategoria2->get_result();
+   
+    } 
+  ?>
+
 <section class="container-xl mt-4">
     <div class="d-flex justify-content-between titulo-pagina">
         <div class="titulo-index">
-            <h1>Livros Biblioteca</h1>
+            <?php while($nomecat = mysqli_fetch_assoc($resultCategoria2)){ ?>
+                <h1><?php echo $nomecat['nome_categoria'] ?></h1>
+           <?php } ?>
         </div>
         <div class="caixa-busca">
             <div class="caixa-categoria">
@@ -125,12 +157,7 @@
                     Categoria
                 </button>
                 <ul class="dropdown-menu">
-                    <?php 
-
-                        $SelectCategoria = $conn->prepare("SELECT * FROM categoria");
-                        $SelectCategoria->execute();
-                        $resultCategoria = $SelectCategoria->get_result();
-
+                    <?php
                         while($dados = mysqli_fetch_assoc($resultCategoria)){ ?>
                             <li><a class="dropdown-item" href="categorias.php?id_categoria=<?php echo $dados['id_categoria']; ?>"><?php echo $dados['nome_categoria']; ?></a></li>
                       <?php  } ?>
@@ -148,24 +175,9 @@
             </form>
         </div>
     </div>
-       
-<?php  
-    //Receber o número da página
-    $pagina_atual = filter_input(INPUT_GET, 'pagina', FILTER_SANITIZE_NUMBER_INT);
-    $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
-
-    //Setar a quantidade de itens por pagina
-    $qnt_result_pg = 12;
-
-    //calcular o inicio visualização
-    $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;
-    $sql = $conn->prepare("SELECT * FROM livro LIMIT $inicio, $qnt_result_pg");
-    $sql->execute();
-    $result = $sql->get_result();
-
-  ?>
 
   <?php if(empty($_GET['busca'])){?>
+
     <div class="fundo__vitrine--livros mt-4">
       <section class="container-xl">
         <div class="vitrine">
@@ -183,7 +195,7 @@
     
       <?php 
         //Paginção - Somar a quantidade de livro
-        $result_pg = $conn->prepare("SELECT COUNT(id_livro) AS num_result FROM livro");
+        $result_pg = $conn->prepare("SELECT COUNT(id_livro) AS num_result FROM livro WHERE cod_livro = $id_categoria");
         $result_pg->execute();
         $resultado_pg = $result_pg->get_result();
 
@@ -197,23 +209,23 @@
         ?>
        <div class='content caixa-pag'>
             <div class='caixa-pag-num'>
-                <a class='link-pag' href='index.php?pagina=1'>Primeira</a>
+                <a class='link-pag' href='categorias.php?pagina=1'>Primeira</a>
                 <?php
                 for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
                     if ($pag_ant >= 1) {
-                        echo "<a class='link-pag' href='index.php?pagina=$pag_ant'>$pag_ant</a> ";
+                        echo "<a class='link-pag' href='categorias.php?pagina=$pag_ant'>$pag_ant</a> ";
                     }
                 } ?>
                 <span class='link-pag pag-atual'><?php echo $pagina ?></span>
                 <?php
                 for ($pag_dep = $pagina + 1; $pag_dep <= $pagina + $max_links; $pag_dep++) {
                     if ($pag_dep <= $quantidade_pg) { ?>
-                        <a class='link-pag' href='index.php?pagina=<?php echo $pag_dep ?>'><?php echo $pag_dep ?></a> 
+                        <a class='link-pag' href='categorias.php?pagina=<?php echo $pag_dep ?>'><?php echo $pag_dep ?></a> 
                 <?php  }
                 }
 
                 ?>
-                <a class='link-pag' href='index.php?pagina=<?php echo $quantidade_pg ?>'>Ultima</a>
+                <a class='link-pag' href='categorias.php?pagina=<?php echo $quantidade_pg ?>'>Ultima</a>
             </div>
         </div>
 
