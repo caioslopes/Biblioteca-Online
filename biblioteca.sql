@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 28-Out-2022 às 01:17
+-- Tempo de geração: 03-Nov-2022 às 01:17
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -107,9 +107,12 @@ CREATE TABLE `livro` (
 --
 
 INSERT INTO `livro` (`id_livro`, `cod_livro`, `imagem`, `titulo`, `autor`, `cod_categoria`, `qtd_total`, `qtd_reserva`, `qtd_temp`) VALUES
-(11, '00000', '166534713563432e3fd40a5.jpg', 'Mico', 'Anne Frank', 2, 10, 1, 0),
-(12, '01901', '166534710463432e2099437.jpg', 'A menina que Roubava Livros', 'Clarice Lispector', 3, 10, 0, 0),
-(14, '12d', '166678031863590c9e9c36c.png', 'Sei la', 'asbdj', 0, 12, 0, 0);
+(15, '', '16674287696362f1a15cc3c.jpg', 'Todas as suas (im)perfeições', 'Colleen Hoover', 1, 10, 0, 0),
+(16, '', '16674288336362f1e179995.jpg', 'A revolução dos bichos: Um conto de fadas', 'George Orwell', 2, 10, 0, 0),
+(17, '', '16674288846362f2144ff4e.jpg', 'É Assim que Acaba: 1', 'Colleen Hoover', 3, 10, 0, 0),
+(18, '', '16674289386362f24aa247a.jpg', 'Imperfeitos', 'Christina Lauren', 4, 10, 0, 0),
+(19, '', '16674289796362f27372a75.jpg', 'Até o verão terminar', 'Colleen Hoover', 1, 10, 0, 0),
+(20, '', '16674290376362f2adb5cda.jpg', 'Harry Potter e a Pedra Filosofal: 1', 'J.K. Rowling', 4, 10, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -125,13 +128,6 @@ CREATE TABLE `registro` (
   `data_da_entrega` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `registro`
---
-
-INSERT INTO `registro` (`id_registro`, `cod_aluno`, `cod_livro`, `data_da_reserva`, `data_da_entrega`) VALUES
-(17, 1, 11, '2022-10-27', '2022-11-04');
-
 -- --------------------------------------------------------
 
 --
@@ -145,13 +141,6 @@ CREATE TABLE `reserva` (
   `data_da_reserva` date NOT NULL,
   `data_da_entrega` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `reserva`
---
-
-INSERT INTO `reserva` (`id_reserva`, `cod_aluno`, `cod_livro`, `data_da_reserva`, `data_da_entrega`) VALUES
-(17, 1, 11, '2022-10-27', '2022-11-04');
 
 -- --------------------------------------------------------
 
@@ -241,7 +230,7 @@ ALTER TABLE `gestor`
 -- AUTO_INCREMENT de tabela `livro`
 --
 ALTER TABLE `livro`
-  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_livro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `registro`
