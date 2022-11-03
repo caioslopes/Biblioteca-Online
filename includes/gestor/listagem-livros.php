@@ -65,6 +65,9 @@
 .caixa-titulo{
     min-height: 50px;
 }
+.pesquisa-sem-result{
+    gap: 10px;
+}
 @media (max-width: 767px){
     .vitrine{
         display: grid;
@@ -264,8 +267,10 @@
         if($resultBusca->num_rows == 0){ ?>
                 <div class="fundo__vitrine--livros mt-4">
                     <section class="container-xl">
-                        <h4>Nenhum resultado encontrado...</h4>
-                        <a class="btn btn-primary" href="livros.php">Livros</a>
+                        <div class="d-flex align-items-center pesquisa-sem-result">
+                            <h4>Nenhum resultado encontrado...</h4>
+                            <a class="btn rounded-pill btn-primary" href="livros.php">Livros</a>
+                        </div>
                     </section>
                 </div>
 
@@ -277,10 +282,9 @@
                         <div class="livros">
                             <img src='../img/<?php echo $livro_busca['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
                             <div class="caixa-btn">
-                            <div>
+                            <div class="caixa-titulo">
                                 <span><?php echo $livro_busca['titulo'] ?></span>
                             </div>
-                                <span><?php echo $livros['titulo'] ?></span>
                                 <a class="btn btn-sm btn-primary rounded-pill" href="editar.php?id=<?php echo $livro_busca['id_livro'] ?>">Editar</a>
                                 <a class="btn btn-sm btn-danger rounded-pill" href="livros.php?id=<?php echo $livro_busca['id_livro'] ?>">Excluir</a>
                             </div>

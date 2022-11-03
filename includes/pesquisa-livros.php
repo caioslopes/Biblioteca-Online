@@ -112,36 +112,11 @@
 }
 </style>
 
-<?php  
-    if(isset($_GET['id_categoria'])){
-        $id_categoria = $_GET['id_categoria'];
-
-        //Seleciona os livros referente a categoria selecionada
-        $sql = $conn->prepare("SELECT * FROM livro WHERE cod_categoria = $id_categoria");
-        $sql->execute();
-        $result = $sql->get_result();
-
-        //Seleciona categoria
-        $SelectCategoria = $conn->prepare("SELECT * FROM categoria");
-        $SelectCategoria->execute();
-        $resultCategoria = $SelectCategoria->get_result();
-
-        //Seleciona categoria
-        $SelectCategoria2 = $conn->prepare("SELECT * FROM categoria WHERE id_categoria = $id_categoria");
-        $SelectCategoria2->execute();
-        $resultCategoria2 = $SelectCategoria2->get_result();
-   
-    }
-  ?>
-
 <section class="container-xl mt-4">
     <div class="d-flex justify-content-between titulo-pagina">
         <div class="titulo-index">
-            <?php while($nomecat = mysqli_fetch_assoc($resultCategoria2)){ ?>
-                <h1><?php echo $nomecat['nome_categoria'] ?></h1>
-           <?php } ?>
+            <h1>Resultado da pesquisa</h1>
         </div>
-
         <div class="caixa-busca">
             <div class="caixa-categoria">
                 <span>Buscar por</span>
@@ -150,7 +125,11 @@
                     Categoria
                 </button>
                 <ul class="dropdown-menu">
-                    <?php
+                    <?php 
+                        $SelectCategoria = $conn->prepare("SELECT * FROM categoria");
+                        $SelectCategoria->execute();
+                        $resultCategoria = $SelectCategoria->get_result();
+
                         while($dados = mysqli_fetch_assoc($resultCategoria)){ ?>
                             <li><a class="dropdown-item" href="categorias.php?id_categoria=<?php echo $dados['id_categoria']; ?>"><?php echo $dados['nome_categoria']; ?></a></li>
                       <?php  } ?>
@@ -158,8 +137,8 @@
                 </div>
             </div>
 
-            <form class="d-flex" role="search" method="POST" action="pesquisa-livros.php">
-                <input class="form-control me-2 rounded-pill" type="search" name="busca" placeholder="Buscar um livro...">
+            <form class="d-flex" role="search" method="POST">
+                <input class="form-control me-2 rounded-pill" type="search" name="busca" placeholder="Buscar um livro..." value="<?php if (isset($_POST['busca'])){ echo $_POST['busca']; } ?>">
                 <button class="btn btn-outline-primary rounded-circle" type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -169,19 +148,49 @@
         </div>
     </div>
 
-        <div class="fundo__vitrine--livros mt-4">
-        <section class="container-xl">
-            <div class="vitrine">
-            <?php while ($livros = mysqli_fetch_assoc($result)) {?>
-            <div class="livros">
-                <img src='img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
-                <div>
-                    <span><?php echo $livros['titulo'] ?></span>
+    <!-- Resultado da pesquisa do usuario -->
+    <?php
+        if(!empty($_POST['busca'])) { 
+            //Pega o valor digitado pelo usuario na barra de pesquisa
+            $busca = $_POST['busca'];    
+
+            //Selecionando informações do banco segundo o que o usuario digitou
+            $SelectBusca = $conn->prepare("SELECT * FROM livro WHERE titulo LIKE '%$busca%' OR autor LIKE '%$busca%'");
+            $SelectBusca->execute();
+            $resultBusca = $SelectBusca->get_result();
+        
+        if($resultBusca->num_rows == 0){ ?>
+                <div class="fundo__vitrine--livros mt-4">
+                    <section class="container-xl">
+                        <div class="nenhum-resultado">
+                            <h4>Nenhum resultado encontrado... <a class="btn btn-primary rounded-pill" href="index.php">Voltar para Livros</a></h4>
+                        </div>
+                    </section>
                 </div>
-            </div>
-            <?php } ?>
-            </div>
-        </section>
-        </div>
-    
+
+       <?php  }else { ?>
+                <div class="fundo__vitrine--livros mt-4">
+                    <section class="container-xl">
+                        <div class="vitrine">
+                        <?php while ($livro_busca = mysqli_fetch_assoc($resultBusca)) {?>
+                        <div class="livros">
+                            <img src='img/<?php echo $livro_busca['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
+                            <div>
+                                <span><?php echo $livro_busca['titulo'] ?></span>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        </div>
+                    </section>
+                </div>
+       
+   <?php }}else{ ?>
+                <div class="fundo__vitrine--livros mt-4">
+                    <section class="container-xl">
+                        <div class="nenhum-resultado">
+                            <a class="btn btn-primary rounded-pill" href="index.php">Voltar para Livros</a>
+                        </div>
+                    </section>
+                </div>
+ <?php  } ?>
 </section>

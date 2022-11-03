@@ -39,6 +39,17 @@
        .logo-bo span{
         font-family: 'Tenor Sans', sans-serif!important;
        }
+       .caixa-links {
+        gap: 10px;
+       }
+       .caixa-links a{
+          border-radius: 20px;  
+       }
+       .caixa-links a:hover{
+        cursor: pointer;
+        background: white;
+        color: #23232e!important;
+       }
        @media (max-width:767px) {
             .content-login{
               font-weight: 900;
@@ -66,8 +77,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-      <div class="navbar-nav text-center">
-      <a class="nav-link text-light" href="index.php">Inicio</a>
+      <div class="navbar-nav text-center caixa-links">
+        <a class="nav-link text-light" href="index.php">Inicio</a>
         <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
         <a class="nav-link text-light" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cadastre-se</a>
         <a class="nav-link text-light" href="sobre.php">Sobre o Projeto</a>
