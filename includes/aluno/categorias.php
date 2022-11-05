@@ -2,20 +2,13 @@
 <style>
   .vitrine {
    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 176px);
     gap: 25px 40px;
     margin-top: 20px;
     margin-bottom: 30px;
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
-.vitrine div {
-    flex: 1 1 200px;
-    flex-wrap: wrap;
-}
-
-
 .capa-livros {
     width: 100%;
     height: 250px;
@@ -31,6 +24,7 @@
     transform: scale(1.05);
     cursor: pointer;
 }
+
 
 /* Paginação */
 .link-pag {
@@ -63,7 +57,7 @@
 }
 .titulo-pagina{
     text-align: center;
-    flex-direction: column;
+   /*  flex-direction: column; */
     gap: 30px;
 }
 .caixa-busca{
@@ -83,13 +77,22 @@
     margin-top: 30px;
     text-align: center;
 }
-.titulo-pagina{
-    border: unset;
+.caixa-btn{
+    margin-top: 10px;
+    gap: 5px;
 }
-.titulo-index{
-    border-bottom: 2px solid;
+
+.caixa-titulo{
+    min-height: 50px;
+}
+.btn-reserva{
+    width: 100%;
+    border-radius: 20px;
 }
 @media (max-width: 767px){
+    .titulo-index{
+        border-bottom: 2px solid;
+    }
     .vitrine{
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -99,6 +102,7 @@
     .titulo-pagina{
         flex-direction: column;
         align-items: center;
+        border: unset;
     }
     .caixa-busca{
         width: 90%;
@@ -134,7 +138,7 @@
     }
   ?>
 
-<section class="container-xl mt-4">
+<section class="container-xl mt-3 corpo">
     <div class="d-flex justify-content-between titulo-pagina">
         <div class="titulo-index">
             <?php while($nomecat = mysqli_fetch_assoc($resultCategoria2)){ ?>
@@ -150,9 +154,7 @@
                     Categoria
                 </button>
                 <ul class="dropdown-menu">
-
-                    <li><a class="dropdown-item" href="index.php">Todos os Livros</a></li>
-
+                    <li><a class="dropdown-item" href="livros.php">Todos os Livros</a></li>
                     <?php
                         while($dados = mysqli_fetch_assoc($resultCategoria)){ ?>
                             <li><a class="dropdown-item" href="categorias.php?id_categoria=<?php echo $dados['id_categoria']; ?>"><?php echo $dados['nome_categoria']; ?></a></li>
@@ -172,15 +174,38 @@
         </div>
     </div>
 
+    <?php
+    
+    //Consulta a tabela reserva_temp e reserva para verificar se o aluno pode ou não reservar novo livro
+    $reserva_temp = $conn->prepare("SELECT cod_aluno FROM reserva_temp WHERE cod_aluno = $id_aluno");
+    $reserva_temp->execute();
+    $resultReserva_temp = $reserva_temp->get_result();
+
+    //Consulta a tabela reserva e reserva para verificar se o aluno pode ou não reservar novo livro
+    $reserva = $conn->prepare("SELECT cod_aluno FROM reserva WHERE cod_aluno = $id_aluno");
+    $reserva->execute();
+    $resultreserva = $reserva->get_result();
+    
+    ?>
+
         <div class="fundo__vitrine--livros mt-4">
         <section class="container-xl">
             <div class="vitrine">
             <?php while ($livros = mysqli_fetch_assoc($result)) {?>
             <div class="livros">
-                <img src='img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
-                <div>
-                    <span><?php echo $livros['titulo'] ?></span>
-                </div>
+                <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
+                <div class="caixa-btn">
+                    <div class="caixa-titulo">
+                        <span><?php echo $livros['titulo'] ?></span>
+                    </div>
+                    <?php if($resultReserva_temp->num_rows >= 1 || $resultreserva->num_rows >=1){ ?>
+                        <a tabindex="0" class="btn btn-sm rounded-pill btn-secondary btn-reserva" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Você já possui um livro reservado">Reservar</a>   
+                    <?php  }else if($livros['qtd_reserva'] + $livros['qtd_temp'] >= $livros['qtd_total'] ){ ?>
+                        <a tabindex="0" class="btn btn-sm rounded-pill  btn-secondary btn-reserva" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-title="Aviso" data-bs-content="Aguarde a devolução do livro">Indisponivel</a>   
+                    <?php } else {?>
+                        <a class="btn rounded-pill btn-sm btn-primary btn-reserva" href="confirmacao-reserva.php?id_livro=<?php echo $livros['id_livro'] ?>">Reservar</a>
+                    <?php } ?>
+            </div>
             </div>
             <?php } ?>
             </div>

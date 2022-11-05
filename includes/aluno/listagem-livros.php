@@ -105,7 +105,7 @@
 }
 </style>
 
-<section class="container-xl mt-4 corpo">
+<section class="container-xl mt-3 corpo">
 
     <div class="d-flex justify-content-between titulo-pagina">
         <div>
@@ -114,12 +114,23 @@
         <div class="caixa-busca">
         <div class="caixa-categoria">
                 <span>Buscar por</span>
-                <button class="btn-categoria">
+                <div class="btn-group">
+                <button class="btn btn-secondary dropdown-toggle rounded-pill" type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
                     Categoria
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
-                    </svg>
                 </button>
+                <ul class="dropdown-menu">
+                    <?php 
+                        $SelectCategoria = $conn->prepare("SELECT * FROM categoria");
+                        $SelectCategoria->execute();
+                        $resultCategoria = $SelectCategoria->get_result(); ?>
+
+                    <li><a class="dropdown-item" href="livros.php">Todos os Livros</a></li>
+
+                    <?php while($dados = mysqli_fetch_assoc($resultCategoria)){ ?>
+                            <li><a class="dropdown-item" href="categorias.php?id_categoria=<?php echo $dados['id_categoria']; ?>"><?php echo $dados['nome_categoria']; ?></a></li>
+                      <?php  } ?>
+                </ul>
+                </div>
             </div>
 
             <form class="d-flex" role="search" method="POST" action="pesquisa-livros.php">
@@ -153,6 +164,7 @@
     $reserva_temp->execute();
     $resultReserva_temp = $reserva_temp->get_result();
 
+    //Consulta a tabela reserva e reserva para verificar se o aluno pode ou não reservar novo livro
     $reserva = $conn->prepare("SELECT cod_aluno FROM reserva WHERE cod_aluno = $id_aluno");
     $reserva->execute();
     $resultreserva = $reserva->get_result();

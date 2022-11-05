@@ -10,12 +10,6 @@
     padding-bottom: 20px;
 }
 
-.vitrine div {
-    flex: 1 1 200px;
-    flex-wrap: wrap;
-}
-
-
 .capa-livros {
     width: 100%;
     height: 250px;
@@ -119,7 +113,7 @@
 }
 </style>
 
-<section class="container-xl mt-4">
+<section class="container-xl mt-3 corpo">
     <div class="d-flex justify-content-between titulo-pagina">
         <div class="titulo-index">
             <h1>Resultado da pesquisa</h1>
@@ -135,9 +129,11 @@
                     <?php 
                         $SelectCategoria = $conn->prepare("SELECT * FROM categoria");
                         $SelectCategoria->execute();
-                        $resultCategoria = $SelectCategoria->get_result();
+                        $resultCategoria = $SelectCategoria->get_result(); ?>
 
-                        while($dados = mysqli_fetch_assoc($resultCategoria)){ ?>
+                        <li><a class="dropdown-item" href="livros.php">Todos os Livros</a></li>
+
+                       <?php while($dados = mysqli_fetch_assoc($resultCategoria)){ ?>
                             <li><a class="dropdown-item" href="categorias.php?id_categoria=<?php echo $dados['id_categoria']; ?>"><?php echo $dados['nome_categoria']; ?></a></li>
                       <?php  } ?>
                 </ul>

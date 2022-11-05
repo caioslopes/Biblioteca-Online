@@ -28,6 +28,11 @@
         $queryVerificaAluno->execute();
         $resultVerificaAluno = $queryVerificaAluno->get_result();
 
+        //Puxa os dados da tabela reserva_temp para podermos verificar se o aluno selecionado já possui algum livro reservado
+        $queryVerificaAluno2 = $conn->prepare("SELECT * FROM reserva_temp WHERE cod_aluno = $id_aluno ");
+        $queryVerificaAluno2->execute();
+        $resultVerificaAluno2 = $queryVerificaAluno2->get_result();
+
         /* Função que relaciona as tabelas livro e reserva, fazendo uma conta de subtração para retornar quantos livros estão disponiveis */
         $querySelectLivro = $conn->prepare("SELECT * FROM livro WHERE id_livro = $id_livro");
         $querySelectLivro->execute();
@@ -42,6 +47,9 @@
 
         //Verifica se o aluno que foi selecionado já não está com algum livro reservado.
         if($resultVerificaAluno->num_rows >= 1 ){
+          header('location: reservar.php?status=error');
+          exit;
+        }else if($resultVerificaAluno2->num_rows >= 1){
           header('location: reservar.php?status=error');
           exit;
         }else if($qtd_reserva + $qtd_temp >= $qtd_total ){

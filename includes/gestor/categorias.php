@@ -9,13 +9,6 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
-
-.vitrine div {
-    flex: 1 1 200px;
-    flex-wrap: wrap;
-}
-
-
 .capa-livros {
     width: 100%;
     height: 250px;
@@ -91,6 +84,9 @@
 .caixa-btn a{
     width: 48%;
 }
+.caixa-titulo{
+    min-height: 50px;
+}
 @media (max-width: 767px){
     .titulo-index{
         border-bottom: 2px solid;
@@ -140,7 +136,7 @@
     }
   ?>
 
-<section class="container-xl mt-4 corpo">
+<section class="container-xl mt-3 corpo">
     <div class="d-flex justify-content-between titulo-pagina">
         <div class="titulo-index">
             <?php while($nomecat = mysqli_fetch_assoc($resultCategoria2)){ ?>
@@ -156,6 +152,7 @@
                     Categoria
                 </button>
                 <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="livros.php">Todos os Livros</a></li>
                     <?php
                         while($dados = mysqli_fetch_assoc($resultCategoria)){ ?>
                             <li><a class="dropdown-item" href="categorias.php?id_categoria=<?php echo $dados['id_categoria']; ?>"><?php echo $dados['nome_categoria']; ?></a></li>
@@ -182,12 +179,12 @@
             <div class="livros">
                 <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
                 <div class="caixa-btn">
-                    <div>
+                    <div class="caixa-titulo">
                         <span><?php echo $livros['titulo'] ?></span>
                     </div>
                     <a class="btn btn-sm btn-primary rounded-pill" href="editar.php?id=<?php echo $livros['id_livro'] ?>">Editar</a>
                     <a class="btn btn-sm btn-danger rounded-pill" href="confirmacao-exclusao.php?id=<?php echo $livros['id_livro'] ?>">Excluir</a>
-                <div></div>
+            </div>
             </div>
             <?php } ?>
             </div>

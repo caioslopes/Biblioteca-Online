@@ -128,9 +128,11 @@
                     <?php 
                         $SelectCategoria = $conn->prepare("SELECT * FROM categoria");
                         $SelectCategoria->execute();
-                        $resultCategoria = $SelectCategoria->get_result();
+                        $resultCategoria = $SelectCategoria->get_result(); ?>
 
-                        while($dados = mysqli_fetch_assoc($resultCategoria)){ ?>
+                    <li><a class="dropdown-item" href="index.php">Todos os Livros</a></li>
+                    
+                     <?php   while($dados = mysqli_fetch_assoc($resultCategoria)){ ?>
                             <li><a class="dropdown-item" href="categorias.php?id_categoria=<?php echo $dados['id_categoria']; ?>"><?php echo $dados['nome_categoria']; ?></a></li>
                       <?php  } ?>
                 </ul>

@@ -7,16 +7,30 @@
         $email = $_POST['email'];
         $senha = $_POST['senha'];
 
-        //Monta a query de inserção no banco de dados
-        $queryInsert = $conn->prepare("INSERT INTO aluno (nome_aluno, email, senha) VALUES(?, ?, ?)");
-        //Separa os valores inseridos da query
-        $queryInsert->bind_param("sss", $nome_aluno, $email, $senha);
-        //Executa a query
-        $queryInsert->execute();
+        $sqlConsulta = $conn->prepare("SELECT email FROM aluno WHERE email = ? ");
+        $sqlConsulta->bind_param("s", $email);
+        $sqlConsulta->execute();
+        $resultConsulta = $sqlConsulta->get_result();
 
-        header('location: index.php?status=success');
+        if ($resultConsulta->num_rows >= 1) {
 
-    }
+            header('location: index.php?status=error');
+            exit;
+        } else {
+
+            //Monta a query de inserção no banco de dados
+            $queryInsert = $conn->prepare("INSERT INTO aluno (nome_aluno, email, senha) VALUES(?, ?, ?)");
+            //Separa os valores inseridos da query
+            $queryInsert->bind_param("sss", $nome_aluno, $email, $senha);
+            //Executa a query
+            $queryInsert->execute();
+
+            header('location: index.php?status=success');   
+        }
+
+    };
+
+
     //Login Aluno
     //Função que valida os dados enviados pelo usuario
     if(isset($_POST['email_Aluno']) || isset($_POST['senha_Aluno'])){
