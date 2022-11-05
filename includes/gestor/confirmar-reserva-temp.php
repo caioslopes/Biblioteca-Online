@@ -23,8 +23,10 @@
             $id_aluno = $dados['id_aluno'];
             $titulo = $dados['titulo'];
             $nome_aluno = $dados['nome_aluno'];
-            $data_hoje = $dados['data_hojef'];
-            $data_amanha = $dados['data_amanhaf'];
+            $data_hoje = $dados['data_hoje'];
+            $data_amanha = $dados['data_amanha'];
+            $data_hojef = $dados['data_hojef'];
+            $data_amanhaf = $dados['data_amanhaf'];
             $qtd_temp = $dados['qtd_temp'];
             $qtd_reserva = $dados['qtd_reserva'];
             $qtd_total = $dados['qtd_total'];
@@ -53,6 +55,9 @@
                     $DiaSemana = date('l',strtotime($DezDia));
                     echo $DiaSemana;
                     
+
+                    
+
 
                     if($qtd_temp <= 0){
                         header('registros-reservas-temp.php?status=error');
@@ -171,12 +176,12 @@
         </div>
         <div class="mt-3">
             <label>Data do pedido</label>
-            <label class="form-control"><?php echo $data_hoje ?></label>
+            <label class="form-control"><?php echo $data_hojef ?></label>
             <input class="form-control" type="hidden" name="hoje" value="<?php echo $data_hoje ?>">
         </div>
         <div class="mt-3">
             <label>Data da confirmação</label>
-            <label class="form-control"><?php echo $data_amanha ?></label>
+            <label class="form-control"><?php echo $data_amanhaf ?></label>
             <input class="form-control" type="hidden" name="amanha" value="<?php echo $data_amanha ?>">
         </div>
         <div class="mt-3">
