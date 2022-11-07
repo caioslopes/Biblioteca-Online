@@ -1,119 +1,4 @@
 <!-- Conteudo que mostrara os livros cadastrados no sistema -->
-<style>
-  .vitrine {
-   display: grid;
-    grid-template-columns: repeat(6, 176px);
-    gap: 25px 40px;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-.capa-livros {
-    width: 100%;
-    height: 250px;
-    border: 3px solid;
-    border-radius: 10px;
-}
-
-.vitrine__livros--texto{
-  margin-top: 5px;
-}
-
-.livros:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-}
-
-
-/* Paginação */
-.link-pag {
-    color: #23232e;
-    border: 1px solid #23232e;
-    padding: 10px;
-    margin-left: 5px;
-    border-radius: 40px;
-}
-
-.link-pag:hover {
-    background-color: #23232e;
-    color: white;
-}
-
-.pag-atual {
-    background-color: #23232e;
-    color: white;
-}
-
-.caixa-pag {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.caixa-pag-num {
-    display: flex;
-    justify-content: space-between;
-}
-.titulo-pagina{
-    text-align: center;
-   /*  flex-direction: column; */
-    gap: 30px;
-}
-.caixa-busca{
-    display: flex;
-    justify-content: center;
-    gap: 70px;
-}
-.btn-categoria{
-    height: 100%;
-    padding: 0px 30px;
-    border-radius: 20px;
-}
-.caixa-categoria span{
-    margin-right: 10px;
-}
-.nenhum-resultado{
-    margin-top: 30px;
-    text-align: center;
-}
-.caixa-btn{
-    margin-top: 10px;
-    gap: 5px;
-}
-.caixa-btn a{
-    width: 48%;
-}
-.caixa-titulo{
-    min-height: 50px;
-}
-@media (max-width: 767px){
-    .titulo-index{
-        border-bottom: 2px solid;
-    }
-    .vitrine{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
-        padding-bottom: 20px;
-    }
-    .titulo-pagina{
-        flex-direction: column;
-        align-items: center;
-        border: unset;
-    }
-    .caixa-busca{
-        width: 90%;
-        margin-bottom: 20px;
-        flex-direction: column;
-        gap: 30px;
-    }
-    .caixa-categoria{
-        order: 1;
-    }
-}
-</style>
-
 <?php  
     if(isset($_GET['id_categoria'])){
         $id_categoria = $_GET['id_categoria'];
@@ -139,17 +24,17 @@
 <section class="container-xl mt-3 corpo">
     <div class="d-flex justify-content-between titulo-pagina">
         <div class="titulo-index">
-            <?php while($nomecat = mysqli_fetch_assoc($resultCategoria2)){ ?>
-                <h1><?php echo $nomecat['nome_categoria'] ?></h1>
+            <?php while($nomecat = mysqli_fetch_assoc($resultCategoria2)){ 
+                $nomecatuot =  $nomecat['nome_categoria'];?>
+                <span><?php echo $nomecat['nome_categoria'] ?></span>
            <?php } ?>
         </div>
 
         <div class="caixa-busca">
             <div class="caixa-categoria">
-                <span>Buscar por</span>
                 <div class="btn-group">
-                <button class="btn btn-secondary dropdown-toggle rounded-pill" type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
-                    Categoria
+                <button class="btn btn-secondary dropdown-toggle btn-padrao" type="button" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                    <?php if(isset($_GET['id_categoria'])){ echo $nomecatuot; }else{ echo 'Categoria'; } ?>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item" href="livros.php">Todos os Livros</a></li>
@@ -162,12 +47,8 @@
             </div>
 
             <form class="d-flex" role="search" method="POST" action="pesquisa-livros.php">
-                <input class="form-control me-2 rounded-pill" type="search" name="busca" placeholder="Buscar um livro...">
-                <button class="btn btn-outline-primary rounded-circle" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                </button>
+                <input class="form-control me-2" type="search" name="busca" placeholder="Buscar um livro...">
+                <button class="btn btn-busca" type="submit">Buscar Livro</button>
             </form>
         </div>
     </div>
@@ -177,14 +58,12 @@
             <div class="vitrine">
             <?php while ($livros = mysqli_fetch_assoc($result)) {?>
             <div class="livros">
-                <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
-                <div class="caixa-btn">
+                <a class="livro-link" href="pagina-interna-livros.php?id_livro=<?php echo $livros['id_livro'] ?>">
+                    <img src='../img/<?php echo $livros['imagem'] ?>' class="capa-livros"  alt="Imagem da capa do livro">
                     <div class="caixa-titulo">
                         <span><?php echo $livros['titulo'] ?></span>
                     </div>
-                    <a class="btn btn-sm btn-primary rounded-pill" href="editar.php?id=<?php echo $livros['id_livro'] ?>">Editar</a>
-                    <a class="btn btn-sm btn-danger rounded-pill" href="confirmacao-exclusao.php?id=<?php echo $livros['id_livro'] ?>">Excluir</a>
-            </div>
+                </a>
             </div>
             <?php } ?>
             </div>

@@ -4,14 +4,14 @@
     if(isset($_GET['status'])){
         switch ($_GET['status']){
             case 'success';
-            $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            $msg = '<div class="alert alert-success alert-dismissible fade show alerta-personalizado" role="alert">
                         Ação executada com sucesso!
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
             break;
 
             case 'error';
-            $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            $msg = '<div class="alert alert-danger alert-dismissible fade show alerta-personalizado" role="alert">
                         Ação não executada!
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
@@ -20,49 +20,6 @@
     }
 
 ?>
-
-<style>
-    /* Paginação */
-.link-pag {
-    color: #23232e;
-    border: 1px solid #23232e;
-    padding: 10px;
-    margin-left: 5px;
-    border-radius: 10px;
-}      
-
-.link-pag:hover {
-    background-color: #23232e;
-    color: white;
-}
-
-.pag-atual {
-    background-color: #23232e;
-    color: white;
-}
-
-.caixa-pag {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.caixa-pag-num {
-    display: flex;
-    justify-content: space-between;
-}
-@media (max-width: 767px){
-    .titulo-pagina{
-        flex-direction: column;
-        align-items: center;
-    }
-    .caixa-busca{
-        width: 90%;
-        margin-bottom: 20px
-    }
-}
-</style>
-
 <section class="container-xl corpo">
 
     <?=$msg?>

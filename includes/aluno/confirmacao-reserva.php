@@ -64,34 +64,36 @@
 ?>
 
  <section class="container-xl corpo">
-    <div class="alert alert-warning" role="alert">
-        Lembre-se que você apenas pode fazer a reserva de <b>um</b> livro por vez!
-    </div>
+    <div class="caixa-confirmar">
+        <div class="alert alert-warning" role="alert">
+            Lembre-se que você apenas pode fazer a reserva de <b>um</b> livro por vez!
+        </div>
 
-    <form method="POST">
-        <div class="mt-3">
-            <label>Livro</label>
-            <label class="form-control"><?php echo $titulo ?></label>
-            <input class="form-control" type="hidden" name="livro" value="<?php echo $id_livro ?>">
-        </div>
-        <div class="mt-3">
-            <label>Aluno</label>
-            <label class="form-control"><?php echo $nome_aluno ?></label>
-            <input class="form-control" type="hidden" name="aluno" value="<?php echo $id_aluno ?>">
-        </div>
-        <div class="mt-3">
-            <label>Data do pedido</label>
-            <label class="form-control"><?php echo $diaH ?></label>
-            <input class="form-control" type="hidden" name="hoje" value="<?php echo $hoje ?>">
-        </div>
-        <div class="mt-3">
-            <label>Data da confirmação</label>
-            <label class="form-control"><?php echo $diaf ?></label>
-            <input class="form-control" type="hidden" name="amanha" value="<?php echo $amanha ?>">
-        </div>
-        <div class="mt-3">
-            <input class="btn btn-sm btn-primary" type="submit" name="reservar" value="Fazer Pedido">
-            <a class="btn btn-sm btn-danger" href="livros.php">Cancelar</a>
-        </div>
-    </form>
+        <form method="POST">
+            <div class="mt-3">
+                <label>Livro</label>
+                <label class="form-control"><?php echo $titulo ?></label>
+                <input class="form-control" type="hidden" name="livro" value="<?php echo $id_livro ?>">
+            </div>
+            <div class="mt-3">
+                <label>Aluno</label>
+                <label class="form-control"><?php echo $nome_aluno ?></label>
+                <input class="form-control" type="hidden" name="aluno" value="<?php echo $id_aluno ?>">
+            </div>
+            <div class="mt-3">
+                <label>Data do pedido</label>
+                <label class="form-control"><?php echo $diaH ?></label>
+                <input class="form-control" type="hidden" name="hoje" value="<?php echo $hoje ?>">
+            </div>
+            <div class="mt-3">
+                <label>Data da confirmação</label>
+                <label class="form-control"><?php echo $diaf ?></label>
+                <input class="form-control" type="hidden" name="amanha" value="<?php echo $amanha ?>">
+            </div>
+            <div class="mt-3">
+                <input class="btn btn-sm btn-primary" type="submit" name="reservar" value="Fazer Pedido">
+                <a class="btn btn-sm btn-danger" href="livros.php">Cancelar</a>
+            </div>
+        </form>
+    </div>
 </section>

@@ -13,8 +13,8 @@
     $result_consulta = $consulta_livros->get_result();
 
     //Consulta Livros na tabela reserva_temp (Auto reserva)
-    $sqlTemp = $conn->prepare("SELECT livro.*, DATE_FORMAT(data_hoje,'%H:%i %d/%m/%Y') 
-    AS data_hojef,DATE_FORMAT(data_amanha,'%H:%i %d/%m/%Y')
+    $sqlTemp = $conn->prepare("SELECT livro.*, DATE_FORMAT(data_hoje,'%d/%m/%Y') 
+    AS data_hojef,DATE_FORMAT(data_amanha,'%d/%m/%Y')
     AS data_amanhaf, reserva_temp.* 
         FROM reserva_temp
         LEFT JOIN livro
@@ -66,14 +66,14 @@
     if(isset($_GET['status'])){
         switch ($_GET['status']){
             case 'success';
-            $msg = '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            $msg = '<div class="alert alert-success alert-dismissible fade show alerta-personalizado" role="alert">
                         Ação executada com sucesso!
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
             break;
 
             case 'error';
-            $msg = '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            $msg = '<div class="alert alert-danger alert-dismissible fade show alerta-personalizado" role="alert">
                         Ação não executada!
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>';
@@ -81,68 +81,14 @@
         }
     };
 ?>
-
-<style>
-  /* Pagina do aluno */
-.card__aluno--linha {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.card__aluno--coluna {
-    display: flex;
-    flex-direction: column;
-}
-
-.card__aluno {
-    margin-top: 30px;
-}
-
-.card__aluno--topo {
-    background-color: #23232e;
-    color: white;
-    padding: 20px 20px;
-    border-radius: 10px 10px 0px 0px;
-}
-
-.card__aluno--corpo {
-    background-color: #e9ecef;
-    border: 1px solid;
-    padding: 20px;
-    border-radius: 0px 0px 10px 10px;
-}
-
-.card__aluno--livro {
-    display: flex;
-}
-
-.card__aluno--livro img {
-    width: 150px;
-}
-
-.card__aluno--livro--texto {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.card__aluno--datas {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-}
-</style>
-
 <section class="container-xl mt-4 corpo">
 
     <!-- Alerta de status ação -->
     <?=$msg?>
 
-   <div class="titulo-pagina">
-    <h1>Perfil</h1>
-  </div>
+            <div class="titulo-index">
+                <span>Perfil</span>
+            </div>
 
   <div class="card__aluno">
             <div class="card__aluno--topo">
@@ -189,7 +135,7 @@
                                 </div>
                             </div>
 
-                            <div class="card__aluno--datas">
+                            <div class="caixa-datas">
                                 <div class="card__aluno--datas">
                                     <span>Data efetiva da reserva:</span>
                                     <span class="data__"><?php echo $livros['data_reservaf'] ?></span>
@@ -209,7 +155,7 @@
                     <div class="d-flex justify-content-between">
                         <h4>Reservas Temporarias</h4>
                         <div>
-                            <a class="btn btn-sm btn-danger" href="perfil.php?id_temp=<?php echo $dados_temp['id_temp'] ?>">Cancelar pedido de reserva</a>
+                            <a class="btn btn-danger" href="perfil.php?id_temp=<?php echo $dados_temp['id_temp'] ?>">Cancelar reserva</a>
                         </div>
                     </div>
 
@@ -222,7 +168,7 @@
                             </div>
                         </div>
 
-                        <div class="card__aluno--datas">
+                        <div class="caixa-datas">
                             <div class="card__aluno--datas">
                                 <span>Data do pedido de reserva:</span>
                                 <span class="data__"><?php echo $dados_temp['data_hojef'] ?></span>

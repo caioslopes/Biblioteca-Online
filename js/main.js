@@ -39,7 +39,33 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
-//Animação entrada da div
-AOS.init({
-    duration: 2000,
-});
+/* Menu */
+var abrir = document.getElementById("abrir");
+var fechar = document.getElementById("fechar");
+var menu = document.getElementById("menu");
+
+ajuste();
+window.onresize = ajuste;
+function ajuste() {
+    // se a largura da tela for menor que 500 pixeis, a pagina foi aberta em um celular
+    if (window.innerWidth < 500) {
+        // esconde o menu
+        menu.classList.add("mobile");
+
+        // mostra os dois botões
+        abrir.style.display = "block";
+        fechar.style.display = "block";
+    } else {
+        // mostra o menu
+        menu.classList.remove("mobile");
+        menu.classList.remove("mostrar");
+
+        // esconde os dois botões
+        abrir.style.display = "none";
+        fechar.style.display = "none";
+    }
+}
+
+// quando clicar em um botão, abra ou feche o menu
+abrir.onclick = () => menu.classList.add("mostrar");
+fechar.onclick = () => menu.classList.remove("mostrar");

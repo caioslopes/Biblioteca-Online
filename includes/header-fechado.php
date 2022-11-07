@@ -49,8 +49,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Biblioteca</title>
+    <!-- CSS Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- CSS Personalizado -->
     <link rel="stylesheet" href="../css/main.css">
+    <!-- CSS Personalizado Fechado -->
+    <link rel="stylesheet" href="../css/fechado.css">
+
+    <link rel="shortcut icon" href="../img/integrantes/favicon2.png" type="image/x-icon" />
+
   </head>
   <body>
     <nav class="navbar header-geral header-fechado">

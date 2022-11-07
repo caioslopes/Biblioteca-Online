@@ -1,0 +1,431 @@
+/* Pagina de livros */
+.vitrine {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 25px 40px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.capa-livros {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px -2px;
+    margin-bottom: 10px;
+}
+
+.livros:hover .capa-livros {
+    transition: 0.2s;
+    box-shadow: 0px 0px 10px 0px;
+    cursor: pointer;
+}
+/* Paginação */
+.link-pag {
+    color: #23232e;
+    padding: 5px 10px;
+    margin-left: 5px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px -2px;
+}
+
+.link-pag:hover {
+    background-color: #23232e;
+    color: white;
+}
+
+.pag-atual {
+    background-color: #23232e;
+    color: white;
+}
+
+.caixa-pag {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.caixa-pag-num {
+    display: flex;
+    justify-content: space-between;
+}
+.titulo-pagina {
+    text-align: center;
+    /*  flex-direction: column; */
+    gap: 30px;
+}
+.caixa-busca {
+    display: flex;
+    justify-content: center;
+    gap: 70px;
+}
+.btn-categoria {
+    height: 100%;
+    padding: 0px 30px;
+    border-radius: 20px;
+}
+.caixa-categoria span {
+    margin-right: 10px;
+}
+.nenhum-resultado {
+    margin-top: 30px;
+    /*  background: #e7e7e7e7; */
+    font-size: 20px;
+    font-weight: bold;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    border-radius: 10px;
+}
+.caixa-btn {
+    margin-top: 10px;
+    gap: 5px;
+}
+.caixa-btn a {
+    width: 48%;
+}
+.caixa-titulo {
+    min-height: 50px;
+}
+.btn-padrao {
+    border: unset;
+    background-color: white;
+    color: #23232e;
+    font-weight: 900;
+    box-shadow: 0px 0px 5px -2px;
+}
+.btn-padrao-invertido {
+    background-color: #23232e;
+    color: white;
+    border: 2px solid;
+    box-shadow: 0px 0px 5px -2px;
+    font-weight: 900;
+}
+.btn-padrao-invertido:hover {
+    background-color: white;
+    color: #23232e;
+    border: 2px solid;
+}
+.btn-busca {
+    width: 57%;
+    background-color: #23232e;
+    color: white;
+    font-weight: 900;
+    box-shadow: 0px 0px 5px -2px;
+}
+.btn-busca:hover {
+    box-shadow: 0px 0px 5px -2px;
+}
+.titulo-index {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    justify-content: center;
+}
+@media (max-width: 767px) {
+    .titulo-index {
+        border-bottom: 2px solid;
+    }
+    .vitrine {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        padding-bottom: 20px;
+    }
+    .titulo-pagina {
+        flex-direction: column;
+        align-items: center;
+        border: unset;
+    }
+    .caixa-busca {
+        width: 90%;
+        margin-bottom: 20px;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .caixa-categoria {
+        order: 1;
+    }
+}
+
+/* Inicio Gestor */
+.painel-adm-inicio {
+    height: 150px;
+    background: #e7e7e7;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    box-shadow: 1px 1px 1px 1px #cfcdcd;
+}
+
+.text-painel-adm {
+    padding-left: 30px;
+}
+
+/* Pagina do aluno */
+.card__aluno--linha {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.card__aluno--coluna {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__aluno {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    flex-direction: column;
+    gap: 70px;
+}
+
+.card__aluno--topo {
+    background-color: #23232e;
+    color: white;
+    padding: 20px 20px;
+    border-radius: 10px;
+}
+
+.card__aluno--corpo {
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.card__aluno--livro {
+    display: flex;
+    flex-direction: column;
+}
+
+.card__aluno--livro img {
+    width: 15%;
+    border-radius: 10px;
+}
+
+.card__aluno--livro--texto {
+    display: flex;
+    flex-direction: column;
+}
+.caixa-datas {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 15%;
+}
+.card__aluno--datas {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    padding: 10px;
+}
+.card__aluno--datas:nth-child(1) {
+    background-color: #cfe2ff;
+}
+.card__aluno--datas:nth-child(2) {
+    background-color: #fff3cd;
+}
+.card__aluno--datas span:nth-child(2) {
+    font-weight: 900;
+}
+.caixa-confirmar {
+    background: #23232e;
+    padding: 20px;
+    color: white;
+    border-radius: 10px;
+    width: 50%;
+}
+@media (max-width: 767px) {
+    .card__aluno--linha {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .card__aluno--livro img {
+        width: 50%;
+    }
+    .caixa-datas {
+        width: 65%;
+        gap: 20px;
+    }
+    .card__aluno--corpo {
+        margin-bottom: 70px;
+    }
+    .card__aluno--livro {
+        gap: 20px;
+    }
+    .caixa-confirmar {
+        width: 100%;
+    }
+}
+/* Alertas */
+.alerta-personalizado {
+    position: absolute;
+    right: 10%;
+}
+
+/* Menu */
+#menu {
+    background: #23232e;
+    width: 200px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+
+    transition: transform 1s;
+}
+#fechar {
+    display: block;
+    border: unset;
+    background: unset;
+    color: white;
+}
+.mostrar {
+    transform: translateX(100%);
+}
+.mobile {
+    left: -200px;
+}
+.menu-content {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90%;
+}
+.menu-content-first {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
+.menu-content-second {
+    padding: 10px;
+}
+.titulo-site {
+    font-size: 20px;
+    padding: 0 10px;
+    font-weight: 900;
+    color: white;
+}
+.btn-menu {
+    display: flex;
+    gap: 10px;
+    color: white;
+    padding: 10px;
+}
+.btn-menu:hover {
+    color: white;
+    background-color: #297eeb;
+}
+.logo-bo {
+    font-size: 20px;
+    padding-left: 10px;
+    color: white;
+}
+.logo-bo span {
+    font-family: "Tenor Sans", sans-serif !important;
+}
+/* Pagina interna do livro */
+.caixa-imagem-livro-interna {
+    width: 30%;
+}
+.imagem-livro-interna {
+    width: 70%;
+    position: relative;
+    top: 60px;
+    left: 30px;
+    box-shadow: 0px 0px 10px -2px black;
+    border-radius: 10px;
+}
+.caixa-livro-interna {
+    margin-top: 100px;
+    background: #23232e;
+    color: white;
+    border-radius: 10px;
+}
+.caixa-texto-interna {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+.caixa-copias {
+    display: flex;
+    height: 40px;
+    gap: 20px;
+    margin-top: 50px;
+    font-weight: bold;
+}
+.copias-totais {
+    display: flex;
+    gap: 10px;
+    background: white;
+    border-radius: 5px;
+    color: #23232e;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+}
+.copias-disponiveis {
+    display: flex;
+    gap: 10px;
+    background: white;
+    color: #23232e;
+    border-radius: 5px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+}
+.copias-disponiveis span:nth-child(2) {
+    border-left: 1px solid;
+    padding-left: 5px;
+}
+.caixa-interna {
+    margin-bottom: 150px;
+}
+.btn-voltar {
+    position: relative;
+    top: 20px;
+    left: 20px;
+}
+.livro-link {
+    color: unset;
+}
+.livro-link:hover {
+    color: unset;
+}
+.btn-voltar a {
+    color: white;
+    padding: 10px;
+}
+@media (max-width: 767px) {
+    .caixa-livro-interna {
+        margin-top: 50px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 30px;
+    }
+    .caixa-imagem-livro-interna {
+        width: 70%;
+    }
+    .imagem-livro-interna {
+        width: 100%;
+        position: inherit;
+    }
+    .caixa-texto-interna {
+        padding: 40px;
+    }
+    .btn-voltar {
+        top: -10px;
+        left: -160px;
+    }
+}

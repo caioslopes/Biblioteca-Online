@@ -66,7 +66,7 @@
 
             $_SESSION['id_aluno'] = $aluno['id_aluno'];
             
-            header('location: View-Aluno/home.php');
+            header('location: View-Aluno/livros.php');
             exit;
 
         }
@@ -79,9 +79,9 @@
     if (isset($_POST['usuario_Gestor']) || isset($_POST['senha_Gestor'])) {
 
     if (strlen($_POST['usuario_Gestor']) == 0) {
-         header('location: index.php?=status=error');
+         header('location: index.php?status=error');
     } else if (strlen($_POST['senha_Gestor']) == 0) {
-         header('location: index.php?=status=error');
+         header('location: index.php?status=error');
     } else {
 
         $usuario_gestor = $conn->real_escape_string($_POST['usuario_Gestor']);
@@ -110,7 +110,7 @@
 
             $_SESSION['id_gestor'] = $gestor['id_gestor'];
 
-            header('location: View-Gestor/home.php');
+            header('location: View-Gestor/livros.php');
         } else {
             header('location: index.php?status=error');
             exit;
@@ -118,78 +118,10 @@
     }
 }
 ?>
-<style>
-        /* Formulario Aluno */
-    #formAluno div:nth-child(3){
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        align-items: center;
-        gap: 15px;
-    }
-     #formAluno div:nth-child(3) a{
-        color: blue;
-        text-decoration: underline;
-     }
-     #formAluno div:nth-child(3) a:hover{
-        cursor: pointer;
-        color: gray;
-     }
-     .btn-entrar{
-        border-radius: 20px;
-        width: 50%;
-     }
-     .opcao-login label{
-        margin-right: 10px;
-        font-weight: bold;
-        text-decoration: underline;
-     }
-     .opcao-login select{
-        width: 20%;
-        border-radius: 20px;
-        text-align: center;
-        border: 2px solid;
-     }
-     .modal-body{
-        padding: 40px;
-     }
-     /* Formulario Gestor */
-     #formGestor div:nth-child(3){
-        display: flex;
-        justify-content: center;
-     }
-     /* Formulario Cadastro */
-     #formCadastro div:nth-child(4){
-        display: flex;
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-     }
-     #formCadastro div:nth-child(4) input{
-        border-radius: 20px;
-     }
-     #formCadastro div:nth-child(4) a{
-        color: blue;
-        text-decoration: underline;
-     }
-     #formCadastro div:nth-child(4) a:hover{
-        cursor: pointer;
-        color: gray;
-     }
-     @media (max-width:767px){
-        .opcao-login select{
-            width: 40%;
-        }
-     }
-</style>
 <!-- Modal Login -->
 <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Formulario Login</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+    <div class="modal-content modal-personalizado">
       <div class="modal-body">
        <div class="content-formulario">
         <div class="opcao-login">
@@ -204,11 +136,11 @@
            <!--  <h4>Aluno</h4> -->
             <div class="mt-3">
                 <label class="form-label">Email</label>
-                <input class="form-control rounded-pill" type="email" name="email_Aluno">
+                <input class="form-control " type="email" name="email_Aluno">
             </div>
             <div class="mt-3">
                 <label class="form-label">Senha</label>
-                <input class="form-control rounded-pill" type="password" name="senha_Aluno">
+                <input class="form-control " type="password" name="senha_Aluno">
             </div>
 
             <div class="mt-3">
@@ -222,11 +154,11 @@
       <!--   <h4>Gestor</h4> -->
             <div class="mt-3">
                 <label class="form-label">Usuario</label>
-                <input class="form-control rounded-pill" type="text" name="usuario_Gestor">
+                <input class="form-control " type="text" name="usuario_Gestor">
             </div>
             <div class="mt-3">
                 <label class="form-label">Senha</label>
-                <input class="form-control rounded-pill" type="password" name="senha_Gestor">
+                <input class="form-control " type="password" name="senha_Gestor">
             </div>
 
             <div class="mt-3">
@@ -240,11 +172,7 @@
 </div>
 <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Formulario de Cadastro</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+    <div class="modal-content modal-personalizado">
       <div class="modal-body">
             <div>
         <h2>Cadastrar-se</h2>
@@ -253,19 +181,19 @@
     <form method="POST" id="formCadastro">
         <div class="mt-3">
             <label class="form-label">Nome completo</label>
-            <input class="form-control rounded-pill" type="text" name="nome_aluno" required>
+            <input class="form-control " type="text" name="nome_aluno" required>
         </div>
         <div class="mt-3">
             <label class="form-label">Email</label>
-            <input class="form-control rounded-pill" type="email" name="email" required>
+            <input class="form-control " type="email" name="email" required>
         </div>
         <div class="mt-3">
             <label class="form-label">Senha</label>
-            <input class="form-control  rounded-pill" type="password" name="senha" required>
+            <input class="form-control  " type="password" name="senha" required>
         </div>
 
-        <div class="mt-3">
-            <input class="btn btn-primary" type="submit" name="cadastrar">
+        <div class="mt-4">
+            <input class="btn btn-primary" type="submit" name="cadastrar" value="Cadastrar">
 
             <a data-bs-target="#exampleModalToggle" data-bs-toggle="modal">
                 Já tenho cadastro

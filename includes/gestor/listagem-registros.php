@@ -1,34 +1,3 @@
-<style>
-    /* Paginação */
-.link-pag {
-    color: #23232e;
-    border: 1px solid #23232e;
-    padding: 10px;
-    margin-left: 5px;
-    border-radius: 10px;
-}      
-
-.link-pag:hover {
-    background-color: #23232e;
-    color: white;
-}
-
-.pag-atual {
-    background-color: #23232e;
-    color: white;
-}
-
-.caixa-pag {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-}
-
-.caixa-pag-num {
-    display: flex;
-    justify-content: space-between;
-}
-</style>
 <section class="container-xl corpo">
 
     <div class="d-flex justify-content-between titulo-pagina">
