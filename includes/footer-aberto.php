@@ -38,7 +38,7 @@
           </div>
           <div class="texto-abaixo-logo">
             <span>
-              ETEC é uma escola com ensino tecnico profissionalizante.
+              A Escola Técnica Estadual (ETEC) é um programa de formação, mantido pelo Governo do Estado de São Paulo, que objetiva a formação de profissões de nível técnico.
             </span>
           </div>
           <div class="d-flex align-items-center gap-perso">
