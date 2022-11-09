@@ -33,12 +33,12 @@
     <button class="navbar-toggler bg-color" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse justify-content-end header-scr" id="navbarNavAltMarkup">
       <div class="navbar-nav text-center caixa-links">
         <a class="nav-link text-light" href="index.php">Livros</a>
         <a class="nav-link text-light" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Login</a>
         <a class="nav-link text-light" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Cadastre-se</a>
-        <!-- <a class="nav-link text-light" href="sobre.php">Sobre o Projeto</a> -->
+        <a class="nav-link text-light" href="sobre.php">Sobre o Projeto</a>
       </div>
     </div>
   </div>

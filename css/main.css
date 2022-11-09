@@ -19,6 +19,9 @@ body {
 .header-aberto {
     background-color: #23232e;
 }
+.header-scr {
+    width: 100%;
+}
 /* Swipper CSS */
 .swiper {
     width: 70%;
