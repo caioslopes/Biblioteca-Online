@@ -73,9 +73,10 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
 <section class="container-xl corpo">
 
-   <div class="titulo-pagina">
-    <h1>Cadastrar Livro</h1>
-  </div>
+<div class="caixa-formulario">
+     <div class="titulo-index">
+        <span>Cadastrar Livro</span>
+    </div>
 
 <!-- Formulario de cadastro de livros -->
   <form class="mt-4" method="POST" enctype="multipart/form-data">
@@ -115,5 +116,5 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
         <a class="btn btn-danger" href="livros.php">Cancelar</a>
       </div>
   </form>
-
+</div>
 </section>

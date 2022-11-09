@@ -8,6 +8,9 @@
 a {
     text-decoration: none;
 }
+body {
+    background-color: #d3d3d3;
+}
 .corpo {
     margin-top: 30px;
     margin-left: 230px;
@@ -54,5 +57,8 @@ a {
         margin: unset;
         width: 100%;
         margin-top: 20px;
+    }
+    .mobile-non-display {
+        display: none;
     }
 }

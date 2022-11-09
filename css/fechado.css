@@ -29,6 +29,7 @@
     margin-left: 5px;
     border-radius: 10px;
     box-shadow: 0px 0px 5px -2px;
+    background-color: white;
 }
 
 .link-pag:hover {
@@ -112,6 +113,13 @@
 }
 .btn-busca {
     width: 57%;
+    background-color: #23232e;
+    color: white;
+    font-weight: 900;
+    box-shadow: 0px 0px 5px -2px;
+}
+.btn-busca-regis {
+    width: 70%;
     background-color: #23232e;
     color: white;
     font-weight: 900;
@@ -299,7 +307,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 90%;
+    height: 80%;
 }
 .menu-content-first {
     display: flex;
@@ -320,18 +328,16 @@
     gap: 10px;
     color: white;
     padding: 10px;
+    align-items: center;
 }
 .btn-menu:hover {
     color: white;
     background-color: #297eeb;
 }
-.logo-bo {
-    font-size: 20px;
-    padding-left: 10px;
-    color: white;
-}
-.logo-bo span {
-    font-family: "Tenor Sans", sans-serif !important;
+@media (max-width: 767px) {
+    .menu-content {
+        height: 90%;
+    }
 }
 /* Pagina interna do livro */
 .caixa-imagem-livro-interna {
@@ -406,6 +412,47 @@
     color: white;
     padding: 10px;
 }
+.dropdown-btn {
+    padding: 10px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.active {
+    background-color: #297eeb;
+    color: white;
+}
+.active .btn-menu-svg svg {
+    transform: rotate(90deg);
+}
+.dropdown-container {
+    display: none;
+    background-color: #262626;
+    flex-direction: column;
+}
+.dropdown-container a {
+    color: white;
+    padding: 10px;
+}
+.dropdown-container a:hover {
+    background-color: #297eeb;
+}
+.btn-menu-svg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
 @media (max-width: 767px) {
     .caixa-livro-interna {
         margin-top: 50px;
@@ -428,4 +475,10 @@
         top: -10px;
         left: -160px;
     }
+}
+/* Formularios */
+.caixa-formulario {
+    background-color: #e7e7e7;
+    padding: 20px;
+    border-radius: 10px;
 }

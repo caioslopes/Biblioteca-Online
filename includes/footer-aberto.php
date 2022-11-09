@@ -45,7 +45,7 @@
           <div class="contato">
             <span>Contato</span>
             <span>e161dir@cps.sp.gov.br</span>
-            <a href="https://etecdeibitinga.wixsite.com/novo">Site da escola</a>
+            <a target="_blank" href="https://etecdeibitinga.wixsite.com/novo">etecdeibitinga.wixsite.com</a>
           </div>
           <div class="redes-sociais">
             <div>
@@ -69,9 +69,9 @@
     <div class="d-flex justify-content-center">
         <div class="desenvolvedores">
           <span style="font-weight: 900;margin-bottom: 10px;">Desenvolvedores </span>
-          <a href="https://www.instagram.com/caio.s.lopes/">Caio dos Santos Lopes</a>
-          <a href="https://www.instagram.com/duduh_pir3s/">Eduardo Pires Carvalho</a>
-          <a href="https://www.instagram.com/maur0_gusmao/">Mauro Eduardo Gusmao Andreoli</a>
+          <a target="_blank" href="https://www.instagram.com/caio.s.lopes/">Caio dos Santos Lopes</a>
+          <a target="_blank" href="https://www.instagram.com/duduh_pir3s/">Eduardo Pires Carvalho</a>
+          <a target="_blank" href="https://www.instagram.com/maur0_gusmao/">Mauro Eduardo Gusmao Andreoli</a>
           <span style="font-weight: 900;margin-top: 10px;margin-bottom: 10px;">Suporte</span>
           <span>Kevin Kanetti</span>
       </div>

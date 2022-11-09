@@ -105,9 +105,10 @@ if(!empty($_GET['id'])){
 
 <section class="container-xl corpo">
 
-   <div class="titulo-pagina">
-    <h1>Editar Livro</h1>
-  </div>
+<div class="caixa-formulario">
+     <div class="titulo-index">
+        <span>Editar Livro</span>
+    </div>
 
 <!-- Formulario para editar os livros -->
   <form class="mt-4" method="POST" enctype="multipart/form-data">
@@ -157,5 +158,6 @@ if(!empty($_GET['id'])){
         <a class="btn btn-danger" href="livros.php">Cancelar</a>
       </div>
   </form>
+  </div>
 
 </section>

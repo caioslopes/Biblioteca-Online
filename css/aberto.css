@@ -12,6 +12,17 @@
     cursor: pointer;
     border-bottom: 3px solid white;
 }
+.logo {
+    width: 75%;
+}
+.logo-img {
+    width: 15%;
+}
+@media (max-width: 767px) {
+    .logo-img {
+        width: 50%;
+    }
+}
 /* Pagina de livros */
 .vitrine {
     display: grid;
@@ -44,6 +55,7 @@
     margin-left: 5px;
     border-radius: 10px;
     box-shadow: 0px 0px 5px -2px;
+    background-color: white;
 }
 
 .link-pag:hover {
@@ -514,7 +526,8 @@
 }
 .redes-sociais {
     display: flex;
-    gap: 30px;
+    gap: 10px;
+    flex-direction: column;
 }
 .coluna-direita {
     display: flex;

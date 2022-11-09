@@ -25,17 +25,13 @@
     <?=$msg?>
 
     <div class="d-flex justify-content-between titulo-pagina">
-        <div>
-            <h1>Livros Emprestados</h1>
+        <div class="titulo-index">
+            <span>Emprestados</span>
         </div>
         <div class="caixa-busca">
-            <form class="d-flex" role="search" method="GET">
-                <input class="form-control me-2" type="search" name="busca" placeholder="Buscar aluno/livro" value="<?php if (isset($_GET['busca'])){ echo $_GET['busca']; } ?>">
-                <button class="btn btn-outline-primary" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                </button>
+            <form class="d-flex" role="search" method="POST" action="pesquisa-reservados.php">
+                <input class="form-control me-2" type="search" name="busca" placeholder="Buscar Registro">
+                <button class="btn btn-busca-regis" type="submit">Buscar Registro</button>
             </form>
         </div>
     </div>
@@ -61,17 +57,15 @@
     $sql->execute();
     $result = $sql->get_result();
     ?>
-
-    <?php if(empty($_GET['busca'])){?>
      <div class="table-livros mt-4">
             <table class="table table-dark table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col" class="mobile-non-display">#</th>
                         <th scope="col">Aluno</th>
-                        <th scope="col">Livro</th>
-                        <th scope="col">Data Reserva</th>
-                        <th scope="col">Data Entrega</th>
+                        <th scope="col" class="mobile-non-display">Livro</th>
+                        <th scope="col" class="mobile-non-display">Data Reserva</th>
+                        <th scope="col" class="mobile-non-display">Data Entrega</th>
                         <th scope="col">Dar Baixa</th>
                     </tr>
                 </thead>
@@ -81,11 +75,11 @@
                     while ($reserva = mysqli_fetch_assoc($result)) {
                     ?>
                         <tr>
-                            <td><?php echo $reserva['id_reserva'] ?></td>
+                            <td class="mobile-non-display"><?php echo $reserva['id_reserva'] ?></td>
                             <td><?php echo $reserva['nome_aluno'] ?></td>
-                            <td><?php echo $reserva['titulo'] ?></td>
-                            <td><?php echo $reserva['data_reservaf'] ?></td>
-                            <td><?php echo $reserva['data_entregaf'] ?></td>
+                            <td class="mobile-non-display"><?php echo $reserva['titulo'] ?></td>
+                            <td class="mobile-non-display"><?php echo $reserva['data_reservaf'] ?></td>
+                            <td class="mobile-non-display"><?php echo $reserva['data_entregaf'] ?></td>
                             <td>
                                 <a href='dar-baixa-livro.php?id=<?php echo $reserva['id_reserva'] ?>' class='btn btn-sm btn-primary'>
                                     Dar Baixa
@@ -131,63 +125,4 @@
         <a class='link-pag' href='livros-reservados.php?pagina=<?php echo $quantidade_pg ?>'>Ultima</a>
         </div>
         </div>
-         <!-- Resultado da pesquisa do usuario -->
-    <?php
-        }else { 
-            //Pega o valor digitado pelo usuario na barra de pesquisa
-            $busca = $_GET['busca'];    
-
-            $SelectBusca = $conn->prepare("SELECT * FROM reserva
-            INNER JOIN livro
-            ON id_livro = reserva.cod_livro 
-            INNER JOIN aluno
-            ON id_aluno = reserva.cod_aluno 
-            WHERE nome_aluno LIKE '%$busca%' OR titulo LIKE '%$busca%'");
-            $SelectBusca->execute();
-            $resultBusca = $SelectBusca->get_result();
-        
-        if($resultBusca->num_rows == 0){ ?>
-                <div class="fundo__vitrine--livros mt-4">
-                    <section class="container-xl">
-                        <h4>Nenhum resultado encontrado...</h4>
-                        <a class="btn btn-primary" href="livros-reservados.php">Livros emprestados</a>
-                    </section>
-                </div>
-
-       <?php  }else { ?>
-                 <div class="table-livros mt-4">
-                    <table class="table table-dark table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Aluno</th>
-                                <th scope="col">Livro</th>
-                                <th scope="col">Data Reserva</th>
-                                <th scope="col">Data Entrega</th>
-                                <th scope="col">Dar Baixa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            /* Retorna num array as informações da função acima */
-                            while ($reserva = mysqli_fetch_assoc($resultBusca)) {
-                            ?>
-                                <tr>
-                                    <td><?php echo $reserva['id_reserva'] ?></td>
-                                    <td><?php echo $reserva['nome_aluno'] ?></td>
-                                    <td><?php echo $reserva['titulo'] ?></td>
-                                    <td><?php echo $reserva['data_da_reserva'] ?></td>
-                                    <td><?php echo $reserva['data_da_entrega'] ?></td>
-                                    <td>
-                                        <a href='dar-baixa-livro.php?id=<?php echo $reserva['id_reserva'] ?>' class='btn btn-sm btn-primary'>
-                                            Dar Baixa
-                                        </a>
-                                    </td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
-                </div>
-       
-   <?php }} ?>
 </section>

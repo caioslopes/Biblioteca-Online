@@ -1,17 +1,13 @@
 <section class="container-xl corpo">
 
     <div class="d-flex justify-content-between titulo-pagina">
-        <div>
-            <h1>Registros</h1>
+        <div class="titulo-index">
+            <span>Historico</span>
         </div>
         <div class="caixa-busca">
-            <form class="d-flex" role="search" method="GET">
-                <input class="form-control me-2" type="search" name="busca" placeholder="Buscar registro" value="<?php if (isset($_GET['busca'])){ echo $_GET['busca']; } ?>">
-                <button class="btn btn-outline-primary" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                </button>
+            <form class="d-flex" role="search" method="POST" action="pesquisa-registros.php">
+                <input class="form-control me-2" type="search" name="busca" placeholder="Buscar registro">
+                <button class="btn btn-busca-regis" type="submit">Buscar Registro</button>
             </form>
         </div>
     </div>
@@ -29,9 +25,9 @@
     $inicio = ($qnt_result_pg * $pagina) - $qnt_result_pg;  
     $sql = $conn->prepare("SELECT aluno.id_aluno, aluno.nome_aluno, livro.id_livro, livro.titulo, registro.*, 
     DATE_FORMAT(data_da_reserva,'%d/%m/%Y') 
-                AS data_reservaf,
-                DATE_FORMAT(data_da_entrega,'%d/%m/%Y')
-                AS data_entregaf
+    AS data_reservaf,
+    DATE_FORMAT(data_da_entrega,'%d/%m/%Y')
+    AS data_entregaf
     FROM registro 
     LEFT JOIN aluno
     ON registro.cod_aluno = aluno.id_aluno
@@ -41,14 +37,13 @@
     $result = $sql->get_result();
     ?>
 
-    <?php if(empty($_GET['busca'])){?>
      <div class="table-livros mt-4">
             <table class="table table-dark table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col" class="mobile-non-display">#</th>
                         <th scope="col">Aluno</th>
-                        <th scope="col">Livro</th>
+                        <th scope="col" class="mobile-non-display">Livro</th>
                         <th scope="col">Data Reserva</th>
                         <th scope="col">Data Entrega</th>
                     </tr>
@@ -59,9 +54,9 @@
                     while ($registro = mysqli_fetch_assoc($result)) {
                     ?>
                         <tr>
-                            <td><?php echo $registro['id_registro'] ?></td>
+                            <td class="mobile-non-display"><?php echo $registro['id_registro'] ?></td>
                             <td><?php echo $registro['nome_aluno'] ?></td>
-                            <td><?php echo $registro['titulo'] ?></td>
+                            <td class="mobile-non-display"><?php echo $registro['titulo'] ?></td>
                             <td><?php echo $registro['data_reservaf'] ?></td>
                             <td><?php echo $registro['data_entregaf'] ?></td>
                         </tr>
@@ -104,62 +99,4 @@
         <a class='link-pag' href='registros-reservados.php?pagina=<?php echo $quantidade_pg ?>'>Ultima</a>
         </div>
         </div>
-            <!-- Resultado da pesquisa do usuario -->
-    <?php
-        }else { 
-            //Pega o valor digitado pelo usuario na barra de pesquisa
-            $busca = $_GET['busca'];    
-
-            $SelectBusca = $conn->prepare("SELECT aluno.id_aluno, aluno.nome_aluno, livro.id_livro, livro.titulo, registro.*,
-            DATE_FORMAT(data_da_reserva,'%d/%m/%Y') 
-                AS data_reservaf,
-                DATE_FORMAT(data_da_entrega,'%d/%m/%Y')
-                AS data_entregaf
-                        FROM registro 
-                        LEFT JOIN aluno
-                        ON registro.cod_aluno = aluno.id_aluno
-                        LEFT JOIN livro
-                        ON registro.cod_livro = livro.id_livro
-                        WHERE nome_aluno LIKE '%$busca%' OR titulo LIKE '%$busca%';");
-            $SelectBusca->execute();
-            $resultBusca = $SelectBusca->get_result();
-        
-        if($resultBusca->num_rows == 0){ ?>
-                <div class="fundo__vitrine--livros mt-4">
-                    <section class="container-xl">
-                        <h4>Nenhum resultado encontrado...</h4>
-                        <a class="btn btn-primary" href="registros-reservados.php">Registros</a>
-                    </section>
-                </div>
-
-       <?php  }else { ?>
-                <div class="table-livros mt-4">
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Aluno</th>
-                        <th scope="col">Livro</th>
-                        <th scope="col">Data Reserva</th>
-                        <th scope="col">Data Entrega</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    /* Retorna num array as informações da função acima */
-                    while ($registro = mysqli_fetch_assoc($resultBusca)) {
-                    ?>
-                        <tr>
-                            <td><?php echo $registro['id_registro'] ?></td>
-                            <td><?php echo $registro['nome_aluno'] ?></td>
-                            <td><?php echo $registro['titulo'] ?></td>
-                            <td><?php echo $registro['data_reservaf'] ?></td>
-                            <td><?php echo $registro['data_entregaf'] ?></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
-        </div>
-       
-   <?php }} ?>
 </section>

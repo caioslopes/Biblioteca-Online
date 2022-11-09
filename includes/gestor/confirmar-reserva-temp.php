@@ -160,7 +160,7 @@
 
  <section class="container-xl corpo">
     <div class="alert alert-warning" role="alert">
-        Lembre-se que você apenas pode fazer a reserva de <b>um</b> livro por vez!
+        Este aluno compareceu para a retirada de sua reserva?
     </div>
 
     <form method="POST">

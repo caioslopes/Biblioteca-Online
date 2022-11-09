@@ -103,9 +103,10 @@
 
 <?=$msg?>
 
-  <div class="titulo-pagina">
-    <h1>Emprestar Livro</h1>
-  </div>
+<div class="caixa-formulario">
+     <div class="titulo-index">
+        <span>Emprestar Livro</span>
+    </div>
 
     <form class="mt-4"  method="POST">
       <div class="form-floating mb-3">
@@ -148,4 +149,5 @@
       </div>
 
     </form>
+    </div>
 </section>

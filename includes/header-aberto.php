@@ -27,8 +27,8 @@
    <!-- As a heading -->
 <nav class="navbar navbar-expand-lg header-aberto">
   <div class="container-fluid container-xl">
-    <a class="navbar-brand text-light" href="index.php">
-      <img style="width: 30%;" src="img/integrantes/logooficial.png" alt="">
+    <a class="navbar-brand text-light logo" href="index.php">
+      <img class="logo-img" src="img/integrantes/logooficial.png" alt="">
     </a>
     <button class="navbar-toggler bg-color" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
