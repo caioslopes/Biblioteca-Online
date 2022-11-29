@@ -57,15 +57,10 @@
           exit;
         }else{
 
-          //Inserindo na tabela reserva os dados enviado pelo gestor
+            //Inserindo na tabela reserva os dados enviado pelo gestor
             $queryInsertReserva = $conn->prepare("INSERT INTO reserva (cod_aluno, cod_livro, data_da_reserva, data_da_entrega) VALUES (?, ?, ?, ?)");
             $queryInsertReserva->bind_param("iiss", $id_aluno, $id_livro, $data_da_reserva, $data_da_entrega);
             $queryInsertReserva->execute();
-
-            //Inserindo na tabela registro os dados enviado pelo gestor (historico de informação)
-            $queryInsertRegistro = $conn->prepare("INSERT INTO registro (cod_aluno, cod_livro, data_da_reserva, data_da_entrega) VALUES (?, ?, ?, ?)");
-            $queryInsertRegistro->bind_param("iiss", $id_aluno, $id_livro, $data_da_reserva, $data_da_entrega);
-            $queryInsertRegistro->execute();
 
             //Soma para podermos verificar quantidades
             $sqlInsertQtd = $conn->prepare("UPDATE livro SET qtd_reserva = qtd_reserva +1 WHERE id_livro = $id_livro");

@@ -1,7 +1,7 @@
   <div id="menu">
     <div class="d-flex justify-content-between align-items-center mt-3">
       <div>
-        <img style="width: 90%;" src="../img/integrantes/logooficial.png" alt="">
+        <img style="width: 70%;padding-left: 5px;" src="../img/integrantes/mico_oficial.png" alt="">
       </div>
         <button id="fechar" style="display: none;">
           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -57,14 +57,6 @@
             <a href="registros-reservas-temp.php">Solicitação de Aluno</a>
             <a href="registros-reservados.php">Historico</a>
           </div>
-        </div>
-        <div class="menu-content-second">
-          <a class="btn btn-danger" href="sair.php">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
-            <path d="M7.5 1v7h1V1h-1z"/>
-            <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
-            </svg>    
-          Sair</a>
         </div>
       </div>
   </div>

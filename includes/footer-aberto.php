@@ -2,7 +2,7 @@
 <div class="caixa-footer">
   <div class="footer container-xl">
     <div class="coluna-esquerda">
-        <img style="width:70%;" src="img/integrantes/logooficial.png" alt="">
+        <img style="width:70%;" src="img/integrantes/mico_oficial.png" alt="">
           <div class="texto-abaixo-logo">
             <span>
               Biblioteca Online, é um projeto que visa facilitar a administração da biblioteca, tendo velocidade e praticidade na hora de guardar informações.

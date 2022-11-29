@@ -65,10 +65,13 @@
             }
 
             $_SESSION['id_aluno'] = $aluno['id_aluno'];
+            $_SESSION['nome_aluno'] = $aluno['nome_aluno'];
             
             header('location: View-Aluno/livros.php');
             exit;
 
+        }else{
+            header('location: index.php?status=error');
         }
     }
 

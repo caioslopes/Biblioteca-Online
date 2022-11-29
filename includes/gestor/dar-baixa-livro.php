@@ -11,6 +11,8 @@ if (!empty($_GET['id'])) {
 
     foreach($result as $reserva){
         $id_livro = $reserva['cod_livro'];
+        $cod_aluno = $reserva['cod_aluno'];
+        $data_da_reserva = $reserva['data_da_reserva'];
     }
 
 
@@ -36,6 +38,12 @@ if (!empty($_GET['id'])) {
         
                 $sqlUpdateReserva = $conn->prepare("UPDATE livro SET qtd_reserva = qtd_reserva -1 WHERE id_livro = $id_livro");
                 $sqlUpdateReserva->execute();
+
+                //Inserindo na tabela registro os dados enviado pelo gestor (historico de informação)
+                $queryInsertRegistro = $conn->prepare("INSERT INTO registro (cod_aluno, cod_livro, data_da_reserva, data_da_entrega) VALUES (?, ?, ?, now())");
+                $queryInsertRegistro->bind_param("iis", $cod_aluno, $id_livro, $data_da_reserva);
+                $queryInsertRegistro->execute();
+
                 header('location: livros-reservados.php?status=success');
                 exit;
             }
