@@ -66,6 +66,8 @@ if(!empty($_GET['id'])){
             $imagem = $user_data['imagem'];
             $titulo = $user_data['titulo'];
             $autor = $user_data['autor'];
+            $paginas = $user_data['paginas'];
+            $sinopse = $user_data['sinopse'];
             $cod_categoria = $user_data['cod_categoria'];
             $qtd_total = $user_data['qtd_total'];
         };
@@ -76,22 +78,24 @@ if(!empty($_GET['id'])){
         $imagem_banco = $_POST['imagem_banco'];
         $titulo_editar = $_POST['titulo'];
         $autor_editar = $_POST['autor'];
+        $paginas_editar = $_POST['paginas'];
+        $sinopse_editar = $_POST['sinopse'];
         $cod_categoria_editar = $_POST['cod_categoria'];
         $quantidade_editar = $_POST['qtd_total'];
 
         //Verificando se alguma imagem foi enviada ou não
         if(!empty($novoNome)){
         //Monta a query
-        $queryUpdate = $conn->prepare("UPDATE livro SET imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, qtd_total = ? WHERE id_livro = ?");
+        $queryUpdate = $conn->prepare("UPDATE livro SET imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, paginas = ?, sinopse = ?, qtd_total = ? WHERE id_livro = ?");
         //Separa os valores inseridos da query
-        $queryUpdate->bind_param("sssiii", $imagem_editar, $titulo_editar, $autor_editar, $cod_categoria_editar, $quantidade_editar, $id_livro);
+        $queryUpdate->bind_param("sssiisii", $imagem_editar, $titulo_editar, $autor_editar, $cod_categoria_editar, $paginas_editar, $sinopse_editar,  $quantidade_editar, $id_livro);
         //Executa da query
         $queryUpdate->execute();
         }else{
         //Monta a query
-        $queryUpdate = $conn->prepare("UPDATE livro SET imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, qtd_total = ? WHERE id_livro = ?");
+        $queryUpdate = $conn->prepare("UPDATE livro SET imagem = ?, titulo = ?, autor = ?, cod_categoria = ?, paginas = ?, sinopse = ?, qtd_total = ? WHERE id_livro = ?");
         //Separa os valores inseridos da query
-        $queryUpdate->bind_param("sssiii", $imagem_banco, $titulo_editar, $autor_editar, $cod_categoria_editar, $quantidade_editar, $id_livro);
+        $queryUpdate->bind_param("sssiisii", $imagem_banco, $titulo_editar, $autor_editar, $cod_categoria_editar, $paginas_editar, $sinopse_editar, $quantidade_editar, $id_livro);
         //Executa da query
         $queryUpdate->execute();
         }
@@ -147,6 +151,16 @@ if(!empty($_GET['id'])){
           <?php } ?>
         </select>
         </div>
+
+      <div class="mb-3">
+        <label class="form-label">Paginas</label>
+        <input class="form-control" type="number" name="paginas" value="<?php echo $paginas ?>" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Sinopse</label>
+        <textarea class="form-control" name="sinopse" style="height: 100px"><?php echo $sinopse ?></textarea>
+      </div>
 
       <div class="mb-3">
         <label class="form-label">Quantidade</label>

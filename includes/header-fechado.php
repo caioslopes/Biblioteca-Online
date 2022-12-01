@@ -10,15 +10,18 @@
     height: 60px;
   }
   .header-fechado{
-    display: none!important;
+    background-color: #23232e;
+    height: 70px;
+  }
+  .caixinha-header{
+    justify-content: end!important;
   }
   @media (max-width:767px){
     #abrir{
       color: white;
     }
-    .header-fechado{
-      background-color: #23232e;
-      display: block!important;
+    .caixinha-header{
+      justify-content: space-between!important;
     }
   }
 </style>
@@ -40,18 +43,15 @@
   </head>
   <body>
     <nav class="navbar header-fechado">
-        <div class="d-flex container-xl">
+        <div class="d-flex container-xl caixinha-header">
           <button id="abrir" style="display: none;">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
               <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
             </svg>
           </button>
-        </div>
-    </nav>
 
-   <!-- Aluno -->
-
-    <?php  //Pega Informação aluno
+              <!-- Aluno -->
+      <?php  //Pega Informação aluno
           if(isset($_SESSION['id_aluno'])){
             $id_aluno = $_SESSION['id_aluno'];
 
@@ -64,11 +64,8 @@
                 $email_aluno = $aluno['email'];
             };
            ?>
-
-    <nav class="d-flex align-items-center quem-ta-online">
-      <div class="d-flex align-items-center justify-content-end container-xl">
-         <div class="btn-group">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle nome-usuario" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $nome_aluno ?>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -77,13 +74,8 @@
             <li><a class="dropdown-item" href="sair.php">Sair</a></li>
           </ul>
         </div>
-      </div>
-    </nav>
-
-   <?php };  ?>
-
-
-   <!-- Gestor -->
+           <?php };  ?>
+                <!-- Gestor -->
        <?php
               //Pega Informação gestor
               if(isset($_SESSION['id_gestor'])){
@@ -97,11 +89,8 @@
                   $nome_gestor = $gestor['nome_gestor'];
               };
            ?>
-
-    <nav class="d-flex align-items-center quem-ta-online">
-      <div class="d-flex align-items-center justify-content-end container-xl">
          <div class="btn-group">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <button type="button" class="btn btn-secondary dropdown-toggle nome-usuario" data-bs-toggle="dropdown" aria-expanded="false">
             <?php echo $nome_gestor ?>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -109,7 +98,6 @@
             <li><a class="dropdown-item" href="sair.php">Sair</a></li>
           </ul>
         </div>
-      </div>
-    </nav>
-
    <?php };  ?>
+        </div>
+    </nav>

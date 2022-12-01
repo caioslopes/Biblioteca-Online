@@ -26,8 +26,9 @@
 /* Pagina de livros */
 .vitrine {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
     gap: 25px 40px;
+    margin-bottom: 30px;
 }
 
 .capa-livros {
@@ -281,18 +282,17 @@
 }
 
 /* integrantes */
-.card-integrantes {
+.caixa-img-quem-somos {
     display: flex;
-    flex-direction: column;
 }
-.card-integrantes span {
-    padding-top: 10px;
-    text-align: center;
-    color: white;
-    margin-bottom: 40px;
+.img-integrantes {
+    width: 200px;
 }
-.card-integrantes:hover {
-    opacity: 0.7;
+.img-integrantes > a {
+    display: flex;
+}
+.img-integrantes > a > img {
+    width: 100%;
 }
 /* Desenvolvedores */
 .desenvolvedores {
@@ -412,7 +412,7 @@
     width: 30%;
 }
 .imagem-livro-interna {
-    width: 70%;
+    width: 300px;
     position: relative;
     top: 60px;
     left: 30px;

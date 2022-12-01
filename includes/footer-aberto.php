@@ -1,5 +1,5 @@
  <!-- Fechando a pagina -->
-<div class="caixa-footer">
+<!-- <div class="caixa-footer">
   <div class="footer container-xl">
     <div class="coluna-esquerda">
         <img style="width:70%;" src="img/integrantes/mico_oficial.png" alt="">
@@ -78,7 +78,7 @@
     </div>
 
   </div>
-</div>
+</div> -->
 
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <!-- Swiper JS -->

@@ -13,6 +13,8 @@
             $titulo = $dados['titulo'];
             $autor = $dados['autor'];
             $categoria = $dados['cod_categoria'];
+            $paginas = $dados['paginas'];
+            $sinopse = $dados['sinopse'];
             $qtd_total = $dados['qtd_total'];
             $qtd_reserva = $dados['qtd_reserva'];
             $qtd_temp = $dados['qtd_temp'];
@@ -45,6 +47,7 @@
                 <h1><?php echo $titulo ?></h1>
                 <span><?php echo $autor ?></span>
                 <span><?php echo $nome_categoria ?></span>
+                <span><?php echo $paginas ?></span>
                 <div class="caixa-copias">
                     <div class="copias-disponiveis">
                         <span>Cópias disponíveis</span>

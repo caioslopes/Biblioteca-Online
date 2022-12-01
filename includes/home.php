@@ -76,52 +76,25 @@
             <span>Quem Somos?</span>
         </div>
 
-        <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide card-integrantes">
-            <a target="_blank" href="https://www.instagram.com/adrian_ismirael_smt/">
-                <img src="img/integrantes/adrian.jpg" alt="">
-                <span>Adrian Ismirael Ballestero Zambuzzi</span>
-            </a>
+        <div class="caixa-img-quem-somos">
+            <div class="img-integrantes">
+                <a target="_blank" href="https://www.instagram.com/caio.s.lopes/">
+                    <img src="img/integrantes/caio.jpg" alt="">
+                    <span>Caio dos Santos Lopes</span>
+                </a>
+            </div>
+            <div class="img-integrantes">
+                <a target="_blank" href="https://www.instagram.com/duduh_pir3s/">
+                    <img src="img/integrantes/eduardo.jpeg" alt="">
+                    <span>Eduardo Pires Carvalho</span>
+                </a>
+            </div>
+            <div class="img-integrantes">
+                <a target="_blank"  href="https://www.instagram.com/maur0_gusmao/">
+                    <img src="img/integrantes/mauro.jpg" alt="">
+                    <span>Mauro Eduardo Gusmao Andreoli</span>
+                </a>
+            </div>
         </div>
-        <div class="swiper-slide card-integrantes">
-            <a target="_blank" href="https://www.instagram.com/caio.s.lopes/">
-                <img src="img/integrantes/caio.jpg" alt="">
-                <span>Caio dos Santos Lopes</span>
-            </a>
-        </div>
-        <div class="swiper-slide card-integrantes">
-            <a target="_blank" href="https://www.instagram.com/duduh_pir3s/">
-                <img src="img/integrantes/eduardo.jpeg" alt="">
-                <span>Eduardo Pires Carvalho</span>
-            </a>
-        </div>
-        <div class="swiper-slide card-integrantes">
-            <a target="_blank" href="https://www.instagram.com/gabrielsoares605/">
-                <img src="img/integrantes/gabriel.jpg" alt="">
-                <span>Gabriel Soares de Souza</span>
-            </a>
-        </div>
-        <div class="swiper-slide card-integrantes">
-            <a target="_blank"  href="https://www.instagram.com/guiiczi/">
-                <img src="img/integrantes/guilherme.jpg" alt="">
-                <span>Guilherme Crecenzi</span>
-            </a>
-        </div>
-        <div class="swiper-slide card-integrantes">
-            <a target="_blank"  href="https://www.instagram.com/maur0_gusmao/">
-                <img src="img/integrantes/mauro.jpg" alt="">
-                <span>Mauro Eduardo Gusmao Andreoli</span>
-            </a>
-        </div>
-        <div class="swiper-slide card-integrantes">
-            <a target="_blank"  href="https://www.instagram.com/bueno_renataa/">
-                <img src="img/integrantes/renata.jpeg" alt="">
-                <span>Renata Bueno dos Santos</span>
-            </a>
-        </div>
-      </div>
-        <div class="swiper-pagination"></div>
-    </div>
     </div>
 </section>

@@ -154,11 +154,7 @@
                 <div class="card__aluno--corpo">
                     <div class="d-flex justify-content-between">
                         <h4>Reservas Temporarias</h4>
-                        <div>
-                            <a class="btn btn-danger" href="perfil.php?id_temp=<?php echo $dados_temp['id_temp'] ?>">Cancelar reserva</a>
-                        </div>
                     </div>
-
                     <div class="card__aluno--linha">
                         <div class="card__aluno--livro">
                             <img src="../img/<?php echo $dados_temp['imagem'] ?>" alt="">
@@ -179,7 +175,9 @@
                             </div>
                         </div> 
                     </div>
-
+                    <div class="caixa-btn-cancelar-reserva">
+                        <a class="btn btn-danger" href="perfil.php?id_temp=<?php echo $dados_temp['id_temp'] ?>">Cancelar reserva</a>
+                    </div>
                 </div>
             <?php }} ?>       
 </section>

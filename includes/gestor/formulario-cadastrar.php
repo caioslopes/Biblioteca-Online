@@ -51,14 +51,16 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
     $imagem = $novoNome;
     $titulo = $_POST['titulo'];
     $autor = $_POST['autor'];
+    $paginas = $_POST['paginas'];
+    $sinopse = $_POST['sinopse'];
     $cod_categoria = $_POST['cod_categoria'];
     $qtd_total = $_POST['qtd_total'];
 
     //Inserindo valores pego do formulario no banco de dados
     //Montando a query
-    $query = $conn->prepare("INSERT INTO livro (imagem, titulo, autor, cod_categoria, qtd_total) VALUES ( ?, ?, ?, ?, ?)");
+    $query = $conn->prepare("INSERT INTO livro (imagem, titulo, autor, cod_categoria, paginas, sinopse, qtd_total) VALUES ( ?, ?, ?, ?, ?, ?, ?)");
     //Verificando dados inseridos e passando parametro de qual tipo eles ser. (evitar SQL INJECTION)
-    $query->bind_param("sssii", $imagem, $titulo, $autor, $cod_categoria, $qtd_total);
+    $query->bind_param("sssiisi", $imagem, $titulo, $autor, $cod_categoria, $paginas, $sinopse, $qtd_total);
     //executa a query
     $query->execute();
 
@@ -79,7 +81,7 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
     </div>
 
 <!-- Formulario de cadastro de livros -->
-  <form class="mt-4" method="POST" enctype="multipart/form-data">
+  <form class="mt-4 formulario-cadastrar-livro" method="POST" enctype="multipart/form-data">
 
       <div class="mb-3">
         <label for="formFile" class="form-label">Imagem</label>
@@ -107,8 +109,18 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
         </div>
 
       <div class="mb-3">
+        <label class="form-label">Paginas</label>
+        <input class="form-control" type="number" name="paginas" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Sinopse</label>
+        <textarea class="form-control" name="sinopse"  placeholder="Digite a sinopse do livro..." style="height: 100px"></textarea>
+      </div>
+
+      <div class="mb-3">
         <label class="form-label">Quantidade</label>
-        <input class="form-control" type="text" name="qtd_total" required>
+        <input class="form-control" type="number  " name="qtd_total" required>
       </div>
 
       <div class="mb-3">

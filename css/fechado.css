@@ -3,6 +3,7 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 25px 40px;
+    margin-bottom: 30px;
 }
 
 .capa-livros {
@@ -158,18 +159,10 @@
     }
 }
 
-/* Inicio Gestor */
-.painel-adm-inicio {
-    height: 150px;
-    background: #e7e7e7;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    box-shadow: 1px 1px 1px 1px #cfcdcd;
-}
-
-.text-painel-adm {
-    padding-left: 30px;
+/* Gestor */
+.formulario-cadastrar-livro > div > label {
+    font-weight: 900;
+    text-transform: uppercase;
 }
 
 /* Pagina do aluno */
@@ -189,7 +182,7 @@
     justify-content: space-between;
     margin-top: 30px;
     flex-direction: column;
-    gap: 70px;
+    gap: 30px;
 }
 
 .card__aluno--topo {
@@ -211,7 +204,7 @@
 }
 
 .card__aluno--livro img {
-    width: 15%;
+    width: 200px;
     border-radius: 10px;
 }
 
@@ -223,7 +216,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 15%;
 }
 .card__aluno--datas {
     display: flex;
@@ -231,6 +223,7 @@
     justify-content: space-evenly;
     border-radius: 10px;
     padding: 10px;
+    text-align: center;
 }
 .card__aluno--datas:nth-child(1) {
     background-color: #cfe2ff;
@@ -248,20 +241,34 @@
     border-radius: 10px;
     width: 50%;
 }
+.caixa-btn-cancelar-reserva {
+    margin-top: 30px;
+}
+.card__aluno--coluna > span:first-child {
+    text-decoration: underline;
+    font-weight: 900;
+}
 @media (max-width: 767px) {
     .card__aluno--linha {
         flex-direction: column;
         gap: 20px;
     }
-    .card__aluno--livro img {
-        width: 50%;
-    }
     .caixa-datas {
-        width: 65%;
+        margin: 0 auto;
+        width: 250px;
         gap: 20px;
     }
     .card__aluno--corpo {
         margin-bottom: 70px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .card__aluno--livro img {
+        width: 100%;
+    }
+    .card__aluno--livro--texto {
+        text-align: center;
     }
     .card__aluno--livro {
         gap: 20px;
@@ -299,7 +306,7 @@
     left: -200px;
 }
 .menu-content {
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -340,7 +347,7 @@
     width: 30%;
 }
 .imagem-livro-interna {
-    width: 70%;
+    width: 300px;
     position: relative;
     top: 60px;
     left: 30px;
@@ -358,6 +365,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+    max-width: 800px;
 }
 .caixa-copias {
     display: flex;
@@ -477,4 +485,11 @@
     background-color: #e7e7e7;
     padding: 20px;
     border-radius: 10px;
+}
+/* Nome Usuario */
+.nome-usuario {
+    max-width: 25ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
