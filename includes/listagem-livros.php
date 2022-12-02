@@ -99,7 +99,7 @@
         $quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
 
         //Limitar os link antes depois
-        $max_links = 1;
+        $max_links = 2;
 
         ?>
        <div class='content caixa-pag'>

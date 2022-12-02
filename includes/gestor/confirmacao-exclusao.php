@@ -51,36 +51,38 @@
     };
 ?>
 
-<section class="container-xl corpo">
-    <div class="alert alert-danger" role="alert">
-        Lembre-se excluir um livro é uma ação <b>Irreversível!</b>
-    </div>
+<section class="container-xl mt-100px corpo">
+    <div class="caixa-formulario">
+        <div class="alert alert-danger" role="alert">
+            Lembre-se excluir um livro é uma ação <b>Irreversível!</b>
+        </div>
 
-    <form method="POST">
-        <div class="mt-3">
-            <label>Imagem</label>
-            <img style="width:10%;" src="../img/<?php echo $imagem ?>" alt="">
-        </div>
-        <div class="mt-3">
-            <label>Id do Livro</label>
-            <label class="form-control"><?php echo $id_livro ?></label>
-        </div>
-        <div class="mt-3">
-            <label>Titulo</label>
-            <label class="form-control"><?php echo $titulo ?></label>
-            <input class="form-control" type="hidden" name="livro" value="<?php echo $id_livro ?>">
-        </div>
-        <div class="mt-3">
-            <label>Autor</label>
-            <label class="form-control"><?php echo $autor ?></label>
-        </div>
-        <div class="mt-3">
-            <label>Quantidade de cópias</label>
-            <label class="form-control"><?php echo $qtd ?></label>
-        </div>
-        <div class="mt-3">
-            <input class="btn btn-sm btn-danger" type="submit" name="excluir" value="Excluir">
-            <a class="btn btn-sm btn-primary" href="livros.php">Cancelar</a>
-        </div>
-    </form>
+        <form method="POST">
+            <div class="mt-3">
+                <label>Imagem</label>
+                <img style="width:10%;" src="../img/<?php echo $imagem ?>" alt="">
+            </div>
+            <div class="mt-3">
+                <label>Id do Livro</label>
+                <label class="form-control"><?php echo $id_livro ?></label>
+            </div>
+            <div class="mt-3">
+                <label>Titulo</label>
+                <label class="form-control"><?php echo $titulo ?></label>
+                <input class="form-control" type="hidden" name="livro" value="<?php echo $id_livro ?>">
+            </div>
+            <div class="mt-3">
+                <label>Autor</label>
+                <label class="form-control"><?php echo $autor ?></label>
+            </div>
+            <div class="mt-3">
+                <label>Quantidade de cópias</label>
+                <label class="form-control"><?php echo $qtd ?></label>
+            </div>
+            <div class="mt-3">
+                <input class="btn btn-sm btn-danger" type="submit" name="excluir" value="Excluir">
+                <a class="btn btn-sm btn-primary" href="livros.php">Cancelar</a>
+            </div>
+        </form>
+    </div>
 </section>

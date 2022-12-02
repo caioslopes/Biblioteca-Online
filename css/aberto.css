@@ -26,7 +26,7 @@
 /* Pagina de livros */
 .vitrine {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 25px 40px;
     margin-bottom: 30px;
 }
@@ -284,15 +284,27 @@
 /* integrantes */
 .caixa-img-quem-somos {
     display: flex;
+    gap: 60px;
+    justify-content: center;
+    align-items: center;
 }
 .img-integrantes {
-    width: 200px;
-}
-.img-integrantes > a {
-    display: flex;
+    width: 300px;
 }
 .img-integrantes > a > img {
     width: 100%;
+    border-radius: 50%;
+}
+.img-integrantes > a {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.5s;
+}
+.img-integrantes > a:hover {
+    transform: scale(1.1);
+    transition: 0.5s;
 }
 /* Desenvolvedores */
 .desenvolvedores {
@@ -430,6 +442,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 10px;
+    max-width: 800px;
 }
 .caixa-copias {
     display: flex;
@@ -464,6 +477,9 @@
 }
 .caixa-interna {
     margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
 }
 .btn-voltar {
     position: relative;
@@ -473,6 +489,16 @@
 .btn-voltar a {
     color: white;
     padding: 10px;
+}
+.caixa-sinopse {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+.caixa-sinopse > span {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 900;
 }
 @media (max-width: 767px) {
     .caixa-livro-interna {
@@ -495,6 +521,9 @@
     .btn-voltar {
         top: -10px;
         left: -160px;
+    }
+    .caixa-interna{
+        gap: 30px;
     }
 }
 /* Footer */

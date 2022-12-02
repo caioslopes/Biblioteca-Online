@@ -63,7 +63,7 @@
             <div class="card-como-fun" >
                 <span>Sistema do Gestor</span>
                 <span>Assim como no sistema do aluno é preciso fazer login, só é possivel 
-                    cadastrar um novo usuario dentro do proprio sistema.
+                    cadastrar um novo usuario dentro do proprio banco de dados.
                     Aqui será apresentado todas as informações do site, livros 
                     cadastrados, alunos e reservas. Sendo possivel fazer alterações 
                     e novos registros como emprestar um livro.</span>
@@ -78,17 +78,19 @@
 
         <div class="caixa-img-quem-somos">
             <div class="img-integrantes">
+                <a target="_blank" href="https://www.instagram.com/duduh_pir3s/">
+                    <img src="img/integrantes/eduardo.png" alt="">
+                    <span>Eduardo Pires Carvalho</span>
+                </a>
+            </div>
+
+            <div class="img-integrantes">
                 <a target="_blank" href="https://www.instagram.com/caio.s.lopes/">
                     <img src="img/integrantes/caio.jpg" alt="">
                     <span>Caio dos Santos Lopes</span>
                 </a>
             </div>
-            <div class="img-integrantes">
-                <a target="_blank" href="https://www.instagram.com/duduh_pir3s/">
-                    <img src="img/integrantes/eduardo.jpeg" alt="">
-                    <span>Eduardo Pires Carvalho</span>
-                </a>
-            </div>
+
             <div class="img-integrantes">
                 <a target="_blank"  href="https://www.instagram.com/maur0_gusmao/">
                     <img src="img/integrantes/mauro.jpg" alt="">

@@ -20,7 +20,7 @@
     }
 
 ?>
-<section class="container-xl corpo">
+<section class="container-xl mt-100px corpo">
 
     <?=$msg?>
 

@@ -81,7 +81,7 @@
         }
     };
 ?>
-<section class="container-xl mt-4 corpo">
+<section class="container-xl mt-100px corpo">
 
     <!-- Alerta de status ação -->
     <?=$msg?>

@@ -1,30 +1,3 @@
-<!-- Abrindo a pagina -->
-<style>
-  #abrir{
-    display: block;
-    border: unset;
-    background: unset;
-  }
-  .quem-ta-online{
-    background: #23232e;
-    height: 60px;
-  }
-  .header-fechado{
-    background-color: #23232e;
-    height: 70px;
-  }
-  .caixinha-header{
-    justify-content: end!important;
-  }
-  @media (max-width:767px){
-    #abrir{
-      color: white;
-    }
-    .caixinha-header{
-      justify-content: space-between!important;
-    }
-  }
-</style>
 <!doctype html>
 <html lang="pt-br">
   <head>

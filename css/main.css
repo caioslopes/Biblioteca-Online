@@ -12,9 +12,11 @@ body {
     background-color: #d3d3d3;
 }
 .corpo {
-    margin-top: 30px;
     margin-left: 230px;
     width: calc(100% - 250px);
+}
+.mt-100px {
+    margin-top: 100px;
 }
 .header-aberto {
     background-color: #23232e;
@@ -59,7 +61,7 @@ body {
     .corpo {
         margin: unset;
         width: 100%;
-        margin-top: 20px;
+        margin-top: 100px;
     }
     .mobile-non-display {
         display: none;

@@ -1,3 +1,36 @@
+/*Header Fechado*/
+#abrir {
+    display: block;
+    border: unset;
+    background: unset;
+}
+.quem-ta-online {
+    background: #23232e;
+    height: 60px;
+}
+.header-fechado {
+    background-color: #23232e;
+    height: 70px;
+    position: fixed;
+    width: calc(100% - 200px);
+    top: 0;
+    z-index: 3;
+    right: 0;
+}
+.caixinha-header {
+    justify-content: end !important;
+}
+@media (max-width: 767px) {
+    #abrir {
+        color: white;
+    }
+    .caixinha-header {
+        justify-content: space-between !important;
+    }
+    .header-fechado {
+        width: 100%;
+    }
+}
 /* Pagina de livros */
 .vitrine {
     display: grid;
@@ -280,7 +313,8 @@
 /* Alertas */
 .alerta-personalizado {
     position: absolute;
-    right: 10%;
+    bottom: 25px;
+    right: 25px;
 }
 
 /* Menu */
@@ -290,6 +324,7 @@
     height: 100%;
     position: fixed;
     top: 0px;
+    z-index: 6;
 
     transition: transform 1s;
 }
@@ -400,6 +435,9 @@
 }
 .caixa-interna {
     margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
 }
 .btn-voltar {
     position: relative;
@@ -457,6 +495,16 @@
     justify-content: space-between;
     width: 100%;
 }
+.caixa-sinopse {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+.caixa-sinopse > span {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
 @media (max-width: 767px) {
     .caixa-livro-interna {
         margin-top: 50px;
@@ -478,6 +526,9 @@
     .btn-voltar {
         top: -10px;
         left: -160px;
+    }
+    .caixa-interna {
+        gap: 30px;
     }
 }
 /* Formularios */

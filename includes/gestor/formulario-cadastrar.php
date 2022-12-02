@@ -73,7 +73,7 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
 ?>
 
-<section class="container-xl corpo">
+<section class="container-xl mt-100px corpo">
 
 <div class="caixa-formulario">
      <div class="titulo-index">

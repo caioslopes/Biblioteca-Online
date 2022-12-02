@@ -87,8 +87,11 @@
                 <?php } ?> 
                 </div>
             </div>
-            <div>
-                <span><?php echo $sinopse ?></span>    
+        </div>
+        <div class="caixa-sinopse">
+            <span>Sinopse</span>
+            <div class="caixa-sinopse-texto" >
+                <?php echo $sinopse ?>
             </div>
         </div>
     </div>

@@ -107,7 +107,7 @@ if(!empty($_GET['id'])){
 
 ?>
 
-<section class="container-xl corpo">
+<section class="container-xl mt-100px corpo">
 
 <div class="caixa-formulario">
      <div class="titulo-index">
