@@ -21,7 +21,7 @@
     }
   ?>
 
-<section class="container-xl mt-4 min-hei">
+<section class="container-xl mt-100px min-hei">
     <div class="d-flex justify-content-between titulo-pagina">
         <div class="caixa-busca">
             <div class="titulo-index">

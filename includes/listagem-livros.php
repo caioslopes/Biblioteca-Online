@@ -22,7 +22,7 @@
 
 
 ?>
-<section class="container-xl mt-4 min-hei">
+<section class="container-xl mt-100px min-hei">
         <?=$msg?>
     <div class="d-flex justify-content-between titulo-pagina">
         <div class="caixa-busca">

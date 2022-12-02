@@ -115,7 +115,7 @@ if (isset($_FILES['arquivo']['name']) && $_FILES['arquivo']['error'] == 0) {
 
       <div class="mb-3">
         <label class="form-label">Sinopse</label>
-        <textarea class="form-control" name="sinopse"  placeholder="Digite a sinopse do livro..." style="height: 100px"></textarea>
+        <textarea class="form-control" name="sinopse"  placeholder="Digite a sinopse do livro..." style="height: 100px" required></textarea>
       </div>
 
       <div class="mb-3">

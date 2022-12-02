@@ -63,7 +63,7 @@
     
 ?>
 
- <section class="container-xl corpo">
+ <section class="container-xl mt-100px corpo">
     <div class="caixa-formulario">
         <div class="alert alert-warning" role="alert">
             Lembre-se que você apenas pode fazer a reserva de <b>um</b> livro por vez!

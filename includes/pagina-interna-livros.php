@@ -31,7 +31,7 @@
 
 ?>
 
-<section class="container-xl">
+<section class="container-xl mt-30px">
     <div class="caixa-interna">
         <div class="d-flex caixa-livro-interna">
             <div class="btn-voltar">
@@ -46,7 +46,7 @@
             </div>
             <div class="caixa-texto-interna">
                 <h1><?php echo $titulo ?></h1>
-                <span>Autor: <?php echo $autor ?></span>
+                <span>Autor(a): <?php echo $autor ?></span>
                 <span>Categoria: <?php echo $nome_categoria ?></span>
                 <span>Paginas: <?php echo $paginas ?></span>
                 <div class="caixa-copias">
@@ -73,7 +73,16 @@
         <div class="caixa-sinopse">
             <span>Sinopse</span>
             <div class="caixa-sinopse-texto" >
-                <?php echo $sinopse ?>
+                <?php if($sinopse == ""){ ?>
+
+                    <span>Sinopse não cadastrada.</span>
+
+              <?php  }else{
+
+                echo $sinopse;
+                
+              } ?>
+
             </div>
         </div>
     </div>

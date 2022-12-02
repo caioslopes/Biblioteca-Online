@@ -77,17 +77,18 @@
         </div>
 
         <div class="caixa-img-quem-somos">
-            <div class="img-integrantes">
-                <a target="_blank" href="https://www.instagram.com/duduh_pir3s/">
-                    <img src="img/integrantes/eduardo.png" alt="">
-                    <span>Eduardo Pires Carvalho</span>
-                </a>
-            </div>
-
+            
             <div class="img-integrantes">
                 <a target="_blank" href="https://www.instagram.com/caio.s.lopes/">
                     <img src="img/integrantes/caio.jpg" alt="">
                     <span>Caio dos Santos Lopes</span>
+                </a>
+            </div>
+
+            <div class="img-integrantes">
+                <a target="_blank" href="https://www.instagram.com/duduh_pir3s/">
+                    <img src="img/integrantes/eduardo.png" alt="">
+                    <span>Eduardo Pires Carvalho</span>
                 </a>
             </div>
 

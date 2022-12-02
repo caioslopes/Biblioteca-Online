@@ -115,7 +115,7 @@ if(!empty($_GET['id'])){
     </div>
 
 <!-- Formulario para editar os livros -->
-  <form class="mt-4" method="POST" enctype="multipart/form-data">
+  <form class="mt-4 formulario-editar" method="POST" enctype="multipart/form-data">
 
       <div class="mb-3">
         <label class="form-label">Imagem</label>

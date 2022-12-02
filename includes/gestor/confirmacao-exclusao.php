@@ -57,7 +57,7 @@
             Lembre-se excluir um livro é uma ação <b>Irreversível!</b>
         </div>
 
-        <form method="POST">
+        <form method="POST" class="formulario-excluir">
             <div class="mt-3">
                 <label>Imagem</label>
                 <img style="width:10%;" src="../img/<?php echo $imagem ?>" alt="">

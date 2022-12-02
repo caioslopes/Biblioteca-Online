@@ -103,8 +103,9 @@
         <span>Emprestar Livro</span>
     </div>
 
-    <form class="mt-4"  method="POST">
-      <div class="form-floating mb-3">
+    <form class="mt-4 formulario-reservar"  method="POST">
+      <div class="mb-3">
+        <label>Aluno</label>
         <select class="form-select" id="aluno" name="aluno" required>
           <option selected>Selecionar Aluno</option>
            <?php
@@ -113,10 +114,10 @@
                 <option <?php if ($aluno['livros_reservados'] >= 1) { ?> disabled <?php  }  ?> value="<?php echo $aluno['id_aluno'] ?>"><?php echo $aluno['nome_aluno'] ?> | <?php echo 'Livros: '. $aluno['livros_reservados']; ?> </option>
             <?php } ?>
         </select>
-        <label for="floatingSelect">Aluno</label>
       </div>
 
-      <div class="form-floating mb-3">
+      <div class="mb-3">
+        <label>Livro</label> 
         <select class="form-select" id="livro" name="livro" required>
           <option value="Selecione">Selecionar Livro</option>
             <!-- Retorna num array as informações relaciondas na tabela de livros acima -->
@@ -125,7 +126,6 @@
                 <option value="<?php echo $livro['id_livro'] ?>"> <?php echo $livro['titulo'] ?> </option>
             <?php } ?>
         </select>
-        <label for="floatingSelect">Livro</label> 
       </div>
 
       <div class="input-group mb-3">

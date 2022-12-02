@@ -45,9 +45,9 @@
             </div>
             <div class="caixa-texto-interna">
                 <h1><?php echo $titulo ?></h1>
-                <span><?php echo $autor ?></span>
-                <span><?php echo $nome_categoria ?></span>
-                <span><?php echo $paginas ?></span>
+                <span>Autor(a): <?php echo $autor ?></span>
+                <span>Categoria: <?php echo $nome_categoria ?></span>
+                <span>Paginas: <?php echo $paginas ?></span>
                 <div class="caixa-copias">
                     <div class="copias-disponiveis">
                         <span>Cópias disponíveis</span>
@@ -76,7 +76,16 @@
         <div class="caixa-sinopse">
             <span>Sinopse</span>
             <div class="caixa-sinopse-texto" >
-                <?php echo $sinopse ?>
+                <?php if($sinopse == ""){ ?>
+
+                    <span>Sinopse não cadastrada.</span>
+
+              <?php  }else{
+
+                echo $sinopse;
+                
+              } ?>
+
             </div>
         </div>
     </div>

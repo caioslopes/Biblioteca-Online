@@ -18,8 +18,20 @@ body {
 .mt-100px {
     margin-top: 100px;
 }
+.mt-30px {
+    margin-top: 30px;
+}
+@media (max-width) {
+    .mt-30px {
+        margin-top: 100px;
+    }
+}
 .header-aberto {
     background-color: #23232e;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
 }
 .header-scr {
     width: 100%;

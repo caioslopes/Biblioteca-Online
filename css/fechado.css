@@ -197,7 +197,18 @@
     font-weight: 900;
     text-transform: uppercase;
 }
-
+.formulario-reservar > div > label {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.formulario-editar > div > label {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+.formulario-excluir > div > label:first-child {
+    font-weight: 900;
+    text-transform: uppercase;
+}
 /* Pagina do aluno */
 .card__aluno--linha {
     display: flex;
@@ -530,17 +541,17 @@
     .caixa-interna {
         gap: 30px;
     }
+    /* Nome Usuario */
+    .nome-usuario {
+        max-width: 25ch;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
 /* Formularios */
 .caixa-formulario {
     background-color: #e7e7e7;
     padding: 20px;
     border-radius: 10px;
-}
-/* Nome Usuario */
-.nome-usuario {
-    max-width: 25ch;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 }
